@@ -1,0 +1,11 @@
+instruction,intent,name,phone,email,page,risk
+Add Rahul with phone number 9876543210,ADD_CUSTOMER,Rahul,9876543210,,Customers,Low
+Create customer Amit,ADD_CUSTOMER,Amit,,,Customers,Low
+Update product Laptop price to 55000,UPDATE_PRODUCT,,,Laptop,Products,Medium
+Delete customer Rahul,DELETE_CUSTOMER,Rahul,,,Customers,High
+Download today's sales report,DOWNLOAD_REPORT,,,,Reports,Low
+Upload employee file employees.xlsx,UPLOAD_FILE,,,,Employees,Medium
+Send email to admin@example.com,SEND_EMAIL,,,admin@example.com,Email,Low
+Open CRM dashboard,OPEN_PAGE,,,,Dashboard,Low
+Fill employee form for Rohit,FORM_FILL,Rohit,,,Employees,Low
+Take screenshot of dashboard,TAKE_SCREENSHOT,,,,Dashboard,Low
