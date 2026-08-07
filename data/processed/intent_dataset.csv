@@ -1,0 +1,252 @@
+instruction,intent
+Add Rahul as a customer,ADD_CUSTOMER
+Create a new customer,ADD_CUSTOMER
+Register customer Rahul,ADD_CUSTOMER
+Add customer Amit,ADD_CUSTOMER
+Please create a customer account,ADD_CUSTOMER
+Delete customer Rahul,DELETE_CUSTOMER
+Remove customer Amit,DELETE_CUSTOMER
+Delete this customer record,DELETE_CUSTOMER
+Remove the selected customer,DELETE_CUSTOMER
+Update customer phone number,UPDATE_CUSTOMER
+Change Rahul's phone number,UPDATE_CUSTOMER
+Modify customer details,UPDATE_CUSTOMER
+Update employee details,UPDATE_EMPLOYEE
+Edit employee information,UPDATE_EMPLOYEE
+Change employee salary,UPDATE_EMPLOYEE
+Download today's report,DOWNLOAD_REPORT
+Download monthly report,DOWNLOAD_REPORT
+Export sales report,DOWNLOAD_REPORT
+Get the report in PDF,DOWNLOAD_REPORT
+Upload customer file,UPLOAD_FILE
+Upload Excel file,UPLOAD_FILE
+Import customer data,UPLOAD_FILE
+Fill the registration form,FILL_FORM
+Complete the application form,FILL_FORM
+Submit the employee form,FILL_FORM
+Read the customer table,READ_TABLE
+Display customer records,READ_TABLE
+Show employee list,READ_TABLE
+Send email to manager,SEND_EMAIL
+Mail today's report,SEND_EMAIL
+Email the customer list,SEND_EMAIL
+Open customer page,OPEN_PAGE
+Open employee page,OPEN_PAGE
+Go to reports page,OPEN_PAGE
+Click save button,CLICK_BUTTON
+Press submit button,CLICK_BUTTON
+Click on Add Customer,CLICK_BUTTON
+Rahul naam ka customer add karo,ADD_CUSTOMER
+Naya customer create karo,ADD_CUSTOMER
+Customer delete karo,DELETE_CUSTOMER
+Employee update karo,UPDATE_EMPLOYEE
+Aaj ka report download karo,DOWNLOAD_REPORT
+Customer file upload karo,UPLOAD_FILE
+Form fill karo,FILL_FORM
+Manager ko email bhejo,SEND_EMAIL
+Customer table dikhao,READ_TABLE
+Product ka price update karo,UPDATE_PRODUCT
+Change product price to 500,UPDATE_PRODUCT
+Update product information,UPDATE_PRODUCT
+Add new client,ADD_CUSTOMER
+Create customer account,ADD_CUSTOMER
+Register a customer,ADD_CUSTOMER
+Add customer named Pankaj,ADD_CUSTOMER
+Create Rahul customer profile,ADD_CUSTOMER
+Insert new customer,ADD_CUSTOMER
+New customer entry,ADD_CUSTOMER
+Save customer details,ADD_CUSTOMER
+Register new client,ADD_CUSTOMER
+Add one more customer,ADD_CUSTOMER
+Remove customer record,DELETE_CUSTOMER
+Delete customer account,DELETE_CUSTOMER
+Erase customer details,DELETE_CUSTOMER
+Delete selected customer,DELETE_CUSTOMER
+Remove this client,DELETE_CUSTOMER
+Delete employee record,DELETE_EMPLOYEE
+Remove employee details,DELETE_EMPLOYEE
+Delete employee account,DELETE_EMPLOYEE
+Update customer address,UPDATE_CUSTOMER
+Update customer email,UPDATE_CUSTOMER
+Edit customer profile,UPDATE_CUSTOMER
+Modify customer information,UPDATE_CUSTOMER
+Change customer mobile number,UPDATE_CUSTOMER
+Update employee phone number,UPDATE_EMPLOYEE
+Edit employee profile,UPDATE_EMPLOYEE
+Modify employee department,UPDATE_EMPLOYEE
+Change employee designation,UPDATE_EMPLOYEE
+Update salary details,UPDATE_EMPLOYEE
+Download invoice report,DOWNLOAD_REPORT
+Download sales report,DOWNLOAD_REPORT
+Download attendance report,DOWNLOAD_REPORT
+Export customer report,DOWNLOAD_REPORT
+Generate PDF report,DOWNLOAD_REPORT
+Export report to Excel,DOWNLOAD_REPORT
+Upload customer Excel sheet,UPLOAD_FILE
+Upload invoice document,UPLOAD_FILE
+Import employee data,UPLOAD_FILE
+Upload CSV file,UPLOAD_FILE
+Upload report file,UPLOAD_FILE
+Complete customer registration form,FILL_FORM
+Fill employee form,FILL_FORM
+Fill application details,FILL_FORM
+Submit registration form,FILL_FORM
+Complete profile form,FILL_FORM
+Read employee table,READ_TABLE
+Display sales table,READ_TABLE
+Open customer records,READ_TABLE
+Show product table,READ_TABLE
+View employee list,READ_TABLE
+Send report to manager,SEND_EMAIL
+Email customer report,SEND_EMAIL
+Mail invoice to client,SEND_EMAIL
+Share report by email,SEND_EMAIL
+Email monthly summary,SEND_EMAIL
+Open dashboard,OPEN_PAGE
+Open login page,OPEN_PAGE
+Open reports page,OPEN_PAGE
+Open settings page,OPEN_PAGE
+Go to customer dashboard,OPEN_PAGE
+Click Add button,CLICK_BUTTON
+Click Update button,CLICK_BUTTON
+Click Delete button,CLICK_BUTTON
+Click Confirm button,CLICK_BUTTON
+Press Save button,CLICK_BUTTON
+Product price change to 1000,UPDATE_PRODUCT
+Update laptop price,UPDATE_PRODUCT
+Modify product details,UPDATE_PRODUCT
+Change item price,UPDATE_PRODUCT
+Edit product information,UPDATE_PRODUCT
+Rahul ko customer banao,ADD_CUSTOMER
+Naya client add karo,ADD_CUSTOMER
+Customer account banao,ADD_CUSTOMER
+Ek naya customer register karo,ADD_CUSTOMER
+Customer delete kar do,DELETE_CUSTOMER
+Employee delete karo,DELETE_EMPLOYEE
+Employee details update karo,UPDATE_EMPLOYEE
+Customer details update karo,UPDATE_CUSTOMER
+Aaj ki report download karo,DOWNLOAD_REPORT
+Monthly report download karo,DOWNLOAD_REPORT
+Excel file upload karo,UPLOAD_FILE
+CSV upload karo,UPLOAD_FILE
+Customer form fill karo,FILL_FORM
+Employee form submit karo,FILL_FORM
+Customer list dikhao,READ_TABLE
+Employee list open karo,READ_TABLE
+Manager ko report bhejo,SEND_EMAIL
+Customer ko email bhejo,SEND_EMAIL
+Dashboard kholo,OPEN_PAGE
+Customer page kholo,OPEN_PAGE
+Save button dabao,CLICK_BUTTON
+Delete button dabao,CLICK_BUTTON
+Product ka rate badal do,UPDATE_PRODUCT
+Product ka price 799 kar do,UPDATE_PRODUCT
+Customer add krdo,ADD_CUSTOMER
+Custmer add karo,ADD_CUSTOMER
+Dwonload report,DOWNLOAD_REPORT
+Update employe details,UPDATE_EMPLOYEE
+Delte customer,DELETE_CUSTOMER
+Open custmer page,OPEN_PAGE
+Send mail to HR,SEND_EMAIL
+Upload attendance sheet,UPLOAD_FILE
+Show all customers,READ_TABLE
+Create a customer named Rohan,ADD_CUSTOMER
+Add customer Sneha,ADD_CUSTOMER
+Register new client Ankit,ADD_CUSTOMER
+Create account for Priya,ADD_CUSTOMER
+Add customer with mobile number,ADD_CUSTOMER
+Make a new customer profile,ADD_CUSTOMER
+Insert customer details,ADD_CUSTOMER
+Save new customer information,ADD_CUSTOMER
+Create customer record,ADD_CUSTOMER
+Register business customer,ADD_CUSTOMER
+Remove Rohan from customers,DELETE_CUSTOMER
+Delete customer Sneha,DELETE_CUSTOMER
+Erase customer profile,DELETE_CUSTOMER
+Remove selected client,DELETE_CUSTOMER
+Delete customer permanently,DELETE_CUSTOMER
+Remove duplicate customer,DELETE_CUSTOMER
+Delete old customer record,DELETE_CUSTOMER
+Remove inactive customer,DELETE_CUSTOMER
+Delete unwanted customer,DELETE_CUSTOMER
+Delete existing customer,DELETE_CUSTOMER
+Update customer city,UPDATE_CUSTOMER
+Change customer address,UPDATE_CUSTOMER
+Edit customer contact,UPDATE_CUSTOMER
+Modify customer mobile,UPDATE_CUSTOMER
+Update customer profile,UPDATE_CUSTOMER
+Correct customer details,UPDATE_CUSTOMER
+Update customer GST number,UPDATE_CUSTOMER
+Change customer company name,UPDATE_CUSTOMER
+Update customer status,UPDATE_CUSTOMER
+Modify customer information,UPDATE_CUSTOMER
+Update employee salary,UPDATE_EMPLOYEE
+Modify employee role,UPDATE_EMPLOYEE
+Change employee department,UPDATE_EMPLOYEE
+Update employee contact,UPDATE_EMPLOYEE
+Edit employee profile,UPDATE_EMPLOYEE
+Update employee joining date,UPDATE_EMPLOYEE
+Modify HR employee details,UPDATE_EMPLOYEE
+Change employee email,UPDATE_EMPLOYEE
+Update staff information,UPDATE_EMPLOYEE
+Edit staff profile,UPDATE_EMPLOYEE
+Download customer report,DOWNLOAD_REPORT
+Download employee report,DOWNLOAD_REPORT
+Export attendance report,DOWNLOAD_REPORT
+Export invoice report,DOWNLOAD_REPORT
+Generate monthly report,DOWNLOAD_REPORT
+Generate yearly report,DOWNLOAD_REPORT
+Export transaction report,DOWNLOAD_REPORT
+Save report as PDF,DOWNLOAD_REPORT
+Export report to CSV,DOWNLOAD_REPORT
+Download analytics report,DOWNLOAD_REPORT
+Upload attendance file,UPLOAD_FILE
+Import CSV data,UPLOAD_FILE
+Upload salary sheet,UPLOAD_FILE
+Upload employee document,UPLOAD_FILE
+Import customer list,UPLOAD_FILE
+Upload image file,UPLOAD_FILE
+Upload profile photo,UPLOAD_FILE
+Upload report document,UPLOAD_FILE
+Upload invoice PDF,UPLOAD_FILE
+Import contacts,UPLOAD_FILE
+Fill customer registration form,FILL_FORM
+Complete HR form,FILL_FORM
+Fill employee application,FILL_FORM
+Complete joining form,FILL_FORM
+Submit customer details,FILL_FORM
+Enter registration information,FILL_FORM
+Complete onboarding form,FILL_FORM
+Fill contact form,FILL_FORM
+Submit application,FILL_FORM
+Complete profile details,FILL_FORM
+Show customer table,READ_TABLE
+View sales records,READ_TABLE
+Display employee records,READ_TABLE
+Read invoice table,READ_TABLE
+View attendance table,READ_TABLE
+Open report table,READ_TABLE
+Display customer information,READ_TABLE
+Show product inventory,READ_TABLE
+Read customer database,READ_TABLE
+Display transaction history,READ_TABLE
+Send report via email,SEND_EMAIL
+Mail attendance report,SEND_EMAIL
+Email customer invoice,SEND_EMAIL
+Share report with HR,SEND_EMAIL
+Email sales summary,SEND_EMAIL
+Send invoice to customer,SEND_EMAIL
+Mail payment receipt,SEND_EMAIL
+Email employee details,SEND_EMAIL
+Share monthly analytics,SEND_EMAIL
+Send confirmation email,SEND_EMAIL
+Open CRM page,OPEN_PAGE
+Go to employee page,OPEN_PAGE
+Launch reports dashboard,OPEN_PAGE
+Open inventory page,OPEN_PAGE
+Navigate to settings,OPEN_PAGE
+Click login button,CLICK_BUTTON
+Click search button,CLICK_BUTTON
+Click next button,CLICK_BUTTON
+Click submit form,CLICK_BUTTON
+Press confirm,CLICK_BUTTON
