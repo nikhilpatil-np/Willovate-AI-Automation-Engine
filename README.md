@@ -2,15 +2,19 @@
 
 ## Project Overview
 
-The Willovate AI Automation Engine is an AI-powered platform that converts natural language instructions into executable automation workflows. The system understands user commands, identifies the required task, extracts important information, generates workflow steps, and prepares them for execution on web applications.
+The **Willovate AI Automation Engine** is an AI-powered platform that converts natural language instructions into executable automation workflows. The system understands user commands, detects user intent, extracts important entities, validates the input, generates workflow steps, and converts them into structured JSON for automation execution.
 
-Example:
+---
 
-### User Input
+# Example
 
+## User Input
+
+```
 Open the CRM and add Rahul with phone number 9876543210.
+```
 
-### Expected Workflow
+## Generated Workflow
 
 ```json
 {
@@ -43,14 +47,14 @@ Open the CRM and add Rahul with phone number 9876543210.
 
 ---
 
-# Project Features
+# Features
 
 - Intent Detection
 - Entity Extraction
-- Workflow Planning
-- Workflow JSON Generation
 - Missing Information Detection
-- Multi-step Planning
+- Workflow Generation
+- JSON Workflow Generation
+- Multi-Step Planning
 - English, Hindi & Hinglish Support
 - Screenshot Understanding
 - Risk Detection
@@ -65,6 +69,8 @@ Open the CRM and add Rahul with phone number 9876543210.
 - Python
 - FastAPI
 - Scikit-Learn
+- Logistic Regression
+- TF-IDF Vectorizer
 - Transformers
 - Sentence Transformers
 - spaCy
@@ -80,27 +86,45 @@ Open the CRM and add Rahul with phone number 9876543210.
 
 ## ✅ Day 1 (06 Aug 2026)
 
-- Project setup completed
-- Folder structure created
-- Python environment configured
+- Project folder structure created
+- Python virtual environment configured
 - FastAPI project initialized
-- Initial training dataset prepared
+- Initial dataset prepared
 - Git repository created
-
-## ✅ Day 2 (07 Aug 2026)
-
-- Intent Detection dataset created (251 samples)
-- Dataset cleaned and verified
-- TF-IDF Vectorizer implemented
-- Logistic Regression model trained
-- Model Accuracy: **90.2%**
-- Model saved as `intent_model.pkl`
-- Intent prediction tested successfully
-- Evaluation report generated
+- GitHub repository connected
 
 ---
 
-# Folder Structure
+## ✅ Day 2 (07 Aug 2026)
+
+- Created Intent Detection dataset (251 samples)
+- Cleaned and verified dataset
+- Implemented TF-IDF Vectorizer
+- Trained Logistic Regression model
+- Achieved **90.2% Accuracy**
+- Saved trained model (`intent_model.pkl`)
+- Built Intent Prediction module
+- Generated Classification Report
+- Tested multiple user instructions
+
+---
+
+## ✅ Day 3 (08 Aug 2026)
+
+- Expanded instruction dataset
+- Built Entity Extraction module
+- Extracted Name, Phone Number, Email, Price and File Name
+- Implemented Missing Information Detection
+- Built Workflow Generator
+- Generated Automation Workflow
+- Converted Workflow into JSON format
+- Saved workflow outputs automatically
+- Tested all modules successfully
+- Updated project documentation
+
+---
+
+# Project Folder Structure
 
 ```
 Willovate-AI-Automation-Engine
@@ -109,7 +133,15 @@ Willovate-AI-Automation-Engine
 │   ├── api
 │   ├── config
 │   ├── core
+│   │   ├── entity_extractor.py
+│   │   ├── missing_information.py
+│   │   ├── workflow_generator.py
+│   │   └── json_generator.py
+│   │
 │   ├── models
+│   │   ├── train_intent_model.py
+│   │   └── test_intent_model.py
+│   │
 │   └── utils
 │
 ├── data
@@ -119,13 +151,20 @@ Willovate-AI-Automation-Engine
 ├── models
 │
 ├── outputs
+│   ├── intent_detection
+│   ├── entity_extraction
+│   ├── missing_information
+│   ├── workflow_generation
+│   └── json_generation
 │
 ├── screenshots
+│   ├── day2
+│   └── day3
 │
 ├── docs
 │
-├── requirements.txt
 ├── README.md
+├── requirements.txt
 └── main.py
 ```
 
@@ -133,17 +172,20 @@ Willovate-AI-Automation-Engine
 
 # Intent Detection Model
 
-Algorithm:
+### Algorithm
+
 - TF-IDF Vectorizer
 - Logistic Regression
 
-Dataset Size:
+### Dataset Size
+
 - 251 Instructions
 
-Model Accuracy:
-- **90.2%**
+### Model Accuracy
 
-Supported Intents:
+**90.2%**
+
+### Supported Intents
 
 - ADD_CUSTOMER
 - UPDATE_CUSTOMER
@@ -161,22 +203,155 @@ Supported Intents:
 
 ---
 
+# Entity Extraction
+
+The Entity Extraction module identifies important information from user instructions.
+
+### Supported Entities
+
+- Customer Name
+- Phone Number
+- Email Address
+- File Name
+- Product Price
+
+### Example
+
+Input
+
+```
+Add Rahul with phone 9876543210
+```
+
+Output
+
+```json
+{
+  "name": "Rahul",
+  "phone": "9876543210"
+}
+```
+
+---
+
+# Missing Information Detection
+
+The system verifies whether the user has provided all required information.
+
+### Example
+
+Input
+
+```
+Create customer
+```
+
+Output
+
+```
+Missing Fields
+
+- Customer Name
+- Phone Number
+```
+
+---
+
+# Workflow Generator
+
+The Workflow Generator converts user instructions into executable automation steps.
+
+Example
+
+Input
+
+```
+Add Rahul customer with phone 9876543210
+```
+
+Output
+
+```json
+{
+  "steps": [
+    {
+      "action": "OPEN_PAGE",
+      "target": "Customers"
+    },
+    {
+      "action": "CLICK",
+      "target": "Add Customer"
+    },
+    {
+      "action": "ENTER_TEXT",
+      "target": "Customer Name",
+      "value": "Rahul"
+    },
+    {
+      "action": "ENTER_TEXT",
+      "target": "Phone Number",
+      "value": "9876543210"
+    },
+    {
+      "action": "CLICK",
+      "target": "Save"
+    }
+  ]
+}
+```
+
+---
+
+# JSON Generator
+
+The JSON Generator converts workflow steps into structured JSON that can be executed by an automation engine or API.
+
+Output Format
+
+```json
+{
+  "steps": [
+    {
+      "action": "OPEN_PAGE",
+      "target": "Customers"
+    },
+    {
+      "action": "CLICK",
+      "target": "Add Customer"
+    }
+  ]
+}
+```
+
+---
+
+# Git Progress
+
+| Day | Branch |
+|------|--------|
+| Day 1 | day-1-project-setup |
+| Day 2 | day-2-intent-detection |
+| Day 3 | day-3-entity-extraction |
+
+---
+
 # Future Work
 
-- Entity Extraction
-- Missing Information Detection
-- Workflow Planning
-- JSON Workflow Generator
+- Workflow Validation
 - Risk Detection
+- Multi-Step Planning
 - Screenshot Understanding
 - Automation Runner
+- FastAPI Integration
 - Streamlit Dashboard
+- AI Agent Integration
+- Model Optimization
 
 ---
 
 # Author
 
-Nikhil Patil
+**Nikhil Patil**
 
 AI/ML Engineer Intern
 

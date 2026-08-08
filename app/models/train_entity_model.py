@@ -1,10 +1,9 @@
 import re
 
-
 def extract_entities(text):
     entities = {}
 
-    # Phone Number
+    # Phone number
     phone = re.search(r"\b\d{10}\b", text)
     if phone:
         entities["phone"] = phone.group()
@@ -15,25 +14,25 @@ def extract_entities(text):
         entities["email"] = email.group()
 
     # Price
-    price = re.search(r"(?:₹|Rs\.?|INR)?\s?(\d+)", text)
+    price = re.search(
+        r"(?:price\s*(?:to|is|=)?\s*|₹|Rs\.?\s*|INR\s*)(\d+)",
+        text,
+        re.IGNORECASE
+    )
     if price:
-        value = price.group(1)
+        entities["price"] = price.group(1)
 
-        # Avoid treating phone numbers as prices
-        if len(value) <= 6:
-            entities["price"] = value
-
-    # File Name
-    file = re.search(r"\b[\w\-]+\.(pdf|csv|xlsx|jpg|png|zip)\b", text, re.IGNORECASE)
+    # File name
+    file = re.search(
+        r"\b[\w\-.]+\.(?:pdf|csv|xlsx|jpg|png|zip)\b",
+        text,
+        re.IGNORECASE
+    )
     if file:
         entities["file"] = file.group()
 
-    # Name
-    name = re.search(
-        r"(?:add|create|register|delete|employee|customer)\s+([A-Z][a-z]+)",
-        text,
-        re.IGNORECASE,
-    )
+    # Name (basic pattern)
+    name = re.search(r"(?:add|create|register|delete|employee|customer)\s+([A-Z][a-z]+)", text, re.IGNORECASE)
     if name:
         entities["name"] = name.group(1)
 
@@ -41,9 +40,7 @@ def extract_entities(text):
 
 
 if __name__ == "__main__":
-
     while True:
-
         text = input("\nEnter instruction (type exit): ")
 
         if text.lower() == "exit":

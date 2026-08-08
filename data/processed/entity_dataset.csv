@@ -1,0 +1,610 @@
+instruction,name,phone,email,product,price,page,file
+Add Rahul with phone number 9876543210,Rahul,9876543210,,,,,
+Create customer Amit with mobile 9988776655,Amit,9988776655,,,,,
+Register Pooja with phone 9123456789,Pooja,9123456789,,,,,
+Add customer Neha with number 9090909090,Neha,9090909090,,,,,
+Create customer Raj with email raj@gmail.com,Raj,,raj@gmail.com,,,,
+Add employee Rohit with email rohit@company.com,Rohit,,rohit@company.com,,,,
+Update product Laptop price to 65000,,,,Laptop,65000,,
+Change Mobile price to 15000,,,,Mobile,15000,,
+Update Keyboard price 1200,,,,Keyboard,1200,,
+Open Customers page,,,,,,Customers,
+Open Employee page,,,,,,Employees,
+Open Products page,,,,,,Products,
+Upload invoice.pdf,,,,,,,invoice.pdf
+Upload report.xlsx,,,,,,,report.xlsx
+Upload customer_list.csv,,,,,,,customer_list.csv
+Add customer Sneha with phone 8888888888,Sneha,8888888888,,,,,
+Create employee Kiran with email kiran@gmail.com,Kiran,,kiran@gmail.com,,,,
+Update TV price to 45000,,,,TV,45000,,
+Open Dashboard page,,,,,,Dashboard,
+Upload image.png,,,,,,,image.png
+Add customer Arjun with phone 9876500001,Arjun,9876500001,,,,,
+Add customer Priya with phone 9876500002,Priya,9876500002,,,,,
+Create customer Kunal with mobile 9876500003,Kunal,9876500003,,,,,
+Register customer Meera with number 9876500004,Meera,9876500004,,,,,
+Add customer Sagar with phone 9876500005,Sagar,9876500005,,,,,
+Create employee Ajay with email ajay@company.com,Ajay,,ajay@company.com,,,,
+Register employee Sneha with email sneha@company.com,Sneha,,sneha@company.com,,,,
+Add employee Pankaj with email pankaj@gmail.com,Pankaj,,pankaj@gmail.com,,,,
+Create employee Nikhil with email nikhil@gmail.com,Nikhil,,nikhil@gmail.com,,,,
+Register employee Riya with email riya@gmail.com,Riya,,riya@gmail.com,,,,
+Update Laptop price to 70000,,,,Laptop,70000,,
+Update Mouse price to 800,,,,Mouse,800,,
+Update Keyboard price to 1500,,,,Keyboard,1500,,
+Update Monitor price to 18000,,,,Monitor,18000,,
+Update Printer price to 25000,,,,Printer,25000,,
+Update Camera price to 45000,,,,Camera,45000,,
+Update Router price to 3500,,,,Router,3500,,
+Update Tablet price to 28000,,,,Tablet,28000,,
+Update Speaker price to 6500,,,,Speaker,6500,,
+Update SSD price to 5500,,,,SSD,5500,,
+Open Customer page,,,,,,Customers,
+Open Product page,,,,,,Products,
+Open Employee page,,,,,,Employees,
+Open Sales page,,,,,,Sales,
+Open Dashboard page,,,,,,Dashboard,
+Open Reports page,,,,,,Reports,
+Open Inventory page,,,,,,Inventory,
+Open Finance page,,,,,,Finance,
+Open Settings page,,,,,,Settings,
+Open Orders page,,,,,,Orders,
+Upload report.pdf,,,,,,,report.pdf
+Upload invoice.pdf,,,,,,,invoice.pdf
+Upload customers.xlsx,,,,,,,customers.xlsx
+Upload products.csv,,,,,,,products.csv
+Upload image.png,,,,,,,image.png
+Upload employee_list.xlsx,,,,,,,employee_list.xlsx
+Upload receipt.pdf,,,,,,,receipt.pdf
+Upload attendance.csv,,,,,,,attendance.csv
+Upload profile.jpg,,,,,,,profile.jpg
+Upload sales_report.xlsx,,,,,,,sales_report.xlsx
+Add Rohit with phone 9876500011,Rohit,9876500011,,,,,
+Add Amit with phone 9876500012,Amit,9876500012,,,,,
+Create Pooja with mobile 9876500013,Pooja,9876500013,,,,,
+Register Vivek with number 9876500014,Vivek,9876500014,,,,,
+Add Komal with phone 9876500015,Komal,9876500015,,,,,
+Create customer Akash with email akash@gmail.com,Akash,,akash@gmail.com,,,,
+Add employee Deepak with email deepak@company.com,Deepak,,deepak@company.com,,,,
+Update Mobile price to 22000,,,,Mobile,22000,,
+Open CRM page,,,,,,CRM,
+Upload contract.pdf,,,,,,,contract.pdf
+Add customer Manish with phone 9876500101,Manish,9876500101,,,,,
+Create customer Anjali with mobile 9876500102,Anjali,9876500102,,,,,
+Register customer Bhavesh with number 9876500103,Bhavesh,9876500103,,,,,
+Add customer Kavita with phone 9876500104,Kavita,9876500104,,,,,
+Create customer Yogesh with mobile 9876500105,Yogesh,9876500105,,,,,
+Add employee Aakash with email aakash@company.com,Aakash,,aakash@company.com,,,,
+Create employee Mohit with email mohit@gmail.com,Mohit,,mohit@gmail.com,,,,
+Register employee Divya with email divya@gmail.com,Divya,,divya@gmail.com,,,,
+Add employee Sonali with email sonali@company.com,Sonali,,sonali@company.com,,,,
+Create employee Pratik with email pratik@gmail.com,Pratik,,pratik@gmail.com,,,,
+Update AC price to 42000,,,,AC,42000,,
+Update Refrigerator price to 65000,,,,Refrigerator,65000,,
+Update Washing Machine price to 38000,,,,Washing Machine,38000,,
+Update Fan price to 2500,,,,Fan,2500,,
+Update Cooler price to 8500,,,,Cooler,8500,,
+Update Television price to 52000,,,,Television,52000,,
+Update Earbuds price to 3200,,,,Earbuds,3200,,
+Update Power Bank price to 1800,,,,Power Bank,1800,,
+Update Smart Watch price to 9500,,,,Smart Watch,9500,,
+Update Charger price to 1200,,,,Charger,1200,,
+Open HR page,,,,,,HR,
+Open Payroll page,,,,,,Payroll,
+Open Attendance page,,,,,,Attendance,
+Open Leave page,,,,,,Leave,
+Open Marketing page,,,,,,Marketing,
+Open Purchase page,,,,,,Purchase,
+Open Vendors page,,,,,,Vendors,
+Open Accounts page,,,,,,Accounts,
+Open Billing page,,,,,,Billing,
+Open Analytics page,,,,,,Analytics,
+Upload salary.xlsx,,,,,,,salary.xlsx
+Upload payroll.csv,,,,,,,payroll.csv
+Upload employee_photo.jpg,,,,,,,employee_photo.jpg
+Upload quotation.pdf,,,,,,,quotation.pdf
+Upload invoice2025.pdf,,,,,,,invoice2025.pdf
+Upload offer_letter.docx,,,,,,,offer_letter.docx
+Upload resume.pdf,,,,,,,resume.pdf
+Upload products.xlsx,,,,,,,products.xlsx
+Upload inventory.csv,,,,,,,inventory.csv
+Upload logo.png,,,,,,,logo.png
+Add customer Shubham with phone 9876500111,Shubham,9876500111,,,,,
+Add customer Tejas with phone 9876500112,Tejas,9876500112,,,,,
+Create customer Rohan with mobile 9876500113,Rohan,9876500113,,,,,
+Register customer Chetan with number 9876500114,Chetan,9876500114,,,,,
+Add customer Gauri with phone 9876500115,Gauri,9876500115,,,,,
+Create employee Karthik with email karthik@gmail.com,Karthik,,karthik@gmail.com,,,,
+Add employee Harshal with email harshal@company.com,Harshal,,harshal@company.com,,,,
+Update Projector price to 35000,,,,Projector,35000,,
+Open Support page,,,,,,Support,
+Upload support_report.pdf,,,,,,,support_report.pdf
+Add customer Aarav with phone 9876501001,Aarav,9876501001,,,,,
+Create customer Vivaan with mobile 9876501002,Vivaan,9876501002,,,,,
+Register customer Aditya with number 9876501003,Aditya,9876501003,,,,,
+Add customer Vihaan with phone 9876501004,Vihaan,9876501004,,,,,
+Create customer Arjun with mobile 9876501005,Arjun,9876501005,,,,,
+Register customer Sai with number 9876501006,Sai,9876501006,,,,,
+Add customer Reyansh with phone 9876501007,Reyansh,9876501007,,,,,
+Create customer Krishna with mobile 9876501008,Krishna,9876501008,,,,,
+Register customer Ishaan with number 9876501009,Ishaan,9876501009,,,,,
+Add customer Kabir with phone 9876501010,Kabir,9876501010,,,,,
+Create customer Ayaan with mobile 9876501011,Ayaan,9876501011,,,,,
+Register customer Rudra with number 9876501012,Rudra,9876501012,,,,,
+Add customer Dev with phone 9876501013,Dev,9876501013,,,,,
+Create customer Aryan with mobile 9876501014,Aryan,9876501014,,,,,
+Register customer Karan with number 9876501015,Karan,9876501015,,,,,
+Add customer Mohit with phone 9876501016,Mohit,9876501016,,,,,
+Create customer Rahul with mobile 9876501017,Rahul,9876501017,,,,,
+Register customer Amit with number 9876501018,Amit,9876501018,,,,,
+Add customer Sagar with phone 9876501019,Sagar,9876501019,,,,,
+Create customer Rohan with mobile 9876501020,Rohan,9876501020,,,,,
+Add employee Neha with email neha@company.com,Neha,,neha@company.com,,,,
+Create employee Priya with email priya@gmail.com,Priya,,priya@gmail.com,,,,
+Register employee Pooja with email pooja@company.com,Pooja,,pooja@company.com,,,,
+Add employee Sneha with email sneha@gmail.com,Sneha,,sneha@gmail.com,,,,
+Create employee Anjali with email anjali@company.com,Anjali,,anjali@company.com,,,,
+Register employee Komal with email komal@gmail.com,Komal,,komal@gmail.com,,,,
+Add employee Divya with email divya@company.com,Divya,,divya@company.com,,,,
+Create employee Riya with email riya@gmail.com,Riya,,riya@gmail.com,,,,
+Register employee Aditi with email aditi@company.com,Aditi,,aditi@company.com,,,,
+Add employee Nisha with email nisha@gmail.com,Nisha,,nisha@gmail.com,,,,
+Create employee Bhavna with email bhavna@company.com,Bhavna,,bhavna@company.com,,,,
+Register employee Kavita with email kavita@gmail.com,Kavita,,kavita@gmail.com,,,,
+Add employee Meera with email meera@company.com,Meera,,meera@company.com,,,,
+Create employee Sonali with email sonali@gmail.com,Sonali,,sonali@gmail.com,,,,
+Register employee Jyoti with email jyoti@company.com,Jyoti,,jyoti@company.com,,,,
+Update Laptop price to 65000,,,,Laptop,65000,,
+Update Mobile price to 22000,,,,Mobile,22000,,
+Update Keyboard price to 1800,,,,Keyboard,1800,,
+Update Mouse price to 900,,,,Mouse,900,,
+Update Monitor price to 18000,,,,Monitor,18000,,
+Update Printer price to 25000,,,,Printer,25000,,
+Update Scanner price to 12000,,,,Scanner,12000,,
+Update Router price to 3500,,,,Router,3500,,
+Update Camera price to 42000,,,,Camera,42000,,
+Update Television price to 52000,,,,Television,52000,,
+Update Refrigerator price to 63000,,,,Refrigerator,63000,,
+Update Washing Machine price to 38000,,,,Washing Machine,38000,,
+Update Air Conditioner price to 45000,,,,Air Conditioner,45000,,
+Update Smart Watch price to 9000,,,,Smart Watch,9000,,
+Update Earbuds price to 3200,,,,Earbuds,3200,,
+Update Speaker price to 7200,,,,Speaker,7200,,
+Update SSD price to 5600,,,,SSD,5600,,
+Update Power Bank price to 1800,,,,Power Bank,1800,,
+Update Charger price to 1500,,,,Charger,1500,,
+Open Customers page,,,,,,Customers,
+Open Employees page,,,,,,Employees,
+Open Products page,,,,,,Products,
+Open Dashboard page,,,,,,Dashboard,
+Open Sales page,,,,,,Sales,
+Open Reports page,,,,,,Reports,
+Open Inventory page,,,,,,Inventory,
+Open Finance page,,,,,,Finance,
+Open HR page,,,,,,HR,
+Open Payroll page,,,,,,Payroll,
+Open Attendance page,,,,,,Attendance,
+Open Settings page,,,,,,Settings,
+Open CRM page,,,,,,CRM,
+Open Orders page,,,,,,Orders,
+Open Analytics page,,,,,,Analytics,
+Upload invoice.pdf,,,,,,,invoice.pdf
+Upload report.pdf,,,,,,,report.pdf
+Upload customers.xlsx,,,,,,,customers.xlsx
+Upload employees.xlsx,,,,,,,employees.xlsx
+Upload inventory.csv,,,,,,,inventory.csv
+Upload sales_report.xlsx,,,,,,,sales_report.xlsx
+Upload quotation.pdf,,,,,,,quotation.pdf
+Upload agreement.pdf,,,,,,,agreement.pdf
+Upload resume.pdf,,,,,,,resume.pdf
+Upload profile.jpg,,,,,,,profile.jpg
+Upload logo.png,,,,,,,logo.png
+Upload contract.pdf,,,,,,,contract.pdf
+Upload attendance.csv,,,,,,,attendance.csv
+Upload payroll.xlsx,,,,,,,payroll.xlsx
+Upload product_list.csv,,,,,,,product_list.csv
+Upload supplier_data.xlsx,,,,,,,supplier_data.xlsx
+Upload bank_statement.pdf,,,,,,,bank_statement.pdf
+Upload receipt.pdf,,,,,,,receipt.pdf
+Upload image.png,,,,,,,image.png
+Upload document.docx,,,,,,,document.docx
+Add customer Harsh with phone 9876502001,Harsh,9876502001,,,,,
+Create customer Om with mobile 9876502002,Om,9876502002,,,,,
+Register customer Yash with number 9876502003,Yash,9876502003,,,,,
+Add customer Tushar with phone 9876502004,Tushar,9876502004,,,,,
+Create customer Akshay with mobile 9876502005,Akshay,9876502005,,,,,
+Register customer Chetan with number 9876502006,Chetan,9876502006,,,,,
+Add customer Gaurav with phone 9876502007,Gaurav,9876502007,,,,,
+Create customer Nitin with mobile 9876502008,Nitin,9876502008,,,,,
+Register customer Vishal with number 9876502009,Vishal,9876502009,,,,,
+Add customer Deepak with phone 9876502010,Deepak,9876502010,,,,,
+Create customer Hemant with mobile 9876502011,Hemant,9876502011,,,,,
+Register customer Suraj with number 9876502012,Suraj,9876502012,,,,,
+Add customer Kunal with phone 9876502013,Kunal,9876502013,,,,,
+Create customer Akash with mobile 9876502014,Akash,9876502014,,,,,
+Register customer Pankaj with number 9876502015,Pankaj,9876502015,,,,,
+Add customer Nikhil with phone 9876502016,Nikhil,9876502016,,,,,
+Create customer Pratik with mobile 9876502017,Pratik,9876502017,,,,,
+Register customer Abhishek with number 9876502018,Abhishek,9876502018,,,,,
+Add customer Sanket with phone 9876502019,Sanket,9876502019,,,,,
+Create customer Ganesh with mobile 9876502020,Ganesh,9876502020,,,,,
+Add employee Ashwini with email ashwini@company.com,Ashwini,,ashwini@company.com,,,,
+Create employee Swati with email swati@gmail.com,Swati,,swati@gmail.com,,,,
+Register employee Vaishnavi with email vaishnavi@company.com,Vaishnavi,,vaishnavi@company.com,,,,
+Add employee Priti with email priti@gmail.com,Priti,,priti@gmail.com,,,,
+Create employee Ruchika with email ruchika@company.com,Ruchika,,ruchika@company.com,,,,
+Register employee Sakshi with email sakshi@gmail.com,Sakshi,,sakshi@gmail.com,,,,
+Add employee Monika with email monika@company.com,Monika,,monika@company.com,,,,
+Create employee Shruti with email shruti@gmail.com,Shruti,,shruti@gmail.com,,,,
+Register employee Shweta with email shweta@company.com,Shweta,,shweta@company.com,,,,
+Add employee Reshma with email reshma@gmail.com,Reshma,,reshma@gmail.com,,,,
+Update Projector price to 36000,,,,Projector,36000,,
+Update Webcam price to 2800,,,,Webcam,2800,,
+Update Microphone price to 6500,,,,Microphone,6500,,
+Update Graphics Card price to 48000,,,,Graphics Card,48000,,
+Update CPU price to 32000,,,,CPU,32000,,
+Update RAM price to 7200,,,,RAM,7200,,
+Update Hard Disk price to 5800,,,,Hard Disk,5800,,
+Update Pen Drive price to 900,,,,Pen Drive,900,,
+Update Tablet price to 27000,,,,Tablet,27000,,
+Update Drone price to 82000,,,,Drone,82000,,
+Update Printer Ink price to 1200,,,,Printer Ink,1200,,
+Update Office Chair price to 7800,,,,Office Chair,7800,,
+Update Office Table price to 12500,,,,Office Table,12500,,
+Update UPS price to 6200,,,,UPS,6200,,
+Update Switch price to 4200,,,,Switch,4200,,
+Open Vendor page,,,,,,Vendor,
+Open Supplier page,,,,,,Supplier,
+Open Purchase page,,,,,,Purchase,
+Open Billing page,,,,,,Billing,
+Open Support page,,,,,,Support,
+Open Tickets page,,,,,,Tickets,
+Open Accounts page,,,,,,Accounts,
+Open Admin page,,,,,,Admin,
+Open Notifications page,,,,,,Notifications,
+Open User Management page,,,,,,User Management,
+Upload invoice_july.pdf,,,,,,,invoice_july.pdf
+Upload invoice_august.pdf,,,,,,,invoice_august.pdf
+Upload quotation_final.pdf,,,,,,,quotation_final.pdf
+Upload customers_backup.csv,,,,,,,customers_backup.csv
+Upload employees_backup.csv,,,,,,,employees_backup.csv
+Upload inventory_backup.xlsx,,,,,,,inventory_backup.xlsx
+Upload payroll_report.xlsx,,,,,,,payroll_report.xlsx
+Upload tax_report.pdf,,,,,,,tax_report.pdf
+Upload purchase_orders.xlsx,,,,,,,purchase_orders.xlsx
+Upload bank_details.pdf,,,,,,,bank_details.pdf
+Upload gst_report.xlsx,,,,,,,gst_report.xlsx
+Upload holiday_list.pdf,,,,,,,holiday_list.pdf
+Upload meeting_notes.docx,,,,,,,meeting_notes.docx
+Upload id_card.png,,,,,,,id_card.png
+Upload passport.jpg,,,,,,,passport.jpg
+Upload company_logo.svg,,,,,,,company_logo.svg
+Upload contract_final.pdf,,,,,,,contract_final.pdf
+Upload audit_report.pdf,,,,,,,audit_report.pdf
+Upload sales_data.csv,,,,,,,sales_data.csv
+Upload expense_sheet.xlsx,,,,,,,expense_sheet.xlsx
+Please add customer Rakesh with phone 9876503001,Rakesh,9876503001,,,,,
+Kindly create customer Sanjay with mobile 9876503002,Sanjay,9876503002,,,,,
+Register customer Mahesh using phone 9876503003,Mahesh,9876503003,,,,,
+Create customer Anand with phone 9876503004,Anand,9876503004,,,,,
+Add new customer Dilip with number 9876503005,Dilip,9876503005,,,,,
+Please register customer Bharat with mobile 9876503006,Bharat,9876503006,,,,,
+Create customer Sameer using phone 9876503007,Sameer,9876503007,,,,,
+Add customer Lokesh with phone number 9876503008,Lokesh,9876503008,,,,,
+Register customer Ritesh with mobile 9876503009,Ritesh,9876503009,,,,,
+Please create customer Vinod with phone 9876503010,Vinod,9876503010,,,,,
+Add employee Nandini with email nandini@company.com,Nandini,,nandini@company.com,,,,
+Create employee Harini with email harini@gmail.com,Harini,,harini@gmail.com,,,,
+Register employee Bharti with email bharti@company.com,Bharti,,bharti@company.com,,,,
+Please add employee Mansi with email mansi@gmail.com,Mansi,,mansi@gmail.com,,,,
+Create employee Preeti with email preeti@company.com,Preeti,,preeti@company.com,,,,
+Register employee Rupal with email rupal@gmail.com,Rupal,,rupal@gmail.com,,,,
+Add employee Sheetal with email sheetal@company.com,Sheetal,,sheetal@company.com,,,,
+Create employee Varsha with email varsha@gmail.com,Varsha,,varsha@gmail.com,,,,
+Register employee Aarti with email aarti@company.com,Aarti,,aarti@company.com,,,,
+Add employee Pallavi with email pallavi@gmail.com,Pallavi,,pallavi@gmail.com,,,,
+Update Laptop price to 67000,,,,Laptop,67000,,
+Update Mobile price to 23500,,,,Mobile,23500,,
+Update Tablet price to 29500,,,,Tablet,29500,,
+Update Camera price to 47000,,,,Camera,47000,,
+Update Smart TV price to 61000,,,,Smart TV,61000,,
+Update Smart Phone price to 26000,,,,Smart Phone,26000,,
+Update Refrigerator price to 68000,,,,Refrigerator,68000,,
+Update Air Cooler price to 11000,,,,Air Cooler,11000,,
+Update Fan price to 3200,,,,Fan,3200,,
+Update Mixer price to 4800,,,,Mixer,4800,,
+Update Microwave price to 21000,,,,Microwave,21000,,
+Update Water Purifier price to 14500,,,,Water Purifier,14500,,
+Update Induction Stove price to 3600,,,,Induction Stove,3600,,
+Update CCTV Camera price to 8900,,,,CCTV Camera,8900,,
+Update Door Lock price to 5600,,,,Door Lock,5600,,
+Open Customer Dashboard,,,,,,Customer Dashboard,
+Open Employee Dashboard,,,,,,Employee Dashboard,
+Open Product Dashboard,,,,,,Product Dashboard,
+Open Invoice Page,,,,,,Invoice,
+Open Reports Dashboard,,,,,,Reports Dashboard,
+Open Finance Dashboard,,,,,,Finance Dashboard,
+Open Admin Dashboard,,,,,,Admin Dashboard,
+Open Profile Page,,,,,,Profile,
+Open Settings Dashboard,,,,,,Settings Dashboard,
+Open User Dashboard,,,,,,User Dashboard,
+Upload customer_data.xlsx,,,,,,,customer_data.xlsx
+Upload product_data.xlsx,,,,,,,product_data.xlsx
+Upload invoice_2026.pdf,,,,,,,invoice_2026.pdf
+Upload employee_resume.pdf,,,,,,,employee_resume.pdf
+Upload employee_photo.png,,,,,,,employee_photo.png
+Upload office_logo.png,,,,,,,office_logo.png
+Upload attendance_report.xlsx,,,,,,,attendance_report.xlsx
+Upload monthly_sales.csv,,,,,,,monthly_sales.csv
+Upload payment_report.pdf,,,,,,,payment_report.pdf
+Upload gst_invoice.pdf,,,,,,,gst_invoice.pdf
+Upload quotation_new.pdf,,,,,,,quotation_new.pdf
+Upload order_details.xlsx,,,,,,,order_details.xlsx
+Upload vendor_list.csv,,,,,,,vendor_list.csv
+Upload client_database.xlsx,,,,,,,client_database.xlsx
+Upload backup_file.zip,,,,,,,backup_file.zip
+Upload agreement_copy.pdf,,,,,,,agreement_copy.pdf
+Upload staff_details.xlsx,,,,,,,staff_details.xlsx
+Upload payroll_backup.csv,,,,,,,payroll_backup.csv
+Upload inventory_report.pdf,,,,,,,inventory_report.pdf
+Upload office_document.docx,,,,,,,office_document.docx
+Please add Rahul Patil as customer with mobile 9876603001,Rahul Patil,9876603001,,,,,
+Can you create customer Sneha Sharma with phone 9876603002,Sneha Sharma,9876603002,,,,,
+Kindly register Amit Joshi using number 9876603003,Amit Joshi,9876603003,,,,,
+Add new customer Pooja Deshmukh phone 9876603004,Pooja Deshmukh,9876603004,,,,,
+Create customer Nikhil Patil mobile 9876603005,Nikhil Patil,9876603005,,,,,
+Register customer Priyanka More contact 9876603006,Priyanka More,9876603006,,,,,
+Please create customer Omkar Shinde phone number 9876603007,Omkar Shinde,9876603007,,,,,
+Add customer Rutuja Kale with contact 9876603008,Rutuja Kale,9876603008,,,,,
+Create customer Akshay Pawar phone 9876603009,Akshay Pawar,9876603009,,,,,
+Register customer Rohit Patil mobile 9876603010,Rohit Patil,9876603010,,,,,
+Please add employee Anjali Kulkarni email anjali@company.com,Anjali Kulkarni,,anjali@company.com,,,,
+Create employee Neha Patil email neha@gmail.com,Neha Patil,,neha@gmail.com,,,,
+Register employee Sagar Patil email sagar@company.com,Sagar Patil,,sagar@company.com,,,,
+Please create employee Kiran Shinde email kiran@gmail.com,Kiran Shinde,,kiran@gmail.com,,,,
+Add employee Vishal More email vishal@company.com,Vishal More,,vishal@company.com,,,,
+Create employee Ajinkya Pawar email ajinkya@gmail.com,Ajinkya Pawar,,ajinkya@gmail.com,,,,
+Register employee Komal Patil email komal@company.com,Komal Patil,,komal@company.com,,,,
+Add employee Snehal Deshmukh email snehal@gmail.com,Snehal Deshmukh,,snehal@gmail.com,,,,
+Create employee Pratiksha More email pratiksha@company.com,Pratiksha More,,pratiksha@company.com,,,,
+Register employee Bhushan Patil email bhushan@gmail.com,Bhushan Patil,,bhushan@gmail.com,,,,
+Change Laptop price to 72000,,,,Laptop,72000,,
+Set Mobile price 25500,,,,Mobile,25500,,
+Update Printer cost 28000,,,,Printer,28000,,
+Modify Keyboard price 1900,,,,Keyboard,1900,,
+Set Mouse price 950,,,,Mouse,950,,
+Change Router cost 4200,,,,Router,4200,,
+Update SSD amount 6100,,,,SSD,6100,,
+Modify Hard Disk price 6900,,,,Hard Disk,6900,,
+Set RAM price 7800,,,,RAM,7800,,
+Update Graphics Card cost 52000,,,,Graphics Card,52000,,
+Change Projector price 39000,,,,Projector,39000,,
+Set Monitor cost 21000,,,,Monitor,21000,,
+Update Webcam price 3200,,,,Webcam,3200,,
+Modify Microphone price 7600,,,,Microphone,7600,,
+Change Smart Watch price 11000,,,,Smart Watch,11000,,
+Open Customer Management page,,,,,,Customer Management,
+Open Employee Management page,,,,,,Employee Management,
+Open Product Management page,,,,,,Product Management,
+Open CRM Dashboard,,,,,,CRM Dashboard,
+Open Sales Dashboard,,,,,,Sales Dashboard,
+Open Finance Module,,,,,,Finance Module,
+Open HR Module,,,,,,HR Module,
+Open Reports Module,,,,,,Reports Module,
+Open Billing Module,,,,,,Billing Module,
+Open Inventory Module,,,,,,Inventory Module,
+Open Purchase Module,,,,,,Purchase Module,
+Open Analytics Dashboard,,,,,,Analytics Dashboard,
+Open Admin Settings,,,,,,Admin Settings,
+Open Notifications,,,,,,Notifications,
+Open User Profile,,,,,,User Profile,
+Upload customer_master.xlsx,,,,,,,customer_master.xlsx
+Upload sales_backup.csv,,,,,,,sales_backup.csv
+Upload july_report.pdf,,,,,,,july_report.pdf
+Upload august_report.pdf,,,,,,,august_report.pdf
+Upload september_report.pdf,,,,,,,september_report.pdf
+Upload october_report.pdf,,,,,,,october_report.pdf
+Upload november_report.pdf,,,,,,,november_report.pdf
+Upload december_report.pdf,,,,,,,december_report.pdf
+Upload office_photo.png,,,,,,,office_photo.png
+Upload profile_image.jpg,,,,,,,profile_image.jpg
+Upload contract_copy.pdf,,,,,,,contract_copy.pdf
+Upload tax_document.pdf,,,,,,,tax_document.pdf
+Upload employee_database.xlsx,,,,,,,employee_database.xlsx
+Upload customer_database.xlsx,,,,,,,customer_database.xlsx
+Upload supplier_database.xlsx,,,,,,,supplier_database.xlsx
+Upload inventory_backup.zip,,,,,,,inventory_backup.zip
+Upload source_code.zip,,,,,,,source_code.zip
+Upload final_report.docx,,,,,,,final_report.docx
+Upload project_summary.pdf,,,,,,,project_summary.pdf
+Upload attendance_backup.xlsx,,,,,,,attendance_backup.xlsx
+Upload payroll_data.csv,,,,,,,payroll_data.csv
+Upload bank_records.pdf,,,,,,,bank_records.pdf
+Upload gst_returns.xlsx,,,,,,,gst_returns.xlsx
+Upload monthly_expense.xlsx,,,,,,,monthly_expense.xlsx
+Upload quotation_latest.pdf,,,,,,,quotation_latest.pdf
+Upload vendor_information.csv,,,,,,,vendor_information.csv
+Upload purchase_history.xlsx,,,,,,,purchase_history.xlsx
+Upload payment_receipt.pdf,,,,,,,payment_receipt.pdf
+Upload company_brochure.pdf,,,,,,,company_brochure.pdf
+Upload employee_contract.pdf,,,,,,,employee_contract.pdf
+Upload office_inventory.xlsx,,,,,,,office_inventory.xlsx
+Upload crm_export.csv,,,,,,,crm_export.csv
+Upload product_catalog.pdf,,,,,,,product_catalog.pdf
+Upload client_records.xlsx,,,,,,,client_records.xlsx
+Upload support_logs.csv,,,,,,,support_logs.csv
+Upload user_manual.pdf,,,,,,,user_manual.pdf
+Upload meeting_minutes.docx,,,,,,,meeting_minutes.docx
+Upload daily_report.xlsx,,,,,,,daily_report.xlsx
+Upload weekly_report.xlsx,,,,,,,weekly_report.xlsx
+Upload monthly_report.xlsx,,,,,,,monthly_report.xlsx
+Upload annual_report.pdf,,,,,,,annual_report.pdf
+Rahul naam ka customer add karo 9876614001,Rahul,9876614001,,,,,
+Amit ko customer bana do 9876614002,Amit,9876614002,,,,,
+Please register customer Vivek using 9876614003,Vivek,9876614003,,,,,
+Customer Priya with phone 9876614004 add,Priya,9876614004,,,,,
+Create new customer Nisha contact 9876614005,Nisha,9876614005,,,,,
+Customer Rohit number 9876614006,Rohit,9876614006,,,,,
+Can you add customer Sonal phone 9876614007,Sonal,9876614007,,,,,
+Register Arjun customer 9876614008,Arjun,9876614008,,,,,
+Need to add customer Komal 9876614009,Komal,9876614009,,,,,
+Please create customer Pankaj 9876614010,Pankaj,9876614010,,,,,
+Employee Neha email neha@company.com,Neha,,neha@company.com,,,,
+Employee Ravi email ravi@gmail.com,Ravi,,ravi@gmail.com,,,,
+Create employee Meera meera@company.com,Meera,,meera@company.com,,,,
+Register employee Akshay akshay@gmail.com,Akshay,,akshay@gmail.com,,,,
+Employee Bhavesh bhavesh@company.com,Bhavesh,,bhavesh@company.com,,,,
+Employee Rutuja rutuja@gmail.com,Rutuja,,rutuja@gmail.com,,,,
+Employee Mohan mohan@company.com,Mohan,,mohan@company.com,,,,
+Employee Snehal snehal@gmail.com,Snehal,,snehal@gmail.com,,,,
+Employee Tushar tushar@company.com,Tushar,,tushar@company.com,,,,
+Employee Nikhil nikhil@gmail.com,Nikhil,,nikhil@gmail.com,,,,
+Laptop price 69000,,,,Laptop,69000,,
+Mobile price 23500,,,,Mobile,23500,,
+Keyboard price 1800,,,,Keyboard,1800,,
+Mouse price 950,,,,Mouse,950,,
+Printer price 28000,,,,Printer,28000,,
+Monitor price 19500,,,,Monitor,19500,,
+SSD price 6500,,,,SSD,6500,,
+RAM price 8200,,,,RAM,8200,,
+Projector price 42000,,,,Projector,42000,,
+Camera price 48000,,,,Camera,48000,,
+CRM kholo,,,,,,CRM,
+Customer page open karo,,,,,,Customers,
+Products page open,,,,,,Products,
+Dashboard kholo,,,,,,Dashboard,
+Reports page open,,,,,,Reports,
+Settings kholo,,,,,,Settings,
+Inventory page kholo,,,,,,Inventory,
+Billing page open,,,,,,Billing,
+HR page kholo,,,,,,HR,
+Analytics page open,,,,,,Analytics,
+invoice.pdf upload karo,,,,,,,invoice.pdf
+report.pdf upload,,,,,,,report.pdf
+customers.xlsx upload,,,,,,,customers.xlsx
+employee.csv upload,,,,,,,employee.csv
+image.png upload,,,,,,,image.png
+logo.png upload,,,,,,,logo.png
+resume.pdf upload,,,,,,,resume.pdf
+contract.pdf upload,,,,,,,contract.pdf
+quotation.pdf upload,,,,,,,quotation.pdf
+sales.xlsx upload,,,,,,,sales.xlsx
+Add customer Aarohi phone 9876614051,Aarohi,9876614051,,,,,
+Create customer Shubham mobile 9876614052,Shubham,9876614052,,,,,
+Register customer Omkar number 9876614053,Omkar,9876614053,,,,,
+Please add customer Harshal phone 9876614054,Harshal,9876614054,,,,,
+Customer Aarti 9876614055,Aarti,9876614055,,,,,
+Add employee Kiran email kiran@gmail.com,Kiran,,kiran@gmail.com,,,,
+Employee Jyoti jyoti@company.com,Jyoti,,jyoti@company.com,,,,
+Employee Pallavi pallavi@gmail.com,Pallavi,,pallavi@gmail.com,,,,
+Employee Chetan chetan@company.com,Chetan,,chetan@company.com,,,,
+Employee Gaurav gaurav@gmail.com,Gaurav,,gaurav@gmail.com,,,,
+Change AC price 47000,,,,AC,47000,,
+Update TV price 56000,,,,TV,56000,,
+Set Refrigerator price 67000,,,,Refrigerator,67000,,
+Modify Fan price 2600,,,,Fan,2600,,
+Update Washing Machine 39000,,,,Washing Machine,39000,,
+Open Vendor page,,,,,,Vendor,
+Open Supplier page,,,,,,Supplier,
+Open Finance Dashboard,,,,,,Finance Dashboard,
+Open Employee Dashboard,,,,,,Employee Dashboard,
+Open Admin Dashboard,,,,,,Admin Dashboard,
+Upload payroll.xlsx,,,,,,,payroll.xlsx
+Upload salary.csv,,,,,,,salary.csv
+Upload gst.pdf,,,,,,,gst.pdf
+Upload office_photo.jpg,,,,,,,office_photo.jpg
+Upload annual_report.pdf,,,,,,,annual_report.pdf
+Add customer Neha with phone 9000000501,Neha,9000000501,,,,,Customer
+Add customer Kunal with phone 9000000502,Kunal,9000000502,,,,,Customer
+Register customer Arjun with email arjun501@gmail.com,Arjun,,arjun501@gmail.com,,,,Customer
+Create employee Rohan with phone 9000000504,Rohan,9000000504,,,,,Employee
+Add employee Sneha with email sneha501@gmail.com,Sneha,,sneha501@gmail.com,,,,Employee
+Update product Laptop price to 72000,,,,Laptop,72000,,Products
+Update product Keyboard price to 1800,,,,Keyboard,1800,,Products
+Update product Mouse price to 950,,,,Mouse,950,,Products
+Update product Monitor price to 14500,,,,Monitor,14500,,Products
+Update product Printer price to 16800,,,,Printer,16800,,Products
+Upload invoice501.pdf,,,,,,invoice501.pdf,Uploads
+Upload resume501.pdf,,,,,,resume501.pdf,Uploads
+Upload report501.xlsx,,,,,,report501.xlsx,Reports
+Upload sales501.csv,,,,,,sales501.csv,Reports
+Open CRM page,,,,,,,,CRM
+Open Customer page,,,,,,,,Customer
+Open Employee page,,,,,,,,Employee
+Open Reports page,,,,,,,,Reports
+Open Dashboard page,,,,,,,,Dashboard
+Open Products page,,,,,,,,Products
+Delete customer Neha,Neha,,,,,,Customer
+Delete employee Rohan,Rohan,,,,,,Employee
+Read sales table,,,,,,,,Sales
+Read customer table,,,,,,,,Customer
+Read employee table,,,,,,,,Employee
+Download report for today,,,,,,2026-08-07,,Reports
+Download report for yesterday,,,,,,2026-08-06,,Reports
+Download attendance report,,,,,,2026-08-07,,Attendance
+Email report to manager,,,,,,"2026-08-07",,
+Email invoice to finance,,,,,,"2026-08-07",,
+Add customer Priya with phone 9000000531,Priya,9000000531,,,,,Customer
+Add customer Ravi with phone 9000000532,Ravi,9000000532,,,,,Customer
+Register customer Akash with email akash501@gmail.com,Akash,,akash501@gmail.com,,,,Customer
+Register customer Nitin with email nitin501@gmail.com,Nitin,,nitin501@gmail.com,,,,Customer
+Create employee Komal with phone 9000000535,Komal,9000000535,,,,,Employee
+Create employee Vivek with phone 9000000536,Vivek,9000000536,,,,,Employee
+Update product Tablet price to 28000,,,,Tablet,28000,,Products
+Update product Camera price to 56000,,,,Camera,56000,,Products
+Update product Speaker price to 6200,,,,Speaker,6200,,Products
+Update product Headphone price to 3500,,,,Headphone,3500,,Products
+Upload image501.png,,,,,,image501.png,Uploads
+Upload profile501.jpg,,,,,,profile501.jpg,Uploads
+Upload customer501.csv,,,,,,customer501.csv,Uploads
+Upload backup501.zip,,,,,,backup501.zip,Uploads
+Open Login page,,,,,,,,Login
+Open Settings page,,,,,,,,Settings
+Open Profile page,,,,,,,,Profile
+Open Billing page,,,,,,,,Billing
+Delete customer Ravi,Ravi,,,,,,Customer
+Delete employee Komal,Komal,,,,,,Employee
+Read inventory table,,,,,,,,Inventory
+Read orders table,,,,,,,,Orders
+Read payments table,,,,,,,,Payments
+Download monthly report,,,,,,2026-08-01,,Reports
+Download yearly report,,,,,,2026-01-01,,Reports
+Email sales report,,,,,,"2026-08-07",,
+Email customer report,,,,,,"2026-08-07",,
+Add customer Aditi with phone 9000000561,Aditi,9000000561,,,,,Customer
+Add customer Manish with phone 9000000562,Manish,9000000562,,,,,Customer
+Register customer Pooja with email pooja501@gmail.com,Pooja,,pooja501@gmail.com,,,,Customer
+Register customer Sameer with email sameer501@gmail.com,Sameer,,sameer501@gmail.com,,,,Customer
+Create employee Ajay with phone 9000000565,Ajay,9000000565,,,,,Employee
+Create employee Deepa with phone 9000000566,Deepa,9000000566,,,,,Employee
+Update product Router price to 3200,,,,Router,3200,,Products
+Update product SSD price to 7200,,,,SSD,7200,,Products
+Update product RAM price to 4100,,,,RAM,4100,,Products
+Update product CPU price to 26500,,,,CPU,26500,,Products
+Upload contract501.pdf,,,,,,contract501.pdf,Uploads
+Upload bill501.pdf,,,,,,bill501.pdf,Uploads
+Upload employee501.xlsx,,,,,,employee501.xlsx,Uploads
+Upload stock501.csv,,,,,,stock501.csv,Uploads
+Open Orders page,,,,,,,,Orders
+Open Invoice page,,,,,,,,Invoice
+Open Finance page,,,,,,,,Finance
+Open HR page,,,,,,,,HR
+Delete customer Manish,Manish,,,,,,Customer
+Delete employee Ajay,Ajay,,,,,,Employee
+Read finance table,,,,,,,,Finance
+Read invoice table,,,,,,,,Invoice
+Read payroll table,,,,,,,,Payroll
+Download invoice report,,,,,,2026-08-07,,Invoice
+Download finance report,,,,,,2026-08-07,,Finance
+Email finance report,,,,,,"2026-08-07",,
+Email payroll report,,,,,,"2026-08-07",,
+Add customer Sagar with phone 9000000591,Sagar,9000000591,,,,,Customer
+Add customer Meena with phone 9000000592,Meena,9000000592,,,,,Customer
+Register customer Varun with email varun501@gmail.com,Varun,,varun501@gmail.com,,,,Customer
+Register customer Nisha with email nisha501@gmail.com,Nisha,,nisha501@gmail.com,,,,Customer
+Create employee Suraj with phone 9000000595,Suraj,9000000595,,,,,Employee
+Create employee Kavya with phone 9000000596,Kavya,9000000596,,,,,Employee
+Update product Projector price to 42000,,,,Projector,42000,,Products
+Update product Scanner price to 9800,,,,Scanner,9800,,Products
+Update product UPS price to 7200,,,,UPS,7200,,Products
+Update product Microphone price to 2600,,,,Microphone,2600,,Products
