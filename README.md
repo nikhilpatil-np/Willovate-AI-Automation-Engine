@@ -122,6 +122,24 @@ Open the CRM and add Rahul with phone number 9876543210.
 - Tested all modules successfully
 - Updated project documentation
 
+## ✅ Day 4 — Workflow Validation & Risk Detection
+
+**Date:** 10 Aug 2026
+
+- Developed the Workflow Validation module
+- Validated workflow structure and workflow steps
+- Checked supported actions and required targets
+- Detected invalid and unsupported workflow actions
+- Developed the Risk Detection module
+- Added LOW, MEDIUM and HIGH risk levels
+- Added confirmation requirement for risky operations
+- Created the Workflow Safety Checker
+- Integrated Workflow Generation, Workflow Validation and Risk Detection
+- Tested valid and invalid workflows
+- Tested LOW, MEDIUM and HIGH-risk instructions
+- Captured Day 4 testing screenshots
+- Updated project documentation
+
 ---
 
 # Project Folder Structure
