@@ -140,6 +140,16 @@ Open the CRM and add Rahul with phone number 9876543210.
 - Captured Day 4 testing screenshots
 - Updated project documentation
 
+## ✅ Day 5 (11 Aug 2026)
+
+- Implemented multi-step workflow planning
+- Added ordered task processing
+- Improved workflow generation for multiple actions
+- Preserved user instruction order during workflow generation
+- Tested customer, file upload and report download workflows
+- Implemented multi-step JSON generation
+- Verified generated JSON output
+- Captured Day 5 workflow and JSON screenshots
 ---
 
 # Project Folder Structure
