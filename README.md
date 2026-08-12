@@ -151,6 +151,54 @@ Open the CRM and add Rahul with phone number 9876543210.
 - Verified generated JSON output
 - Captured Day 5 workflow and JSON screenshots
 ---
+## ✅ Day 6 – Action Prediction & UI Element Understanding
+
+- Implemented Action Prediction module
+- Added support for multiple automation actions
+- Implemented UI Element Mapping
+- Mapped actions to required UI elements
+- Connected Workflow Generator with UI Element Mapper
+- Tested complete UI-aware workflows
+- Supported BUTTON, INPUT, DROPDOWN, FILE_INPUT, TABLE and PAGE elements
+- Tested customer creation workflow
+- Tested file upload and report download workflow
+- Added Day 6 screenshots and documentation
+
+### Supported Actions
+
+- OPEN_PAGE
+- CLICK
+- ENTER_TEXT
+- SELECT_OPTION
+- UPLOAD_FILE
+- DOWNLOAD_FILE
+- READ_TABLE
+- SCROLL
+- SUBMIT
+- TAKE_SCREENSHOT
+
+### UI Element Mapping
+
+| Action | UI Element |
+|---|---|
+| OPEN_PAGE | PAGE |
+| CLICK | BUTTON |
+| ENTER_TEXT | INPUT |
+| SELECT_OPTION | DROPDOWN |
+| UPLOAD_FILE | FILE_INPUT |
+| DOWNLOAD_FILE | BUTTON |
+| READ_TABLE | TABLE |
+| SCROLL | PAGE |
+| SUBMIT | BUTTON |
+| TAKE_SCREENSHOT | PAGE |
+
+### Day 6 Test Result
+
+Example instruction:
+
+`Open the CRM, add Rahul as a customer with phone 9876543210 and save the record.`
+
+The system successfully generated a UI-aware workflow by combining workflow generation, action prediction and UI element mapping.
 
 # Project Folder Structure
 
