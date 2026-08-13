@@ -200,6 +200,47 @@ Example instruction:
 
 The system successfully generated a UI-aware workflow by combining workflow generation, action prediction and UI element mapping.
 
+
+## ✅ Day 7 (12 Aug 2026)
+
+### Screenshot Understanding & OCR
+
+- Implemented Screenshot Analyzer using OpenCV.
+- Added UI Region Detection using image processing and contour detection.
+- Implemented UI Region Classification.
+- Added detection for TABLE, BUTTON, INPUT and UNKNOWN elements.
+- Installed and configured Tesseract OCR.
+- Integrated `pytesseract` for screenshot text extraction.
+- Implemented screenshot error detection using OCR text.
+- Combined OCR, UI region detection, UI classification and error detection.
+- Generated structured Screenshot Understanding JSON.
+- Tested the complete screenshot understanding pipeline successfully.
+
+### Screenshot Understanding Flow
+
+Screenshot
+↓
+OpenCV Analysis
+↓
+UI Region Detection
+↓
+UI Element Classification
+↓
+Tesseract OCR
+↓
+Error Detection
+↓
+Final Screenshot Understanding JSON
+
+### Day 7 Test Result
+
+- Screenshot: `screenshots/day7/test_page.png`
+- OCR: Successfully extracted webpage text
+- UI Regions: Successfully detected
+- UI Elements: TABLE, BUTTON and INPUT detected
+- Error Detection: No error detected
+- Final Screenshot Understanding: Successfully tested
+
 # Project Folder Structure
 
 ```
