@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CRM Web Application</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        input {
+            display: block;
+            width: 400px;
+            padding: 10px;
+            margin: 10px 0 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 30px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>CRM Web Application</h1>
+
+    <h2>Add Customer</h2>
+
+    <label for="customerName">Customer Name</label>
+    <input
+        type="text"
+        id="customerName"
+        placeholder="Enter customer name"
+    >
+
+    <label for="phoneNumber">Phone Number</label>
+    <input
+        type="text"
+        id="phoneNumber"
+        placeholder="Enter phone number"
+    >
+
+    <button id="addCustomer">Add Customer</button>
+
+    <h2>Customer List</h2>
+
+    <table id="customerTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Phone</th>
+            </tr>
+        </thead>
+
+        <tbody id="customerTableBody">
+        </tbody>
+    </table>
+
+</div>
+
+<script>
+
+    document
+        .getElementById("addCustomer")
+        .addEventListener("click", function () {
+
+            const name =
+                document.getElementById("customerName").value;
+
+            const phone =
+                document.getElementById("phoneNumber").value;
+
+            if (!name || !phone) {
+                alert("Please enter customer name and phone number.");
+                return;
+            }
+
+            const tableBody =
+                document.getElementById("customerTableBody");
+
+            const row =
+                document.createElement("tr");
+
+            const nameCell =
+                document.createElement("td");
+
+            const phoneCell =
+                document.createElement("td");
+
+            nameCell.textContent = name;
+            phoneCell.textContent = phone;
+
+            row.appendChild(nameCell);
+            row.appendChild(phoneCell);
+
+            tableBody.appendChild(row);
+
+            document.getElementById("customerName").value = "";
+            document.getElementById("phoneNumber").value = "";
+        });
+
+</script>
+
+</body>
+</html>

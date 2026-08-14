@@ -1,0 +1,28 @@
+{
+    "verify_name": "Pankaj Koche",
+    "verify_phone": "9876543210",
+    "steps": [
+        {
+            "action": "OPEN_PAGE",
+            "target": "Customers"
+        },
+        {
+            "action": "ENTER_TEXT",
+            "target": "Customer Name",
+            "value": "Pankaj Koche"
+        },
+        {
+            "action": "ENTER_TEXT",
+            "target": "Phone Number",
+            "value": "9876543210"
+        },
+        {
+            "action": "CLICK",
+            "target": "Add Customer"
+        },
+        {
+            "action": "READ_TABLE",
+            "target": "Customer List"
+        }
+    ]
+}

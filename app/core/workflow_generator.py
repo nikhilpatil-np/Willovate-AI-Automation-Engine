@@ -15,15 +15,15 @@ def generate_workflow(instruction):
     # Split instruction into task parts
     # ---------------------------------
 
-    parts = text.replace(" and then ", "|") \
-                .replace(" then ", "|") \
-                .replace(" and ", "|") \
-                .split("|")
-
-    original_instruction = instruction
+    parts = (
+        text.replace(" and then ", "|")
+            .replace(" then ", "|")
+            .replace(" and ", "|")
+            .split("|")
+    )
 
     # ---------------------------------
-    # Process each task in order
+    # Process each task
     # ---------------------------------
 
     for part in parts:
@@ -45,7 +45,10 @@ def generate_workflow(instruction):
         # Add Customer
         # ---------------------------------
 
-        if "customer" in part and ("add" in part or "create" in part):
+        if "customer" in part and (
+            "add" in part or
+            "create" in part
+        ):
 
             workflow["steps"].append({
                 "action": "OPEN_PAGE",
@@ -57,6 +60,7 @@ def generate_workflow(instruction):
                 "target": "Add Customer"
             })
 
+            # Customer Name
             if "name" in entities:
 
                 workflow["steps"].append({
@@ -65,6 +69,7 @@ def generate_workflow(instruction):
                     "value": entities["name"]
                 })
 
+            # Phone Number
             if "phone" in entities:
 
                 workflow["steps"].append({
@@ -73,9 +78,27 @@ def generate_workflow(instruction):
                     "value": entities["phone"]
                 })
 
+            # Add Customer
             workflow["steps"].append({
                 "action": "CLICK",
-                "target": "Save"
+                "target": "Add Customer"
+            })
+
+            # Verification information
+            workflow["verify_name"] = entities.get(
+                "name",
+                ""
+            )
+
+            workflow["verify_phone"] = entities.get(
+                "phone",
+                ""
+            )
+
+            # Read customer table
+            workflow["steps"].append({
+                "action": "READ_TABLE",
+                "target": "Customer List"
             })
 
         # ---------------------------------
@@ -121,7 +144,11 @@ def generate_workflow(instruction):
         # Click Save Button
         # ---------------------------------
 
-        if "click" in part and "save" in part:
+        if (
+            "click" in part
+            and "save" in part
+            and "customer" not in part
+        ):
 
             workflow["steps"].append({
                 "action": "CLICK",
@@ -142,17 +169,30 @@ def generate_workflow(instruction):
     return workflow
 
 
+# ---------------------------------
+# Direct Testing
+# ---------------------------------
+
 if __name__ == "__main__":
 
     while True:
 
-        instruction = input("\nEnter instruction (type exit): ")
+        instruction = input(
+            "\nEnter instruction (type exit): "
+        )
 
         if instruction.lower() == "exit":
             break
 
         result = generate_workflow(instruction)
 
-        print("\nGenerated Multi-Step Workflow:\n")
+        print(
+            "\nGenerated Multi-Step Workflow:\n"
+        )
 
-        print(json.dumps(result, indent=4))
+        print(
+            json.dumps(
+                result,
+                indent=4
+            )
+        )

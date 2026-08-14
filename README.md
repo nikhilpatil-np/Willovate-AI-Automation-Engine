@@ -241,6 +241,41 @@ Final Screenshot Understanding JSON
 - Error Detection: No error detected
 - Final Screenshot Understanding: Successfully tested
 
+
+## Day 8 – Browser Automation & Workflow Execution
+
+### Work Completed
+
+- Integrated Playwright for browser automation.
+- Created browser runner for workflow JSON execution.
+- Automated CRM customer creation.
+- Added customer table reading.
+- Added automatic customer verification.
+- Connected AI-generated workflow JSON with browser automation.
+- Successfully tested end-to-end CRM automation.
+
+### Execution Flow
+
+User Instruction
+        ↓
+Workflow Generator
+        ↓
+Workflow JSON
+        ↓
+Browser Runner
+        ↓
+Playwright
+        ↓
+CRM
+        ↓
+Customer Added
+        ↓
+Table Verification
+        ↓
+SUCCESS
+
+
+
 # Project Folder Structure
 
 ```
