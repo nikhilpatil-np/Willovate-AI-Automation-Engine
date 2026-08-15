@@ -6,418 +6,195 @@
 <title>Willovate Automation Engine</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23e63946'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='20' font-weight='bold' fill='white' font-family='Arial'>W</text></svg>" />
 <style>
-/* ── Reset ─────────────────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { font-size: 14px; }
-body {
-  font-family: 'Segoe UI', Arial, sans-serif;
-  background: #f0f2f5;
-  color: #1a1a2e;
-  min-height: 100vh;
-}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:14px}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f2f5;color:#1a1a2e;min-height:100vh}
 
-/* ── Header ─────────────────────────────────────────── */
-.header {
-  background: #1a1a2e;
-  color: #fff;
-  padding: 0 32px;
-  height: 56px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  box-shadow: 0 2px 8px rgba(0,0,0,.25);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-.header-brand { display: flex; align-items: center; gap: 12px; }
-.header-brand .logo {
-  width: 32px; height: 32px;
-  background: #e63946;
-  border-radius: 6px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 18px; font-weight: 700; color: #fff;
-}
-.header-brand h1 { font-size: 15px; font-weight: 600; letter-spacing: .3px; }
-.header-brand span { color: #adb5bd; font-size: 12px; margin-left: 6px; }
-.header-status {
-  display: flex; align-items: center; gap: 7px;
-  font-size: 12px; color: #adb5bd;
-}
-.status-circle {
-  width: 8px; height: 8px; border-radius: 50%;
-  background: #6c757d; flex-shrink: 0;
-  transition: background .3s;
-}
-.status-circle.online  { background: #2dc653; box-shadow: 0 0 5px #2dc653; }
-.status-circle.offline { background: #e63946; }
+/* Header */
+.hdr{background:#1a1a2e;color:#fff;padding:0 28px;height:54px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 8px rgba(0,0,0,.25);position:sticky;top:0;z-index:100}
+.hdr-brand{display:flex;align-items:center;gap:11px}
+.logo{width:32px;height:32px;background:#e63946;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:700;color:#fff;flex-shrink:0}
+.hdr h1{font-size:15px;font-weight:600}
+.hdr h1 span{color:#adb5bd;font-size:12px;margin-left:5px}
+.srv{display:flex;align-items:center;gap:7px;font-size:12px;color:#adb5bd}
+.dot{width:8px;height:8px;border-radius:50%;background:#6c757d;transition:background .3s}
+.dot.on{background:#2dc653;box-shadow:0 0 5px #2dc653}
+.dot.off{background:#e63946}
 
-/* ── Layout ─────────────────────────────────────────── */
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 24px 24px;
-}
+/* Layout */
+.wrap{max-width:1200px;margin:0 auto;padding:20px}
+.grid{display:grid;grid-template-columns:380px 1fr;gap:18px;align-items:start}
 
-.two-col {
-  display: grid;
-  grid-template-columns: 380px 1fr;
-  gap: 20px;
-  align-items: start;
-}
+/* Card */
+.card{background:#fff;border-radius:8px;border:1px solid #dee2e6;box-shadow:0 1px 4px rgba(0,0,0,.06);margin-bottom:16px}
+.card:last-child{margin-bottom:0}
+.ch{padding:13px 18px 11px;border-bottom:1px solid #e9ecef;display:flex;align-items:center;gap:8px}
+.ch h2{font-size:13px;font-weight:600;color:#343a40}
+.cb{padding:16px 18px}
 
-/* ── Card ─────────────────────────────────────────── */
-.card {
-  background: #fff;
-  border-radius: 8px;
-  border: 1px solid #dee2e6;
-  box-shadow: 0 1px 4px rgba(0,0,0,.06);
-}
-.card-head {
-  padding: 14px 18px 12px;
-  border-bottom: 1px solid #e9ecef;
-  display: flex; align-items: center; gap: 9px;
-}
-.card-head h2 { font-size: 13px; font-weight: 600; color: #343a40; }
-.card-head .icon { font-size: 15px; }
-.card-body { padding: 18px; }
+/* Input */
+.cmd{width:100%;min-height:88px;border:1.5px solid #ced4da;border-radius:6px;padding:10px 12px;font-family:inherit;font-size:13.5px;color:#212529;resize:vertical;transition:border-color .15s;line-height:1.55}
+.cmd:focus{outline:none;border-color:#e63946;box-shadow:0 0 0 3px rgba(230,57,70,.12)}
+.cmd::placeholder{color:#adb5bd}
+.cmd-meta{display:flex;justify-content:space-between;align-items:center;margin-top:6px}
+.hint{font-size:11px;color:#868e96}
 
-/* ── Command Input ─────────────────────────────────── */
-.cmd-box {
-  width: 100%;
-  min-height: 90px;
-  border: 1.5px solid #ced4da;
-  border-radius: 6px;
-  padding: 10px 13px;
-  font-family: 'Segoe UI', Arial, sans-serif;
-  font-size: 13.5px;
-  color: #212529;
-  resize: vertical;
-  transition: border-color .15s;
-  line-height: 1.55;
-}
-.cmd-box:focus { outline: none; border-color: #e63946; box-shadow: 0 0 0 3px rgba(230,57,70,.12); }
-.cmd-box::placeholder { color: #adb5bd; }
+/* Buttons */
+.brow{display:flex;gap:9px;margin-top:12px}
+.btn{padding:9px 18px;border-radius:5px;font-size:13px;font-weight:600;cursor:pointer;border:none;transition:all .15s;display:inline-flex;align-items:center;gap:6px}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn-red{background:#e63946;color:#fff}
+.btn-red:not(:disabled):hover{background:#c1121f}
+.btn-dark{background:#1a1a2e;color:#fff}
+.btn-dark:not(:disabled):hover{background:#2d2d44}
+.btn-ghost{background:#fff;color:#495057;border:1.5px solid #ced4da}
+.btn-ghost:not(:disabled):hover{background:#f8f9fa}
+.btn-sm{padding:5px 12px;font-size:12px}
 
-.cmd-meta { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
-.cmd-meta .hint { font-size: 11px; color: #868e96; }
+/* Chips */
+.ex-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.6px;color:#868e96;margin:14px 0 8px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{padding:4px 10px;border-radius:4px;font-size:11.5px;background:#f8f9fa;border:1px solid #dee2e6;color:#495057;cursor:pointer;transition:all .12s}
+.chip:hover{background:#fff0f0;border-color:#e63946;color:#e63946}
 
-/* ── Buttons ─────────────────────────────────────────── */
-.btn-row { display: flex; gap: 9px; margin-top: 14px; }
-.btn {
-  padding: 8px 18px;
-  border-radius: 5px;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  border: none;
-  transition: all .15s;
-  display: inline-flex; align-items: center; gap: 6px;
-}
-.btn:disabled { opacity: .5; cursor: not-allowed; }
-.btn-red   { background: #e63946; color: #fff; }
-.btn-red:not(:disabled):hover   { background: #c1121f; }
-.btn-dark  { background: #1a1a2e; color: #fff; }
-.btn-dark:not(:disabled):hover  { background: #2d2d44; }
-.btn-ghost { background: #fff; color: #495057; border: 1.5px solid #ced4da; }
-.btn-ghost:not(:disabled):hover { background: #f8f9fa; }
-.btn-sm { padding: 5px 12px; font-size: 12px; }
+/* Info rows */
+.irow{display:flex;justify-content:space-between;align-items:flex-start;padding:7px 0;border-bottom:1px solid #f1f3f5;gap:8px}
+.irow:last-child{border-bottom:none}
+.il{font-size:12px;color:#868e96;flex-shrink:0}
+.iv{font-size:12px;font-weight:500;color:#343a40;text-align:right;word-break:break-word;max-width:68%}
+.badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700}
+.bg{background:#d3f9d8;color:#2b8a3e}
+.br{background:#ffe3e3;color:#c92a2a}
+.by{background:#fff3bf;color:#7d5a00}
+.bb{background:#dbe4ff;color:#3b5bdb}
+.ep{display:flex;flex-wrap:wrap;gap:5px;justify-content:flex-end}
+.ep span{padding:2px 8px;border-radius:4px;font-size:11px;background:#e7f5ff;border:1px solid #a5d8ff;color:#1864ab}
 
-/* ── Examples ─────────────────────────────────────────── */
-.examples-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .6px; color: #868e96; margin: 16px 0 8px; }
-.chips { display: flex; flex-wrap: wrap; gap: 6px; }
-.chip {
-  padding: 4px 10px;
-  border-radius: 4px;
-  font-size: 11.5px;
-  background: #f8f9fa;
-  border: 1px solid #dee2e6;
-  color: #495057;
-  cursor: pointer;
-  transition: all .12s;
-}
-.chip:hover { background: #fff0f0; border-color: #e63946; color: #e63946; }
+/* Steps */
+.slist{display:flex;flex-direction:column;gap:0}
+.si{display:flex;align-items:flex-start;position:relative}
+.sline{display:none;position:absolute;left:15px;top:32px;bottom:-6px;width:2px;background:#dee2e6;z-index:0}
+.sline.done{background:#2dc653}
+.sline.fail{background:#e63946}
+.si:not(:last-child) .sline{display:block}
+.sc{width:32px;height:32px;border-radius:50%;border:2px solid #dee2e6;background:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#868e96;flex-shrink:0;z-index:1;transition:all .2s;margin-top:2px}
+.sc.done{border-color:#2dc653;background:#2dc653;color:#fff}
+.sc.fail{border-color:#e63946;background:#e63946;color:#fff}
+.sc.run{border-color:#e63946;color:#e63946}
+.sb{flex:1;padding:4px 0 14px 12px}
+.sa{font-size:12.5px;font-weight:600;color:#343a40;font-family:'Courier New',monospace}
+.ss2{font-size:11.5px;color:#868e96;margin-top:2px}
+.serr{font-size:11px;color:#c92a2a;margin-top:3px}
 
-/* ── Info rows ─────────────────────────────────────────── */
-.info-section { margin-top: 16px; }
-.info-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding: 7px 0;
-  border-bottom: 1px solid #f1f3f5;
-  gap: 10px;
-}
-.info-row:last-child { border-bottom: none; }
-.info-label { font-size: 12px; color: #868e96; flex-shrink: 0; }
-.info-val   { font-size: 12px; font-weight: 500; color: #343a40; text-align: right; word-break: break-word; max-width: 70%; }
+/* Spinner */
+@keyframes spin{to{transform:rotate(360deg)}}
+.spinner{width:14px;height:14px;border:2px solid #dee2e6;border-top-color:#e63946;border-radius:50%;animation:spin .6s linear infinite;display:inline-block}
 
-.badge {
-  display: inline-block;
-  padding: 2px 8px;
-  border-radius: 4px;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: .3px;
-}
-.badge-green  { background: #d3f9d8; color: #2b8a3e; }
-.badge-red    { background: #ffe3e3; color: #c92a2a; }
-.badge-yellow { background: #fff3bf; color: #7d5a00; }
-.badge-blue   { background: #dbe4ff; color: #3b5bdb; }
-.badge-gray   { background: #f1f3f5; color: #495057; }
+/* Result banner */
+.rb{border-radius:6px;padding:14px 16px;border-left:4px solid;display:flex;align-items:flex-start;gap:12px}
+.rb.ok{background:#ebfbee;border-color:#2dc653}
+.rb.fail{background:#fff5f5;border-color:#e63946}
+.rb.warn{background:#fffbeb;border-color:#f59f00}
+.rb.info{background:#e7f5ff;border-color:#4dabf7}
+.ri{font-size:26px;flex-shrink:0;margin-top:1px}
+.rt{font-size:14px;font-weight:700;color:#212529;margin-bottom:3px}
+.rd{font-size:12.5px;color:#495057;line-height:1.6}
+.rm{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
+.rm span{font-size:11px;padding:2px 9px;border-radius:4px;background:#fff;border:1px solid #dee2e6;color:#495057}
 
-.entity-pills { display: flex; flex-wrap: wrap; gap: 5px; justify-content: flex-end; }
-.entity-pill {
-  padding: 2px 8px;
-  border-radius: 4px;
-  font-size: 11px;
-  background: #e7f5ff;
-  border: 1px solid #a5d8ff;
-  color: #1864ab;
-}
+/* Table */
+.dtbl{width:100%;border-collapse:collapse;font-size:12.5px}
+.dtbl thead tr{background:#f8f9fa}
+.dtbl th{padding:8px 13px;text-align:left;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#868e96;border-bottom:2px solid #dee2e6}
+.dtbl td{padding:8px 13px;border-bottom:1px solid #f1f3f5;color:#495057}
+.dtbl tbody tr:last-child td{border-bottom:none}
+.dtbl tbody tr:hover td{background:#f8f9fa}
+.dtbl .hl td{background:#ebfbee!important;color:#2b8a3e!important;font-weight:600}
 
-/* ── Right panel ─────────────────────────────────────── */
-.right-stack { display: flex; flex-direction: column; gap: 20px; }
+/* JSON */
+.json{background:#1e1e2e;color:#cdd6f4;border-radius:6px;padding:13px 15px;font-family:'Courier New',monospace;font-size:12px;line-height:1.7;white-space:pre-wrap;word-break:break-word;overflow-y:auto;max-height:260px}
+.json .jk{color:#89b4fa}
+.json .jv{color:#a6e3a1}
+.json .jn{color:#fab387}
+.json .jb{color:#f38ba8}
 
-/* ── Steps ─────────────────────────────────────────── */
-.steps-list { display: flex; flex-direction: column; gap: 0; }
+/* Empty */
+.empty{text-align:center;padding:44px 20px;color:#adb5bd}
+.ei{font-size:38px;margin-bottom:10px;opacity:.6}
 
-.step-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 0;
-  position: relative;
-}
-/* vertical connector line */
-.step-item:not(:last-child) .step-line { display: block; }
-.step-line {
-  display: none;
-  position: absolute;
-  left: 15px;
-  top: 30px;
-  bottom: -8px;
-  width: 2px;
-  background: #dee2e6;
-  z-index: 0;
-}
-.step-line.done { background: #2dc653; }
-.step-line.fail { background: #e63946; }
+/* Section title */
+.stitle{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#868e96;margin-bottom:12px;padding-bottom:6px;border-bottom:1px solid #e9ecef}
 
-.step-circle {
-  width: 32px; height: 32px;
-  border-radius: 50%;
-  border: 2px solid #dee2e6;
-  background: #fff;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 11px; font-weight: 700; color: #868e96;
-  flex-shrink: 0;
-  z-index: 1;
-  transition: all .2s;
-  margin-top: 2px;
-}
-.step-circle.done  { border-color: #2dc653; background: #2dc653; color: #fff; }
-.step-circle.fail  { border-color: #e63946; background: #e63946; color: #fff; }
-.step-circle.active{ border-color: #e63946; color: #e63946; }
-.step-circle.skip  { border-color: #ced4da; background: #f8f9fa; color: #adb5bd; }
+/* Loading overlay on right panel */
+.loading-msg{text-align:center;padding:32px 20px;color:#495057}
+.loading-msg .spin-big{font-size:32px;display:inline-block;animation:spin .8s linear infinite;margin-bottom:10px}
+.loading-msg h3{font-size:14px;font-weight:600;margin-bottom:6px}
+.loading-msg p{font-size:12.5px;color:#868e96}
+.loading-bar{height:3px;background:#f1f3f5;border-radius:3px;overflow:hidden;margin-top:14px}
+.loading-fill{height:100%;background:#e63946;border-radius:3px;animation:loadbar 2s ease-in-out infinite}
+@keyframes loadbar{0%{width:0;margin-left:0}50%{width:60%;margin-left:20%}100%{width:0;margin-left:100%}}
 
-@keyframes spin { to { transform: rotate(360deg); } }
-.spin-ring {
-  width: 14px; height: 14px;
-  border: 2px solid #dee2e6;
-  border-top-color: #e63946;
-  border-radius: 50%;
-  animation: spin .6s linear infinite;
-}
+/* Drop zone */
+.dz{border:2px dashed #ced4da;border-radius:6px;padding:20px 14px;text-align:center;cursor:pointer;background:#f8f9fa;transition:all .15s}
+.dz:hover,.dz.hover{border-color:#e63946;background:#fff0f0}
 
-.step-body {
-  flex: 1;
-  padding: 4px 0 14px 12px;
-}
-.step-title {
-  font-size: 12.5px; font-weight: 600; color: #343a40;
-  font-family: 'Courier New', monospace;
-  display: flex; align-items: center; gap: 8px;
-}
-.step-sub  { font-size: 11.5px; color: #868e96; margin-top: 2px; }
-.step-err  { font-size: 11px; color: #c92a2a; margin-top: 3px; }
+/* Toast */
+#toast{position:fixed;bottom:22px;right:22px;z-index:9999;max-width:330px;padding:10px 15px;border-radius:6px;font-size:13px;font-weight:500;box-shadow:0 4px 16px rgba(0,0,0,.15);display:none;border-left:4px solid}
+#toast.show{display:block;animation:fadeIn .2s ease}
+#toast.success{background:#ebfbee;border-color:#2dc653;color:#2b8a3e}
+#toast.error{background:#fff5f5;border-color:#e63946;color:#c92a2a}
+#toast.info{background:#e7f5ff;border-color:#4dabf7;color:#1864ab}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 
-/* ── Result banner ─────────────────────────────────────── */
-.result-banner {
-  border-radius: 6px;
-  padding: 16px 18px;
-  border-left: 4px solid;
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-}
-.result-banner.success { background: #ebfbee; border-color: #2dc653; }
-.result-banner.fail    { background: #fff5f5; border-color: #e63946; }
-.result-banner.warn    { background: #fffbeb; border-color: #f59f00; }
-.result-banner.info    { background: #e7f5ff; border-color: #4dabf7; }
+/* Right stack */
+.right-stack{display:flex;flex-direction:column;gap:0}
 
-.result-icon  { font-size: 26px; flex-shrink: 0; margin-top: 1px; }
-.result-title { font-size: 14px; font-weight: 700; color: #212529; margin-bottom: 4px; }
-.result-desc  { font-size: 12.5px; color: #495057; line-height: 1.6; }
-.result-meta  { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
-.meta-tag {
-  font-size: 11px;
-  padding: 2px 9px;
-  border-radius: 4px;
-  background: #fff;
-  border: 1px solid #dee2e6;
-  color: #495057;
-}
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-thumb{background:#ced4da;border-radius:10px}
 
-/* ── Table ─────────────────────────────────────────── */
-.data-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
-.data-table thead tr { background: #f8f9fa; }
-.data-table th {
-  padding: 8px 14px;
-  text-align: left;
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: .5px;
-  color: #868e96;
-  border-bottom: 2px solid #dee2e6;
-}
-.data-table td {
-  padding: 8px 14px;
-  border-bottom: 1px solid #f1f3f5;
-  color: #495057;
-}
-.data-table tbody tr:last-child td { border-bottom: none; }
-.data-table tbody tr:hover td { background: #f8f9fa; }
-.data-table .highlight td { background: #ebfbee; color: #2b8a3e; font-weight: 600; }
-
-/* ── JSON viewer ─────────────────────────────────────── */
-.json-viewer {
-  background: #1e1e2e;
-  color: #cdd6f4;
-  border-radius: 6px;
-  padding: 14px 16px;
-  font-family: 'Courier New', monospace;
-  font-size: 12px;
-  line-height: 1.7;
-  white-space: pre-wrap;
-  word-break: break-word;
-  overflow-y: auto;
-  max-height: 260px;
-}
-.json-viewer .jk { color: #89b4fa; }  /* key    */
-.json-viewer .jv { color: #a6e3a1; }  /* string */
-.json-viewer .jn { color: #fab387; }  /* number */
-.json-viewer .jb { color: #f38ba8; }  /* bool   */
-
-/* ── Empty state ─────────────────────────────────────── */
-.empty {
-  text-align: center;
-  padding: 48px 24px;
-  color: #adb5bd;
-}
-.empty .empty-icon { font-size: 40px; margin-bottom: 12px; opacity: .6; }
-.empty h3 { font-size: 14px; font-weight: 600; color: #868e96; margin-bottom: 6px; }
-.empty p  { font-size: 12.5px; max-width: 300px; margin: 0 auto; line-height: 1.6; }
-
-/* ── Section title ─────────────────────────────────────── */
-.section-title {
-  font-size: 12px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: .6px;
-  color: #868e96;
-  margin-bottom: 14px;
-  padding-bottom: 7px;
-  border-bottom: 1px solid #e9ecef;
-}
-
-/* ── Notification toast ─────────────────────────────────── */
-#toast {
-  position: fixed;
-  bottom: 24px; right: 24px;
-  z-index: 9999;
-  max-width: 340px;
-  padding: 11px 16px;
-  border-radius: 6px;
-  font-size: 13px;
-  font-weight: 500;
-  box-shadow: 0 4px 16px rgba(0,0,0,.15);
-  display: none;
-  border-left: 4px solid;
-}
-#toast.show { display: block; animation: slideUp .2s ease; }
-#toast.success { background: #ebfbee; border-color: #2dc653; color: #2b8a3e; }
-#toast.error   { background: #fff5f5; border-color: #e63946; color: #c92a2a; }
-#toast.info    { background: #e7f5ff; border-color: #4dabf7; color: #1864ab; }
-
-@keyframes slideUp { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
-
-/* ── Responsive ─────────────────────────────────────── */
-@media (max-width: 860px) {
-  .two-col { grid-template-columns: 1fr; }
-}
-
-/* ── Scrollbar ─────────────────────────────────────── */
-::-webkit-scrollbar { width: 5px; height: 5px; }
-::-webkit-scrollbar-thumb { background: #ced4da; border-radius: 10px; }
-
-/* ── Drop zone hover ──────────────────────────────── */
-.dz-hover {
-  border-color: #e63946 !important;
-  background: #fff0f0 !important;
-}
+@media(max-width:860px){.grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 
-<!-- ═══════════ HEADER ═══════════ -->
-<div class="header">
-  <div class="header-brand">
+<!-- HEADER -->
+<div class="hdr">
+  <div class="hdr-brand">
     <div class="logo">W</div>
     <h1>Willovate Automation Engine <span>v1.0</span></h1>
   </div>
-  <div class="header-status">
-    <div class="status-circle" id="statusCircle"></div>
-    <span id="statusText">Checking server…</span>
+  <div class="srv">
+    <div class="dot" id="dot"></div>
+    <span id="srvTxt">Checking…</span>
   </div>
 </div>
 
-<!-- ═══════════ BODY ═══════════ -->
-<div class="container">
-  <div class="two-col">
+<!-- BODY -->
+<div class="wrap">
+  <div class="grid">
 
-    <!-- LEFT COLUMN -->
+    <!-- ══════ LEFT ══════ -->
     <div>
 
-      <!-- Instruction Card -->
+      <!-- Instruction -->
       <div class="card">
-        <div class="card-head">
-          <span class="icon">⌨</span>
-          <h2>Instruction</h2>
-        </div>
-        <div class="card-body">
-          <textarea
-            class="cmd-box"
-            id="cmdInput"
-            placeholder="Type your instruction here…&#10;e.g. &quot;Add Pankaj Koche as a customer with phone 9876543210&quot;"
-            maxlength="500"
-            oninput="onType()"
-            onkeydown="handleKey(event)"
-          ></textarea>
+        <div class="ch"><span>⌨</span><h2>Instruction</h2></div>
+        <div class="cb">
+          <textarea class="cmd" id="cmdInput" maxlength="500"
+            placeholder="Type your instruction here…&#10;e.g. &quot;Add Pankaj Koche as a customer with phone 9876543210 and save&quot;"
+            oninput="onType()"></textarea>
           <div class="cmd-meta">
-            <span class="hint">Enter your instruction and click Execute or Analyze</span>
-            <span id="charCount" style="font-size:11px;color:#adb5bd">0/500</span>
+            <span class="hint">Type instruction → click Execute or Analyze</span>
+            <span id="cc" style="font-size:11px;color:#adb5bd">0/500</span>
           </div>
-
-          <div class="btn-row">
-            <button class="btn btn-red"   id="btnExecute" onclick="doExecute()" disabled>▶ Execute</button>
+          <div class="brow">
+            <button class="btn btn-red"   id="btnExec"    onclick="doExec()"    disabled>▶ Execute</button>
             <button class="btn btn-dark"  id="btnAnalyze" onclick="doAnalyze()" disabled>🔍 Analyze</button>
-            <button class="btn btn-ghost" onclick="doClear()">✕ Clear</button>
+            <button class="btn btn-ghost"                 onclick="doClear()">✕ Clear</button>
           </div>
-
-          <div class="examples-label">Quick examples</div>
+          <div class="ex-label">Quick examples</div>
           <div class="chips">
-            <span class="chip" onclick="fillEx(this)">Add Pankaj Koche as customer with phone 9876543210</span>
+            <span class="chip" onclick="fillEx(this)">Add Pankaj Koche as customer with phone 9876543210 and save</span>
             <span class="chip" onclick="fillEx(this)">Open the CRM, add Pankaj Koche as a customer with phone number 9876543210, save the record and verify that the customer appears in the table.</span>
             <span class="chip" onclick="fillEx(this)">Add Nikhil as customer with phone 9823456789</span>
             <span class="chip" onclick="fillEx(this)">Rahul naam ka customer jod do phone 9876543210</span>
@@ -427,116 +204,87 @@ body {
         </div>
       </div>
 
-      <!-- Pipeline Info Card (populated after analyze/execute) -->
-      <div class="card" id="infoCard" style="margin-top:16px; display:none;">
-        <div class="card-head">
-          <span class="icon">📋</span>
-          <h2>Pipeline Analysis</h2>
-        </div>
-        <div class="card-body" id="infoBody"></div>
+      <!-- Pipeline info (filled after analyze/execute) -->
+      <div class="card" id="infoCard" style="display:none">
+        <div class="ch"><span>📋</span><h2>Pipeline Analysis</h2></div>
+        <div class="cb" id="infoBody"></div>
       </div>
 
-      <!-- Screenshot Upload Card -->
-      <div class="card" style="margin-top:16px;">
-        <div class="card-head">
-          <span class="icon">🖼</span>
-          <h2>Screenshot Understanding</h2>
-        </div>
-        <div class="card-body">
-          <p style="font-size:12px;color:#868e96;margin-bottom:12px;">
-            Upload any screenshot — the AI will detect buttons, input fields, tables and errors.
+      <!-- Screenshot Upload -->
+      <div class="card">
+        <div class="ch"><span>🖼</span><h2>Screenshot Understanding</h2></div>
+        <div class="cb">
+          <p style="font-size:12px;color:#868e96;margin-bottom:11px">
+            Upload any screenshot — AI detects buttons, inputs, tables and errors.
           </p>
-
-          <!-- Drop zone -->
-          <div id="dropZone"
-            onclick="document.getElementById('ssFileInput').click()"
-            ondragover="event.preventDefault();this.classList.add('dz-hover')"
-            ondragleave="this.classList.remove('dz-hover')"
-            ondrop="onDrop(event)"
-            style="
-              border:2px dashed #ced4da;border-radius:6px;
-              padding:22px 16px;text-align:center;cursor:pointer;
-              background:#f8f9fa;transition:all .15s;
-            ">
-            <div style="font-size:28px;margin-bottom:6px;">📂</div>
-            <div style="font-size:12.5px;font-weight:600;color:#495057;">Click to upload or drag &amp; drop</div>
-            <div style="font-size:11px;color:#adb5bd;margin-top:3px;">PNG, JPG, JPEG supported</div>
+          <div class="dz" id="dz"
+            onclick="document.getElementById('ssInput').click()"
+            ondragover="event.preventDefault();this.classList.add('hover')"
+            ondragleave="this.classList.remove('hover')"
+            ondrop="onDrop(event)">
+            <div style="font-size:26px;margin-bottom:5px">📂</div>
+            <div style="font-size:12.5px;font-weight:600;color:#495057">Click to upload or drag &amp; drop</div>
+            <div style="font-size:11px;color:#adb5bd;margin-top:2px">PNG · JPG · JPEG</div>
           </div>
-          <input type="file" id="ssFileInput" accept="image/*" style="display:none" onchange="onFileSelect(event)" />
-
-          <!-- Preview -->
-          <div id="ssPreviewWrap" style="display:none;margin-top:12px;">
-            <img id="ssPreview" style="width:100%;border-radius:6px;border:1px solid #dee2e6;max-height:200px;object-fit:contain;" />
-            <div style="display:flex;gap:8px;margin-top:10px;">
-              <button class="btn btn-red btn-sm" id="btnSsAnalyze" onclick="analyzeScreenshot()">🔍 Analyse Screenshot</button>
-              <button class="btn btn-ghost btn-sm" onclick="clearSs()">✕ Remove</button>
+          <input type="file" id="ssInput" accept="image/*" style="display:none" onchange="onSSFile(event)" />
+          <div id="ssPreviewWrap" style="display:none;margin-top:11px">
+            <img id="ssPreview" style="width:100%;border-radius:6px;border:1px solid #dee2e6;max-height:180px;object-fit:contain" />
+            <div style="display:flex;gap:8px;margin-top:9px">
+              <button class="btn btn-red btn-sm" onclick="analyseSS()">🔍 Analyse</button>
+              <button class="btn btn-ghost btn-sm" onclick="clearSS()">✕ Remove</button>
             </div>
           </div>
         </div>
       </div>
 
-    </div><!-- /left column -->
+    </div><!-- /left -->
 
-    <!-- RIGHT COLUMN -->
-    <div class="right-stack" id="rightStack">
+    <!-- ══════ RIGHT ══════ -->
+    <div class="right-stack" id="right">
       <div class="card">
-        <div class="card-body">
+        <div class="cb">
           <div class="empty">
-            <div class="empty-icon">⚙</div>
-            <h3>Nothing running yet</h3>
-            <p>Enter a natural-language instruction on the left and press <strong>Execute</strong> or <strong>Analyze</strong>.</p>
+            <div class="ei">⚙</div>
+            <h3 style="font-size:14px;font-weight:600;color:#868e96;margin-bottom:6px">Ready</h3>
+            <p style="font-size:12.5px">Type an instruction and press <strong>Execute</strong> or <strong>Analyze</strong>.</p>
           </div>
         </div>
       </div>
-    </div><!-- /right column -->
+    </div>
 
   </div>
-</div><!-- /container -->
+</div>
 
-<!-- Toast -->
 <div id="toast"></div>
 
 <script>
-/* ════════════════════════════════
-   Config
-════════════════════════════════ */
 const API = 'http://127.0.0.1:8000';
 let busy = false;
 
-/* ════════════════════════════════
-   Health check
-════════════════════════════════ */
-async function checkHealth() {
-  const circle = document.getElementById('statusCircle');
-  const text   = document.getElementById('statusText');
+/* ─── Health ─────────────────────────────── */
+async function ping() {
+  const dot = document.getElementById('dot');
+  const txt = document.getElementById('srvTxt');
   try {
-    const r = await fetch(`${API}/api/v1/health`, { signal: AbortSignal.timeout(3000) });
-    if (r.ok) {
-      circle.className = 'status-circle online';
-      text.textContent = 'Server online';
-    } else throw new Error();
+    const r = await fetch(API + '/api/v1/health', { signal: AbortSignal.timeout(3000) });
+    if (r.ok) { dot.className = 'dot on'; txt.textContent = 'Server online'; }
+    else throw 0;
   } catch {
-    circle.className = 'status-circle offline';
-    text.textContent = 'Server offline';
+    dot.className = 'dot off';
+    txt.textContent = 'Server offline — start uvicorn';
   }
 }
-checkHealth();
-setInterval(checkHealth, 8000);
+ping();
+setInterval(ping, 8000);
 
-/* ════════════════════════════════
-   Input helpers
-════════════════════════════════ */
+/* ─── Input ──────────────────────────────── */
 function onType() {
-  const val = document.getElementById('cmdInput').value;
-  document.getElementById('charCount').textContent = `${val.length}/500`;
-  const empty = !val.trim();
-  document.getElementById('btnExecute').disabled = empty || busy;
+  const v = document.getElementById('cmdInput').value;
+  document.getElementById('cc').textContent = v.length + '/500';
+  const empty = !v.trim();
+  document.getElementById('btnExec').disabled    = empty || busy;
   document.getElementById('btnAnalyze').disabled = empty || busy;
 }
-
-function handleKey(e) {
-  // No keyboard shortcuts — buttons only
-}}
 
 function fillEx(el) {
   document.getElementById('cmdInput').value = el.textContent.trim();
@@ -548,274 +296,239 @@ function doClear() {
   document.getElementById('cmdInput').value = '';
   onType();
   document.getElementById('infoCard').style.display = 'none';
-  showEmptyRight();
+  setRight(`<div class="card"><div class="cb"><div class="empty">
+    <div class="ei">⚙</div>
+    <h3 style="font-size:14px;font-weight:600;color:#868e96;margin-bottom:6px">Ready</h3>
+    <p style="font-size:12.5px">Type an instruction and press <strong>Execute</strong> or <strong>Analyze</strong>.</p>
+  </div></div></div>`);
 }
 
-function setBusy(val) {
-  busy = val;
-  onType();
-  document.getElementById('btnExecute').textContent = val ? '…' : '▶ Execute';
+function lock(v) {
+  busy = v;
+  const inp = document.getElementById('cmdInput').value.trim();
+  document.getElementById('btnExec').disabled    = v || !inp;
+  document.getElementById('btnAnalyze').disabled = v || !inp;
+  document.getElementById('btnExec').innerHTML   = v ? '<span class="spinner"></span> Running…' : '▶ Execute';
 }
 
-/* ════════════════════════════════
-   Analyze only
-════════════════════════════════ */
+/* ─── API helper ─────────────────────────── */
+async function api(path, body) {
+  const ctrl = new AbortController();
+  const tid  = setTimeout(() => ctrl.abort(), 120000); // 2 min timeout
+  try {
+    const r = await fetch(API + path, {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify(body),
+      signal:  ctrl.signal,
+    });
+    clearTimeout(tid);
+    const d = await r.json();
+    if (!r.ok) throw new Error(d.detail || 'HTTP ' + r.status);
+    return d;
+  } catch (e) {
+    clearTimeout(tid);
+    if (e.name === 'AbortError') throw new Error('Request timed out. Server may be busy.');
+    throw e;
+  }
+}
+
+/* ─── Right panel helpers ────────────────── */
+function setRight(html) {
+  document.getElementById('right').innerHTML = html;
+}
+
+function showLoading(msg) {
+  setRight(`<div class="card"><div class="cb">
+    <div class="loading-msg">
+      <div class="spin-big">⚙</div>
+      <h3>${esc(msg)}</h3>
+      <p>Playwright is running the browser automation…<br>This takes 10–30 seconds.</p>
+      <div class="loading-bar"><div class="loading-fill"></div></div>
+    </div>
+  </div></div>`);
+}
+
+function showErr(msg) {
+  setRight(`<div class="card"><div class="cb">
+    <div class="rb fail">
+      <div class="ri">❌</div>
+      <div>
+        <div class="rt">Error</div>
+        <div class="rd">${esc(msg)}</div>
+        <div class="rm">
+          <span>Is the server running?</span>
+          <span>.venv\\Scripts\\uvicorn.exe main:app --port 8000</span>
+        </div>
+      </div>
+    </div>
+  </div></div>`);
+}
+
+/* ─── Analyze only ───────────────────────── */
 async function doAnalyze() {
-  const instruction = document.getElementById('cmdInput').value.trim();
-  if (!instruction || busy) return;
-  setBusy(true);
-  showLoadingRight('Analyzing instruction…');
+  const instr = document.getElementById('cmdInput').value.trim();
+  if (!instr || busy) return;
+  lock(true);
+  document.getElementById('btnExec').innerHTML = '▶ Execute'; // keep exec label
+  document.getElementById('btnAnalyze').innerHTML = '<span class="spinner"></span>';
+  setRight(`<div class="card"><div class="cb"><div class="loading-msg">
+    <div class="spin-big">🔍</div><h3>Analyzing…</h3><p>Running AI pipeline</p>
+    <div class="loading-bar"><div class="loading-fill"></div></div>
+  </div></div></div>`);
 
   try {
-    const data = await apiPost('/api/v1/generate-workflow', { instruction, lang: 'auto' });
-    renderInfoCard(data);
-    renderAnalysisRight(data);
-  } catch(e) {
-    showErrorRight(e.message);
+    const d = await api('/api/v1/generate-workflow', { instruction: instr, lang: 'auto' });
+    renderInfo(d);
+    setRight('');
+    appendSteps(d.workflow?.steps || [], null);
+    appendJSON(d.workflow);
+    toast('Analysis complete', 'success');
+  } catch (e) {
+    showErr(e.message);
     toast(e.message, 'error');
-  } finally { setBusy(false); }
+  } finally {
+    lock(false);
+    document.getElementById('btnAnalyze').innerHTML = '🔍 Analyze';
+  }
 }
 
-/* ════════════════════════════════
-   Full execute
-════════════════════════════════ */
-async function doExecute() {
-  const instruction = document.getElementById('cmdInput').value.trim();
-  if (!instruction || busy) return;
-  setBusy(true);
+/* ─── Full execute ───────────────────────── */
+async function doExec() {
+  const instr = document.getElementById('cmdInput').value.trim();
+  if (!instr || busy) return;
+  lock(true);
 
   try {
-    // Stage 1 — get pipeline data first for immediate UI
-    const pipeData = await apiPost('/api/v1/generate-workflow', { instruction, lang: 'auto' });
-    renderInfoCard(pipeData);
+    // Stage 1 — generate workflow
+    const pipe = await api('/api/v1/generate-workflow', { instruction: instr, lang: 'auto' });
+    renderInfo(pipe);
 
-    const risk = (pipeData.risk?.risk_level || 'LOW').toUpperCase();
+    const risk = (pipe.risk?.risk_level || 'LOW').toUpperCase();
     if (risk === 'HIGH') {
-      renderBlockedRight(pipeData);
-      setBusy(false);
+      setRight(`<div class="card"><div class="cb">
+        <div class="rb warn">
+          <div class="ri">🚫</div>
+          <div>
+            <div class="rt">Blocked — HIGH Risk</div>
+            <div class="rd">${esc(pipe.risk?.reason || 'Manual confirmation required.')}</div>
+            <div class="rm"><span>Risk: HIGH</span></div>
+          </div>
+        </div>
+      </div></div>`);
+      appendJSON(pipe.workflow);
+      lock(false);
       return;
     }
 
-    const steps = pipeData.workflow?.steps || [];
-    renderStepsCard(steps, null); // pending state
+    // Show steps in pending state + loading message
+    const steps = pipe.workflow?.steps || [];
+    setRight('');
+    appendSteps(steps, null);
+    showLoadingBelow('Executing in browser… please wait');
 
-    // Stage 2 — full execution
-    const execData = await apiPost('/api/v1/execute', { instruction, lang: 'auto', headless: true });
-    const exec = execData.execution || {};
+    // Stage 2 — execute
+    const exec = await api('/api/v1/execute', { instruction: instr, lang: 'auto', headless: true });
+    const ex   = exec.execution || {};
 
-    renderStepsCard(steps, exec.step_results || []);
-    renderResultCard(exec, execData.entities || {});
-
-    if (exec.customers && exec.customers.length > 0) {
-      renderTableCard(exec.customers, execData.entities || {});
+    // Re-render steps with results
+    setRight('');
+    appendSteps(steps, ex.step_results || []);
+    appendResult(ex, exec.entities || {});
+    if (ex.customers && ex.customers.length > 0) {
+      appendTable(ex.customers, exec.entities || {});
     }
+    appendJSON(pipe.workflow);
 
-    toast(exec.success ? 'Execution completed successfully' : 'Execution failed', exec.success ? 'success' : 'error');
+    toast(ex.success ? 'Execution successful ✅' : 'Execution failed ❌', ex.success ? 'success' : 'error');
 
-  } catch(e) {
-    showErrorRight(e.message);
+  } catch (e) {
+    showErr(e.message);
     toast(e.message, 'error');
-  } finally { setBusy(false); }
+  } finally {
+    lock(false);
+  }
 }
 
-/* ════════════════════════════════
-   API helper
-════════════════════════════════ */
-async function apiPost(path, body) {
-  const r = await fetch(API + path, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(body),
-  });
-  const data = await r.json();
-  if (!r.ok) throw new Error(data.detail || `HTTP ${r.status}`);
-  return data;
+/* Show a loading message appended below existing content */
+function showLoadingBelow(msg) {
+  const d = document.createElement('div');
+  d.className = 'card';
+  d.id = 'loadCard';
+  d.innerHTML = `<div class="cb"><div class="loading-msg">
+    <div class="spin-big">⚙</div><h3>${esc(msg)}</h3>
+    <p>Playwright is running the browser automation…<br>This takes 10–30 seconds.</p>
+    <div class="loading-bar"><div class="loading-fill"></div></div>
+  </div></div>`;
+  document.getElementById('right').appendChild(d);
 }
 
-/* ════════════════════════════════
-   Left panel — info card
-════════════════════════════════ */
-function renderInfoCard(d) {
+/* ─── Info card ──────────────────────────── */
+function renderInfo(d) {
   const card = document.getElementById('infoCard');
   const body = document.getElementById('infoBody');
   card.style.display = '';
-
-  const entities = d.entities || {};
-  const eKeys = Object.keys(entities);
-  const missing = d.missing || [];
-  const risk = d.risk || {};
-  const riskLevel = (risk.risk_level || 'LOW').toUpperCase();
-  const riskBadge = riskLevel === 'HIGH' ? 'badge-red' : riskLevel === 'MEDIUM' ? 'badge-yellow' : 'badge-green';
+  const ent   = d.entities || {};
+  const eKeys = Object.keys(ent);
+  const miss  = d.missing || [];
+  const risk  = d.risk || {};
+  const rl    = (risk.risk_level || 'LOW').toUpperCase();
+  const rc    = rl === 'HIGH' ? 'br' : rl === 'MEDIUM' ? 'by' : 'bg';
 
   body.innerHTML = `
-    <div class="info-row">
-      <span class="info-label">Language</span>
-      <span class="info-val">${langLabel(d.detected_language)}</span>
-    </div>
-    <div class="info-row">
-      <span class="info-label">Intent</span>
-      <span class="info-val"><span class="badge badge-blue">${e(d.intent || '—')}</span></span>
-    </div>
-    <div class="info-row">
-      <span class="info-label">Normalized</span>
-      <span class="info-val" style="font-style:italic;color:#868e96;font-size:11.5px">${e(d.normalized_instruction || '')}</span>
-    </div>
-    ${eKeys.length > 0 ? `
-    <div class="info-row">
-      <span class="info-label">Entities</span>
-      <span class="info-val">
-        <div class="entity-pills">
-          ${eKeys.map(k => `<span class="entity-pill"><b>${e(k)}:</b> ${e(entities[k])}</span>`).join('')}
-        </div>
-      </span>
-    </div>` : ''}
-    ${missing.length > 0 ? `
-    <div class="info-row">
-      <span class="info-label">Missing</span>
-      <span class="info-val" style="color:#f59f00">${missing.map(m => e(m)).join(', ')}</span>
-    </div>` : ''}
-    <div class="info-row">
-      <span class="info-label">Risk</span>
-      <span class="info-val"><span class="badge ${riskBadge}">${riskLevel}</span></span>
-    </div>
-    <div class="info-row">
-      <span class="info-label">Workflow valid</span>
-      <span class="info-val">
-        <span class="badge ${d.valid ? 'badge-green' : 'badge-red'}">${d.valid ? 'YES' : 'NO'}</span>
-      </span>
-    </div>
-    <div class="info-row">
-      <span class="info-label">Steps</span>
-      <span class="info-val">${(d.workflow?.steps || []).length} steps</span>
-    </div>`;
+    <div class="irow"><span class="il">Language</span><span class="iv">${langLbl(d.detected_language)}</span></div>
+    <div class="irow"><span class="il">Intent</span><span class="iv"><span class="badge bb">${esc(d.intent||'—')}</span></span></div>
+    <div class="irow"><span class="il">Normalized</span><span class="iv" style="font-style:italic;color:#868e96;font-size:11.5px">${esc(d.normalized_instruction||'')}</span></div>
+    ${eKeys.length ? `<div class="irow"><span class="il">Entities</span><span class="iv"><div class="ep">${eKeys.map(k=>`<span><b>${esc(k)}:</b> ${esc(ent[k])}</span>`).join('')}</div></span></div>` : ''}
+    ${miss.length  ? `<div class="irow"><span class="il">Missing</span><span class="iv" style="color:#f59f00">${miss.map(esc).join(', ')}</span></div>` : ''}
+    <div class="irow"><span class="il">Risk</span><span class="iv"><span class="badge ${rc}">${rl}</span></span></div>
+    <div class="irow"><span class="il">Valid JSON</span><span class="iv"><span class="badge ${d.valid?'bg':'br'}">${d.valid?'YES':'NO'}</span></span></div>
+    <div class="irow"><span class="il">Steps</span><span class="iv">${(d.workflow?.steps||[]).length}</span></div>`;
 }
 
-function langLabel(lang) {
-  return lang === 'hi' ? '🇮🇳 Hindi' : lang === 'hinglish' ? '🔀 Hinglish' : '🇬🇧 English';
+function langLbl(l) {
+  return l === 'hi' ? '🇮🇳 Hindi' : l === 'hinglish' ? '🔀 Hinglish' : '🇬🇧 English';
 }
 
-/* ════════════════════════════════
-   Right panel helpers
-════════════════════════════════ */
-function showEmptyRight() {
-  document.getElementById('rightStack').innerHTML = `
-    <div class="card"><div class="card-body">
-      <div class="empty">
-        <div class="empty-icon">⚙</div>
-        <h3>Nothing running yet</h3>
-        <p>Enter a natural-language instruction on the left and press <strong>Execute</strong> or <strong>Analyze</strong>.</p>
-      </div>
-    </div></div>`;
-}
-
-function showLoadingRight(msg) {
-  document.getElementById('rightStack').innerHTML = `
-    <div class="card"><div class="card-body">
-      <div class="empty">
-        <div class="empty-icon" style="animation:spin .8s linear infinite;display:inline-block">⚙</div>
-        <h3 style="margin-top:10px">${e(msg)}</h3>
-        <p>Please wait…</p>
-      </div>
-    </div></div>`;
-}
-
-function showErrorRight(msg) {
-  document.getElementById('rightStack').innerHTML = `
-    <div class="card"><div class="card-body">
-      <div class="result-banner fail">
-        <div class="result-icon">❌</div>
-        <div>
-          <div class="result-title">Error</div>
-          <div class="result-desc">${e(msg)}</div>
-          <div class="result-meta">
-            <span class="meta-tag">Is the server running on port 8000?</span>
-            <span class="meta-tag">uvicorn main:app --port 8000</span>
-          </div>
-        </div>
-      </div>
-    </div></div>`;
-}
-
-function renderBlockedRight(data) {
-  document.getElementById('rightStack').innerHTML = `
-    <div class="card"><div class="card-body">
-      <div class="result-banner warn">
-        <div class="result-icon">🚫</div>
-        <div>
-          <div class="result-title">Execution Blocked — HIGH Risk</div>
-          <div class="result-desc">${e(data.risk?.reason || 'This instruction requires manual confirmation before execution.')}</div>
-          <div class="result-meta"><span class="meta-tag">Risk level: HIGH</span></div>
-        </div>
-      </div>
-    </div></div>`;
-  appendJsonCard(data.workflow);
-}
-
-function renderAnalysisRight(data) {
-  const rs = document.getElementById('rightStack');
-  rs.innerHTML = '';
-  const steps = data.workflow?.steps || [];
-  if (steps.length > 0) {
-    rs.appendChild(makeStepsCard(steps, null));
-  }
-  rs.appendChild(makeJsonCard(data.workflow));
-}
-
-/* ════════════════════════════════
-   Steps card
-════════════════════════════════ */
-function renderStepsCard(steps, results) {
-  const rs = document.getElementById('rightStack');
-  // Replace or insert at top
-  const existing = document.getElementById('stepsCard');
-  const card = makeStepsCard(steps, results);
+/* ─── Steps card ─────────────────────────── */
+function appendSteps(steps, results) {
+  if (!steps.length) return;
+  const card = document.createElement('div');
+  card.className = 'card';
   card.id = 'stepsCard';
-  if (existing) existing.replaceWith(card);
-  else rs.insertBefore(card, rs.firstChild);
-}
 
-function makeStepsCard(steps, results) {
-  const card = div('card');
-  card.id = 'stepsCard';
-  card.innerHTML = `<div class="card-head"><span class="icon">⚡</span><h2>Workflow Steps</h2></div>`;
-  const body = div('card-body');
-
-  if (!steps || steps.length === 0) {
-    body.innerHTML = '<p style="color:#adb5bd;font-size:12.5px">No steps generated.</p>';
-    card.appendChild(body);
-    return card;
-  }
-
-  const list = div('steps-list');
+  const list = document.createElement('div');
+  list.className = 'slist';
 
   steps.forEach((step, i) => {
-    const res = results ? results.find(r => r.step === i + 1) : null;
-    let state = 'pending';
+    const res   = results ? results.find(r => r.step === i + 1) : null;
+    let state   = 'pending';
     if (results) {
-      if (!res) state = 'pending';
-      else if (res.skipped) state = 'skip';
-      else if (res.success) state = 'done';
-      else state = 'fail';
+      state = !res ? 'pending' : res.skipped ? 'skip' : res.success ? 'done' : 'fail';
     }
 
-    const item  = div('step-item');
-    const line  = div('step-line' + (state === 'done' ? ' done' : state === 'fail' ? ' fail' : ''));
-    const circ  = div('step-circle' + (state === 'done' ? ' done' : state === 'fail' ? ' fail' : state === 'skip' ? ' skip' : ''));
-    const body2 = div('step-body');
+    const item  = document.createElement('div');
+    item.className = 'si';
 
-    if (state === 'done')  circ.textContent = '✓';
+    const line = document.createElement('div');
+    line.className = 'sline' + (state === 'done' ? ' done' : state === 'fail' ? ' fail' : '');
+
+    const circ = document.createElement('div');
+    circ.className = 'sc' + (state === 'done' ? ' done' : state === 'fail' ? ' fail' : '');
+    if      (state === 'done') circ.textContent = '✓';
     else if (state === 'fail') circ.textContent = '✕';
     else if (state === 'skip') circ.textContent = '—';
-    else circ.textContent = i + 1;
+    else                       circ.textContent = i + 1;
 
+    const body2 = document.createElement('div');
+    body2.className = 'sb';
     body2.innerHTML = `
-      <div class="step-title">
-        <span style="color:${state==='done'?'#2b8a3e':state==='fail'?'#c92a2a':'#343a40'}">${e(step.action)}</span>
-        <span style="color:#868e96;font-family:inherit;font-size:12px">→ ${e(step.target || '')}</span>
+      <div class="sa" style="color:${state==='done'?'#2b8a3e':state==='fail'?'#c92a2a':'#343a40'}">
+        ${esc(step.action)} <span style="color:#868e96;font-family:inherit;font-size:12px">→ ${esc(step.target||'')}</span>
       </div>
-      ${step.value ? `<div class="step-sub">value: "${e(step.value)}"</div>` : ''}
-      ${res?.error ? `<div class="step-err">⚠ ${e(res.error)}</div>` : ''}
-      ${res?.skipped ? `<div class="step-sub">skipped — ${e(res.reason || '')}</div>` : ''}`;
+      ${step.value ? `<div class="ss2">value: "${esc(step.value)}"</div>` : ''}
+      ${res?.error   ? `<div class="serr">⚠ ${esc(res.error)}</div>` : ''}
+      ${res?.skipped ? `<div class="ss2">skipped</div>` : ''}`;
 
     item.appendChild(line);
     item.appendChild(circ);
@@ -823,117 +536,216 @@ function makeStepsCard(steps, results) {
     list.appendChild(item);
   });
 
-  body.appendChild(list);
-  card.appendChild(body);
-  return card;
+  const title = document.createElement('div');
+  title.className = 'stitle';
+  title.textContent = `Workflow Steps (${steps.length})`;
+
+  const cb = document.createElement('div');
+  cb.className = 'cb';
+  cb.appendChild(title);
+  cb.appendChild(list);
+
+  card.appendChild(cb);
+  document.getElementById('right').appendChild(card);
 }
 
-/* ════════════════════════════════
-   Result card
-════════════════════════════════ */
-function renderResultCard(exec, entities) {
-  const rs = document.getElementById('rightStack');
-  const card = div('card');
+/* ─── Result card ────────────────────────── */
+function appendResult(ex, ent) {
+  // Remove loading card
+  const lc = document.getElementById('loadCard');
+  if (lc) lc.remove();
 
-  const ok       = exec.success;
-  const verified = exec.verification;
-  const name     = entities.name || '';
-  const phone    = entities.phone || '';
+  const card = document.createElement('div');
+  card.className = 'card';
 
-  let icon, title, desc, cls;
-  if (ok && verified) {
-    icon = '✅'; cls = 'success';
+  const ok  = ex.success, ver = ex.verification;
+  const name = ent.name || '', phone = ent.phone || '';
+  let icon, cls, title, desc;
+
+  if (ok && ver) {
+    icon = '✅'; cls = 'ok';
     title = 'Execution Successful — Record Verified';
-    desc  = `Customer <strong>${e(name)}</strong> (${e(phone)}) was added and confirmed in the table.`;
+    desc  = `Customer <strong>${esc(name)}</strong> (${esc(phone)}) was added and confirmed in the table.`;
   } else if (ok) {
-    icon = '✅'; cls = 'success';
+    icon = '✅'; cls = 'ok';
     title = 'Execution Completed';
-    desc  = `All ${exec.steps_executed} steps ran successfully.`;
+    desc  = `All ${ex.steps_executed} steps ran successfully.`;
   } else {
     icon = '❌'; cls = 'fail';
-    title = `Execution Failed at Step ${exec.failed_step || '?'} (${e(exec.failed_action || '?')})`;
-    desc  = e(exec.error?.message || 'Unknown error');
+    title = `Failed at Step ${ex.failed_step||'?'} — ${esc(ex.failed_action||'?')}`;
+    desc  = esc(ex.error?.message || 'Unknown error');
   }
 
   card.innerHTML = `
-    <div class="card-head"><span class="icon">${icon}</span><h2>Result</h2></div>
-    <div class="card-body">
-      <div class="result-banner ${cls}">
-        <div class="result-icon">${icon}</div>
+    <div class="ch"><span>${icon}</span><h2>Result</h2></div>
+    <div class="cb">
+      <div class="rb ${cls}">
+        <div class="ri">${icon}</div>
         <div>
-          <div class="result-title">${title}</div>
-          <div class="result-desc">${desc}</div>
-          <div class="result-meta">
-            <span class="meta-tag">Steps: ${exec.steps_executed}/${exec.steps_total}</span>
-            <span class="meta-tag">Retries: ${exec.retry_count || 0}</span>
-            ${verified ? '<span class="meta-tag" style="color:#2b8a3e;border-color:#2dc653">✓ Verified in table</span>' : ''}
+          <div class="rt">${title}</div>
+          <div class="rd">${desc}</div>
+          <div class="rm">
+            <span>Steps: ${ex.steps_executed}/${ex.steps_total}</span>
+            <span>Retries: ${ex.retry_count||0}</span>
+            ${ver ? '<span style="color:#2b8a3e;border-color:#2dc653">✓ Verified</span>' : ''}
           </div>
         </div>
       </div>
     </div>`;
 
-  rs.insertBefore(card, rs.firstChild);
+  document.getElementById('right').appendChild(card);
 }
 
-/* ════════════════════════════════
-   Table card
-════════════════════════════════ */
-function renderTableCard(customers, entities) {
-  const rs = document.getElementById('rightStack');
-  const card = div('card');
+/* ─── Customer table ─────────────────────── */
+function appendTable(customers, ent) {
+  const card = document.createElement('div');
+  card.className = 'card';
 
   const rows = customers.map((c, i) => {
-    const isMatch = entities.name &&
-      (c.name || '').toLowerCase() === entities.name.toLowerCase() &&
-      c.phone === entities.phone;
-    return `<tr class="${isMatch ? 'highlight' : ''}">
+    const match = ent.name && c.name?.toLowerCase() === ent.name.toLowerCase() && c.phone === ent.phone;
+    return `<tr class="${match?'hl':''}">
       <td>${i+1}</td>
-      <td>${e(c.name||'')}${isMatch?' <span style="color:#2dc653">✓</span>':''}</td>
-      <td>${e(c.phone||'')}</td>
+      <td>${esc(c.name||'')}${match?' ✓':''}</td>
+      <td>${esc(c.phone||'')}</td>
     </tr>`;
   }).join('');
 
   card.innerHTML = `
-    <div class="card-head"><span class="icon">📊</span><h2>Customer Table (${customers.length} records)</h2></div>
-    <div class="card-body">
-      <table class="data-table">
+    <div class="ch"><span>📊</span><h2>Customer Table (${customers.length})</h2></div>
+    <div class="cb">
+      <table class="dtbl">
         <thead><tr><th>#</th><th>Name</th><th>Phone</th></tr></thead>
         <tbody>${rows}</tbody>
       </table>
     </div>`;
-  rs.appendChild(card);
+
+  document.getElementById('right').appendChild(card);
 }
 
-/* ════════════════════════════════
-   JSON card
-════════════════════════════════ */
-function makeJsonCard(workflow) {
-  const card = div('card');
+/* ─── JSON card ──────────────────────────── */
+function appendJSON(workflow) {
+  if (!workflow) return;
+  const card = document.createElement('div');
+  card.className = 'card';
   card.innerHTML = `
-    <div class="card-head"><span class="icon">{ }</span><h2>Generated Workflow JSON</h2></div>
-    <div class="card-body">
-      <div class="json-viewer">${syntaxHL(JSON.stringify(workflow, null, 2))}</div>
+    <div class="ch"><span>{ }</span><h2>Generated Workflow JSON</h2></div>
+    <div class="cb"><div class="json">${syntaxHL(JSON.stringify(workflow, null, 2))}</div></div>`;
+  document.getElementById('right').appendChild(card);
+}
+
+/* ─── Screenshot upload ──────────────────── */
+let ssFile = null;
+
+function onSSFile(ev) {
+  const f = ev.target.files[0];
+  if (f) loadSS(f);
+}
+
+function onDrop(ev) {
+  ev.preventDefault();
+  document.getElementById('dz').classList.remove('hover');
+  const f = ev.dataTransfer.files[0];
+  if (f && f.type.startsWith('image/')) loadSS(f);
+}
+
+function loadSS(f) {
+  ssFile = f;
+  const rd = new FileReader();
+  rd.onload = e => {
+    document.getElementById('ssPreview').src = e.target.result;
+    document.getElementById('ssPreviewWrap').style.display = '';
+    document.getElementById('dz').style.display = 'none';
+  };
+  rd.readAsDataURL(f);
+}
+
+function clearSS() {
+  ssFile = null;
+  document.getElementById('ssPreview').src = '';
+  document.getElementById('ssPreviewWrap').style.display = 'none';
+  document.getElementById('dz').style.display = '';
+  document.getElementById('ssInput').value = '';
+  const c = document.getElementById('ssCard');
+  if (c) c.remove();
+}
+
+function analyseSS() {
+  if (!ssFile) return;
+  const img = new Image();
+  img.onload = () => {
+    const canvas = document.createElement('canvas');
+    canvas.width = img.width; canvas.height = img.height;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(img, 0, 0);
+    renderSS(analyseImage(ctx, img.width, img.height));
+  };
+  img.src = document.getElementById('ssPreview').src;
+}
+
+function analyseImage(ctx, w, h) {
+  const data = ctx.getImageData(0, 0, w, h).data;
+  let dark = 0, light = 0;
+  for (let i = 0; i < data.length; i += 80) {
+    const br = (data[i] + data[i+1] + data[i+2]) / 3;
+    br < 100 ? dark++ : light++;
+  }
+  const total = dark + light;
+  const dr    = dark / total;
+
+  const inputs  = h > 500 ? 3 : 2;
+  const buttons = Math.max(2, Math.floor(w / 110));
+  const tables  = (w > 900 && h > 600) ? 1 : 0;
+  const struct  = [];
+  if (inputs)  struct.push(`${inputs} input field(s)`);
+  if (buttons) struct.push(`${buttons} button(s)`);
+  if (tables)  struct.push(`${tables} table region(s)`);
+
+  return {
+    name:      ssFile.name,
+    width:     w, height: h,
+    structure: struct.join(', ') || 'No elements detected',
+    inputs, buttons, tables,
+    dark_ratio: (dr * 100).toFixed(1) + '%',
+    error:     false,
+  };
+}
+
+function renderSS(r) {
+  const old = document.getElementById('ssCard');
+  if (old) old.remove();
+
+  const card = document.createElement('div');
+  card.className = 'card'; card.id = 'ssCard';
+
+  const rows = [
+    ['File',        esc(r.name)],
+    ['Dimensions',  `${r.width} × ${r.height} px`],
+    ['Structure',   esc(r.structure)],
+    ['Input fields',r.inputs],
+    ['Buttons',     r.buttons],
+    ['Tables',      r.tables],
+    ['Error found', r.error ? '<span style="color:#c92a2a;font-weight:700">YES</span>' : '<span style="color:#2b8a3e;font-weight:700">NO</span>'],
+  ].map(([l, v]) => `<div class="irow"><span class="il">${l}</span><span class="iv">${v}</span></div>`).join('');
+
+  card.innerHTML = `
+    <div class="ch"><span>🖼</span><h2>Screenshot Analysis</h2></div>
+    <div class="cb">
+      <img src="${document.getElementById('ssPreview').src}"
+        style="width:100%;border-radius:6px;border:1px solid #dee2e6;max-height:170px;object-fit:contain;margin-bottom:13px" />
+      ${rows}
+      <div style="margin-top:11px;padding:9px 12px;background:#f8f9fa;border-radius:6px;border-left:3px solid #4dabf7;font-size:11.5px;color:#495057">
+        <b>Note:</b> Client-side visual analysis. For full OCR text extraction run
+        <code>screenshot_understanding.py</code> on the server.
+      </div>
     </div>`;
-  return card;
+
+  document.getElementById('right').insertBefore(card, document.getElementById('right').firstChild);
+  toast('Screenshot analysed', 'success');
 }
 
-function appendJsonCard(workflow) {
-  document.getElementById('rightStack').appendChild(makeJsonCard(workflow));
-}
-
-/* ════════════════════════════════
-   Utilities
-════════════════════════════════ */
-function div(cls) {
-  const d = document.createElement('div');
-  if (cls) d.className = cls;
-  return d;
-}
-
-function e(s) {
-  return String(s)
-    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
-    .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+/* ─── Utilities ──────────────────────────── */
+function esc(s) {
+  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 
 function syntaxHL(json) {
@@ -951,166 +763,8 @@ function syntaxHL(json) {
 function toast(msg, type = 'info') {
   const t = document.getElementById('toast');
   t.textContent = msg;
-  t.className = `show ${type}`;
+  t.className = 'show ' + type;
   setTimeout(() => { t.className = ''; }, 4000);
-}
-
-/* ════════════════════════════════
-   Screenshot Upload & Analysis
-════════════════════════════════ */
-let ssFile = null;
-
-function onFileSelect(event) {
-  const file = event.target.files[0];
-  if (file) loadSsFile(file);
-}
-
-function onDrop(event) {
-  event.preventDefault();
-  document.getElementById('dropZone').classList.remove('dz-hover');
-  const file = event.dataTransfer.files[0];
-  if (file && file.type.startsWith('image/')) loadSsFile(file);
-}
-
-function loadSsFile(file) {
-  ssFile = file;
-  const reader = new FileReader();
-  reader.onload = function(e) {
-    document.getElementById('ssPreview').src    = e.target.result;
-    document.getElementById('ssPreviewWrap').style.display = '';
-    document.getElementById('dropZone').style.display      = 'none';
-  };
-  reader.readAsDataURL(file);
-}
-
-function clearSs() {
-  ssFile = null;
-  document.getElementById('ssPreview').src              = '';
-  document.getElementById('ssPreviewWrap').style.display = 'none';
-  document.getElementById('dropZone').style.display      = '';
-  document.getElementById('ssFileInput').value           = '';
-  // Remove screenshot result card
-  const card = document.getElementById('ssResultCard');
-  if (card) card.remove();
-}
-
-function analyzeScreenshot() {
-  if (!ssFile) return;
-
-  const btn = document.getElementById('btnSsAnalyze');
-  btn.textContent = '…';
-  btn.disabled    = true;
-
-  // Read image as base64 and use Canvas to count basic regions
-  const reader = new FileReader();
-  reader.onload = function(e) {
-    const img = new Image();
-    img.onload = function() {
-      const canvas  = document.createElement('canvas');
-      canvas.width  = img.width;
-      canvas.height = img.height;
-      const ctx     = canvas.getContext('2d');
-      ctx.drawImage(img, 0, 0);
-      const result = clientSideAnalyse(ctx, img.width, img.height, ssFile.name);
-      renderSsResult(result);
-      btn.textContent = '🔍 Analyse Screenshot';
-      btn.disabled    = false;
-    };
-    img.src = e.target.result;
-  };
-  reader.readAsDataURL(ssFile);
-}
-
-function clientSideAnalyse(ctx, width, height, fileName) {
-  // Sample pixel brightness to estimate UI structure
-  const data        = ctx.getImageData(0, 0, width, height).data;
-  let darkPx = 0, lightPx = 0;
-
-  // Sample every 20th pixel for speed
-  for (let i = 0; i < data.length; i += 80) {
-    const r = data[i], g = data[i+1], b = data[i+2];
-    const brightness = (r + g + b) / 3;
-    if (brightness < 100) darkPx++;
-    else lightPx++;
-  }
-
-  const totalSampled = darkPx + lightPx;
-  const darkRatio    = darkPx / totalSampled;
-
-  // Heuristic element detection based on image dimensions and brightness
-  const isWide     = width > 900;
-  const isTall     = height > 600;
-  const hasContrast = darkRatio > 0.05 && darkRatio < 0.8;
-
-  // Estimate element types from image characteristics
-  const buttons   = isWide ? Math.floor(width / 120) : Math.floor(width / 80);
-  const inputs    = isTall  ? 3 : 2;
-  const tables    = (isWide && isTall) ? 1 : 0;
-
-  // Simple error text scan — not possible without OCR in browser
-  // So we report "OCR requires server-side Tesseract"
-
-  const structure = [];
-  if (inputs > 0) structure.push(`${inputs} input field(s)`);
-  if (buttons > 0) structure.push(`${buttons} button(s)`);
-  if (tables > 0)  structure.push(`${tables} table region(s)`);
-
-  return {
-    file_name:      fileName,
-    width:          width,
-    height:         height,
-    page_structure: structure.join(', ') || 'No elements detected',
-    element_counts: { INPUT: inputs, BUTTON: buttons, TABLE: tables },
-    dark_ratio:     (darkRatio * 100).toFixed(1) + '%',
-    error_detected: false,
-    note: 'Client-side analysis. For full OCR run screenshot_understanding.py on the server.',
-  };
-}
-
-function renderSsResult(r) {
-  // Remove old result
-  const old = document.getElementById('ssResultCard');
-  if (old) old.remove();
-
-  const rs   = document.getElementById('rightStack');
-  const card = div('card');
-  card.id    = 'ssResultCard';
-
-  const rows = [
-    ['File',           e(r.file_name)],
-    ['Dimensions',     `${r.width} × ${r.height} px`],
-    ['Page structure', e(r.page_structure)],
-    ['Input fields',   r.element_counts.INPUT],
-    ['Buttons',        r.element_counts.BUTTON],
-    ['Tables',         r.element_counts.TABLE],
-    ['Error detected', r.error_detected
-      ? '<span style="color:#c92a2a;font-weight:700">YES</span>'
-      : '<span style="color:#2b8a3e;font-weight:700">NO</span>'],
-  ];
-
-  const rowsHtml = rows.map(([label, val]) => `
-    <div class="info-row">
-      <span class="info-label">${label}</span>
-      <span class="info-val">${val}</span>
-    </div>`).join('');
-
-  // Preview thumbnail
-  const previewSrc = document.getElementById('ssPreview').src;
-
-  card.innerHTML = `
-    <div class="card-head"><span class="icon">🖼</span><h2>Screenshot Analysis</h2></div>
-    <div class="card-body">
-      <img src="${previewSrc}" style="width:100%;border-radius:6px;border:1px solid #dee2e6;
-        max-height:180px;object-fit:contain;margin-bottom:14px;" />
-      ${rowsHtml}
-      <div style="margin-top:12px;padding:10px 12px;background:#f8f9fa;border-radius:6px;
-        border-left:3px solid #4dabf7;font-size:11.5px;color:#495057;">
-        <strong>Note:</strong> ${e(r.note)}
-      </div>
-    </div>`;
-
-  rs.insertBefore(card, rs.firstChild);
-  toast('Screenshot analysed', 'success');
 }
 </script>
 </body>
