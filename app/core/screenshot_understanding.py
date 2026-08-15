@@ -161,9 +161,25 @@ def detect_errors_in_screenshot(image_path: str) -> dict:
             "ocr_text":       str,
         }
     """
-    ocr_text    = extract_text_from_screenshot(image_path)
-    text_lower  = ocr_text.lower()
-    errors_found = [kw for kw in ERROR_KEYWORDS if kw in text_lower]
+    ocr_text   = extract_text_from_screenshot(image_path)
+    text_lower = ocr_text.lower()
+
+    # Only flag multi-word error phrases or words that appear as full words
+    # to avoid false positives from HTML/CSS source text in OCR
+    HIGH_CONFIDENCE_ERRORS = [
+        "something went wrong",
+        "access denied",
+        "not found",
+        "login failed",
+        "invalid input",
+        "required field",
+        "server error",
+        "connection failed",
+        "unauthorized",
+        "permission denied",
+    ]
+
+    errors_found = [kw for kw in HIGH_CONFIDENCE_ERRORS if kw in text_lower]
 
     return {
         "error_detected": len(errors_found) > 0,

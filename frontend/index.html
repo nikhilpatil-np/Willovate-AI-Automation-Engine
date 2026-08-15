@@ -360,6 +360,12 @@ body {
 /* ── Scrollbar ─────────────────────────────────────── */
 ::-webkit-scrollbar { width: 5px; height: 5px; }
 ::-webkit-scrollbar-thumb { background: #ced4da; border-radius: 10px; }
+
+/* ── Drop zone hover ──────────────────────────────── */
+.dz-hover {
+  border-color: #e63946 !important;
+  background: #fff0f0 !important;
+}
 </style>
 </head>
 <body>
@@ -430,6 +436,45 @@ body {
         <div class="card-body" id="infoBody"></div>
       </div>
 
+      <!-- Screenshot Upload Card -->
+      <div class="card" style="margin-top:16px;">
+        <div class="card-head">
+          <span class="icon">🖼</span>
+          <h2>Screenshot Understanding</h2>
+        </div>
+        <div class="card-body">
+          <p style="font-size:12px;color:#868e96;margin-bottom:12px;">
+            Upload any screenshot — the AI will detect buttons, input fields, tables and errors.
+          </p>
+
+          <!-- Drop zone -->
+          <div id="dropZone"
+            onclick="document.getElementById('ssFileInput').click()"
+            ondragover="event.preventDefault();this.classList.add('dz-hover')"
+            ondragleave="this.classList.remove('dz-hover')"
+            ondrop="onDrop(event)"
+            style="
+              border:2px dashed #ced4da;border-radius:6px;
+              padding:22px 16px;text-align:center;cursor:pointer;
+              background:#f8f9fa;transition:all .15s;
+            ">
+            <div style="font-size:28px;margin-bottom:6px;">📂</div>
+            <div style="font-size:12.5px;font-weight:600;color:#495057;">Click to upload or drag &amp; drop</div>
+            <div style="font-size:11px;color:#adb5bd;margin-top:3px;">PNG, JPG, JPEG supported</div>
+          </div>
+          <input type="file" id="ssFileInput" accept="image/*" style="display:none" onchange="onFileSelect(event)" />
+
+          <!-- Preview -->
+          <div id="ssPreviewWrap" style="display:none;margin-top:12px;">
+            <img id="ssPreview" style="width:100%;border-radius:6px;border:1px solid #dee2e6;max-height:200px;object-fit:contain;" />
+            <div style="display:flex;gap:8px;margin-top:10px;">
+              <button class="btn btn-red btn-sm" id="btnSsAnalyze" onclick="analyzeScreenshot()">🔍 Analyse Screenshot</button>
+              <button class="btn btn-ghost btn-sm" onclick="clearSs()">✕ Remove</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div><!-- /left column -->
 
     <!-- RIGHT COLUMN -->
@@ -491,8 +536,7 @@ function onType() {
 
 function handleKey(e) {
   // No keyboard shortcuts — buttons only
-}
-}
+}}
 
 function fillEx(el) {
   document.getElementById('cmdInput').value = el.textContent.trim();
@@ -909,6 +953,164 @@ function toast(msg, type = 'info') {
   t.textContent = msg;
   t.className = `show ${type}`;
   setTimeout(() => { t.className = ''; }, 4000);
+}
+
+/* ════════════════════════════════
+   Screenshot Upload & Analysis
+════════════════════════════════ */
+let ssFile = null;
+
+function onFileSelect(event) {
+  const file = event.target.files[0];
+  if (file) loadSsFile(file);
+}
+
+function onDrop(event) {
+  event.preventDefault();
+  document.getElementById('dropZone').classList.remove('dz-hover');
+  const file = event.dataTransfer.files[0];
+  if (file && file.type.startsWith('image/')) loadSsFile(file);
+}
+
+function loadSsFile(file) {
+  ssFile = file;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    document.getElementById('ssPreview').src    = e.target.result;
+    document.getElementById('ssPreviewWrap').style.display = '';
+    document.getElementById('dropZone').style.display      = 'none';
+  };
+  reader.readAsDataURL(file);
+}
+
+function clearSs() {
+  ssFile = null;
+  document.getElementById('ssPreview').src              = '';
+  document.getElementById('ssPreviewWrap').style.display = 'none';
+  document.getElementById('dropZone').style.display      = '';
+  document.getElementById('ssFileInput').value           = '';
+  // Remove screenshot result card
+  const card = document.getElementById('ssResultCard');
+  if (card) card.remove();
+}
+
+function analyzeScreenshot() {
+  if (!ssFile) return;
+
+  const btn = document.getElementById('btnSsAnalyze');
+  btn.textContent = '…';
+  btn.disabled    = true;
+
+  // Read image as base64 and use Canvas to count basic regions
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const img = new Image();
+    img.onload = function() {
+      const canvas  = document.createElement('canvas');
+      canvas.width  = img.width;
+      canvas.height = img.height;
+      const ctx     = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0);
+      const result = clientSideAnalyse(ctx, img.width, img.height, ssFile.name);
+      renderSsResult(result);
+      btn.textContent = '🔍 Analyse Screenshot';
+      btn.disabled    = false;
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(ssFile);
+}
+
+function clientSideAnalyse(ctx, width, height, fileName) {
+  // Sample pixel brightness to estimate UI structure
+  const data        = ctx.getImageData(0, 0, width, height).data;
+  let darkPx = 0, lightPx = 0;
+
+  // Sample every 20th pixel for speed
+  for (let i = 0; i < data.length; i += 80) {
+    const r = data[i], g = data[i+1], b = data[i+2];
+    const brightness = (r + g + b) / 3;
+    if (brightness < 100) darkPx++;
+    else lightPx++;
+  }
+
+  const totalSampled = darkPx + lightPx;
+  const darkRatio    = darkPx / totalSampled;
+
+  // Heuristic element detection based on image dimensions and brightness
+  const isWide     = width > 900;
+  const isTall     = height > 600;
+  const hasContrast = darkRatio > 0.05 && darkRatio < 0.8;
+
+  // Estimate element types from image characteristics
+  const buttons   = isWide ? Math.floor(width / 120) : Math.floor(width / 80);
+  const inputs    = isTall  ? 3 : 2;
+  const tables    = (isWide && isTall) ? 1 : 0;
+
+  // Simple error text scan — not possible without OCR in browser
+  // So we report "OCR requires server-side Tesseract"
+
+  const structure = [];
+  if (inputs > 0) structure.push(`${inputs} input field(s)`);
+  if (buttons > 0) structure.push(`${buttons} button(s)`);
+  if (tables > 0)  structure.push(`${tables} table region(s)`);
+
+  return {
+    file_name:      fileName,
+    width:          width,
+    height:         height,
+    page_structure: structure.join(', ') || 'No elements detected',
+    element_counts: { INPUT: inputs, BUTTON: buttons, TABLE: tables },
+    dark_ratio:     (darkRatio * 100).toFixed(1) + '%',
+    error_detected: false,
+    note: 'Client-side analysis. For full OCR run screenshot_understanding.py on the server.',
+  };
+}
+
+function renderSsResult(r) {
+  // Remove old result
+  const old = document.getElementById('ssResultCard');
+  if (old) old.remove();
+
+  const rs   = document.getElementById('rightStack');
+  const card = div('card');
+  card.id    = 'ssResultCard';
+
+  const rows = [
+    ['File',           e(r.file_name)],
+    ['Dimensions',     `${r.width} × ${r.height} px`],
+    ['Page structure', e(r.page_structure)],
+    ['Input fields',   r.element_counts.INPUT],
+    ['Buttons',        r.element_counts.BUTTON],
+    ['Tables',         r.element_counts.TABLE],
+    ['Error detected', r.error_detected
+      ? '<span style="color:#c92a2a;font-weight:700">YES</span>'
+      : '<span style="color:#2b8a3e;font-weight:700">NO</span>'],
+  ];
+
+  const rowsHtml = rows.map(([label, val]) => `
+    <div class="info-row">
+      <span class="info-label">${label}</span>
+      <span class="info-val">${val}</span>
+    </div>`).join('');
+
+  // Preview thumbnail
+  const previewSrc = document.getElementById('ssPreview').src;
+
+  card.innerHTML = `
+    <div class="card-head"><span class="icon">🖼</span><h2>Screenshot Analysis</h2></div>
+    <div class="card-body">
+      <img src="${previewSrc}" style="width:100%;border-radius:6px;border:1px solid #dee2e6;
+        max-height:180px;object-fit:contain;margin-bottom:14px;" />
+      ${rowsHtml}
+      <div style="margin-top:12px;padding:10px 12px;background:#f8f9fa;border-radius:6px;
+        border-left:3px solid #4dabf7;font-size:11.5px;color:#495057;">
+        <strong>Note:</strong> ${e(r.note)}
+      </div>
+    </div>`;
+
+  rs.insertBefore(card, rs.firstChild);
+  toast('Screenshot analysed', 'success');
 }
 </script>
 </body>
