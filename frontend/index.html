@@ -399,7 +399,7 @@ body {
             onkeydown="handleKey(event)"
           ></textarea>
           <div class="cmd-meta">
-            <span class="hint">Ctrl+Enter to execute &nbsp;·&nbsp; Shift+Enter to analyze</span>
+            <span class="hint">Enter your instruction and click Execute or Analyze</span>
             <span id="charCount" style="font-size:11px;color:#adb5bd">0/500</span>
           </div>
 
@@ -490,8 +490,8 @@ function onType() {
 }
 
 function handleKey(e) {
-  if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') { e.preventDefault(); doExecute(); }
-  if (e.shiftKey && e.key === 'Enter') { e.preventDefault(); doAnalyze(); }
+  // No keyboard shortcuts — buttons only
+}
 }
 
 function fillEx(el) {
