@@ -230,7 +230,8 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f2f5;color:#1a1a2e;mi
           <div id="ssPreviewWrap" style="display:none;margin-top:11px">
             <img id="ssPreview" style="width:100%;border-radius:6px;border:1px solid #dee2e6;max-height:180px;object-fit:contain" />
             <div style="display:flex;gap:8px;margin-top:9px">
-              <button class="btn btn-red btn-sm" onclick="analyseSS()">🔍 Analyse</button>
+              <button class="btn btn-red btn-sm" onclick="analyseSS()">🔍 Analyse Screenshot</button>
+              <button class="btn btn-dark btn-sm" onclick="execAfterSS()">▶ Analyse &amp; Execute</button>
               <button class="btn btn-ghost btn-sm" onclick="clearSS()">✕ Remove</button>
             </div>
           </div>
@@ -607,6 +608,7 @@ function appendTable(customers, ent) {
       <td>${i+1}</td>
       <td>${esc(c.name||'')}${match?' ✓':''}</td>
       <td>${esc(c.phone||'')}</td>
+      <td>${esc(c.email||'')}</td>
     </tr>`;
   }).join('');
 
@@ -614,7 +616,7 @@ function appendTable(customers, ent) {
     <div class="ch"><span>📊</span><h2>Customer Table (${customers.length})</h2></div>
     <div class="cb">
       <table class="dtbl">
-        <thead><tr><th>#</th><th>Name</th><th>Phone</th></tr></thead>
+        <thead><tr><th>#</th><th>Name</th><th>Phone</th><th>Email</th></tr></thead>
         <tbody>${rows}</tbody>
       </table>
     </div>`;
@@ -667,6 +669,17 @@ function clearSS() {
   document.getElementById('ssInput').value = '';
   const c = document.getElementById('ssCard');
   if (c) c.remove();
+}
+
+function execAfterSS() {
+  // First analyse the screenshot, then run the instruction if one is typed
+  analyseSS();
+  const instr = document.getElementById('cmdInput').value.trim();
+  if (instr) {
+    setTimeout(() => doExec(), 500);
+  } else {
+    toast('Type an instruction above, then click Analyse & Execute', 'info');
+  }
 }
 
 function analyseSS() {

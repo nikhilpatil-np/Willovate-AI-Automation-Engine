@@ -1,20 +1,20 @@
                  precision    recall  f1-score   support
 
-   ADD_CUSTOMER       0.62      1.00      0.76        13
-   CLICK_BUTTON       1.00      0.33      0.50         3
-DELETE_CUSTOMER       0.71      0.71      0.71         7
-DELETE_EMPLOYEE       1.00      0.80      0.89         5
-DOWNLOAD_REPORT       0.90      1.00      0.95         9
-      FILL_FORM       1.00      1.00      1.00         4
-      OPEN_PAGE       1.00      0.67      0.80         6
-     READ_TABLE       1.00      0.50      0.67         4
-     SEND_EMAIL       1.00      0.67      0.80         6
-TAKE_SCREENSHOT       1.00      1.00      1.00         5
-UPDATE_CUSTOMER       0.67      0.80      0.73         5
-UPDATE_EMPLOYEE       0.75      0.60      0.67         5
- UPDATE_PRODUCT       1.00      1.00      1.00         4
-    UPLOAD_FILE       1.00      1.00      1.00         6
+   ADD_CUSTOMER       0.96      1.00      0.98        26
+   CLICK_BUTTON       1.00      0.93      0.97        15
+DELETE_CUSTOMER       1.00      0.91      0.95        11
+DELETE_EMPLOYEE       1.00      1.00      1.00         9
+DOWNLOAD_REPORT       1.00      1.00      1.00        17
+      FILL_FORM       0.94      1.00      0.97        15
+      OPEN_PAGE       1.00      0.94      0.97        16
+     READ_TABLE       0.94      1.00      0.97        16
+     SEND_EMAIL       0.89      1.00      0.94        16
+TAKE_SCREENSHOT       1.00      0.93      0.97        15
+UPDATE_CUSTOMER       0.85      0.92      0.88        12
+UPDATE_EMPLOYEE       1.00      0.80      0.89        10
+ UPDATE_PRODUCT       1.00      0.94      0.97        16
+    UPLOAD_FILE       0.94      1.00      0.97        16
 
-       accuracy                           0.83        82
-      macro avg       0.90      0.79      0.82        82
-   weighted avg       0.87      0.83      0.82        82
+       accuracy                           0.96       210
+      macro avg       0.97      0.95      0.96       210
+   weighted avg       0.96      0.96      0.96       210

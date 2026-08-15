@@ -1,0 +1,306 @@
+{
+  "intent_accuracy": {
+    "metric": "intent_accuracy",
+    "total": 1049,
+    "correct": 1018,
+    "accuracy_pct": 97.04,
+    "errors": [
+      {
+        "instruction": "ग्राहक की जानकारी अपडेट करें",
+        "expected": "UPDATE_CUSTOMER",
+        "predicted": "ADD_CUSTOMER"
+      },
+      {
+        "instruction": "ग्राहक विवरण संशोधित करें",
+        "expected": "UPDATE_CUSTOMER",
+        "predicted": "ADD_CUSTOMER"
+      },
+      {
+        "instruction": "Updaet customer Rahul",
+        "expected": "UPDATE_CUSTOMER",
+        "predicted": "ADD_CUSTOMER"
+      },
+      {
+        "instruction": "Chagne customer phone",
+        "expected": "UPDATE_CUSTOMER",
+        "predicted": "ADD_CUSTOMER"
+      },
+      {
+        "instruction": "ग्राहक हटाएं",
+        "expected": "DELETE_CUSTOMER",
+        "predicted": "ADD_CUSTOMER"
+      },
+      {
+        "instruction": "ग्राहक अमित को हटाएं",
+        "expected": "DELETE_CUSTOMER",
+        "predicted": "ADD_CUSTOMER"
+      },
+      {
+        "instruction": "Delet customer Rahul",
+        "expected": "DELETE_CUSTOMER",
+        "predicted": "ADD_CUSTOMER"
+      },
+      {
+        "instruction": "Change employee phone number",
+        "expected": "UPDATE_EMPLOYEE",
+        "predicted": "UPDATE_CUSTOMER"
+      },
+      {
+        "instruction": "Update employee email",
+        "expected": "UPDATE_EMPLOYEE",
+        "predicted": "SEND_EMAIL"
+      },
+      {
+        "instruction": "राहुल की जानकारी बदलें",
+        "expected": "UPDATE_EMPLOYEE",
+        "predicted": "UPDATE_CUSTOMER"
+      }
+    ]
+  },
+  "entity_extraction_accuracy": {
+    "metric": "entity_extraction_accuracy",
+    "total_fields": 966,
+    "correct_fields": 630,
+    "overall_accuracy_pct": 65.22,
+    "per_field_accuracy_pct": {
+      "name": 86.89,
+      "phone": 100.0,
+      "email": 100.0,
+      "product": 0.0,
+      "price": 95.08,
+      "page": 0.0,
+      "file": 67.5
+    },
+    "errors": [
+      {
+        "instruction": "Update product Laptop price to 65000",
+        "field_errors": [
+          {
+            "field": "product",
+            "expected": "Laptop",
+            "predicted": ""
+          }
+        ]
+      },
+      {
+        "instruction": "Change Mobile price to 15000",
+        "field_errors": [
+          {
+            "field": "product",
+            "expected": "Mobile",
+            "predicted": ""
+          }
+        ]
+      },
+      {
+        "instruction": "Update Keyboard price 1200",
+        "field_errors": [
+          {
+            "field": "product",
+            "expected": "Keyboard",
+            "predicted": ""
+          }
+        ]
+      },
+      {
+        "instruction": "Open Customers page",
+        "field_errors": [
+          {
+            "field": "page",
+            "expected": "Customers",
+            "predicted": ""
+          }
+        ]
+      },
+      {
+        "instruction": "Open Employee page",
+        "field_errors": [
+          {
+            "field": "page",
+            "expected": "Employees",
+            "predicted": ""
+          }
+        ]
+      },
+      {
+        "instruction": "Open Products page",
+        "field_errors": [
+          {
+            "field": "page",
+            "expected": "Products",
+            "predicted": ""
+          }
+        ]
+      },
+      {
+        "instruction": "Update TV price to 45000",
+        "field_errors": [
+          {
+            "field": "product",
+            "expected": "TV",
+            "predicted": ""
+          }
+        ]
+      },
+      {
+        "instruction": "Open Dashboard page",
+        "field_errors": [
+          {
+            "field": "page",
+            "expected": "Dashboard",
+            "predicted": ""
+          }
+        ]
+      },
+      {
+        "instruction": "Update Laptop price to 70000",
+        "field_errors": [
+          {
+            "field": "product",
+            "expected": "Laptop",
+            "predicted": ""
+          }
+        ]
+      },
+      {
+        "instruction": "Update Mouse price to 800",
+        "field_errors": [
+          {
+            "field": "product",
+            "expected": "Mouse",
+            "predicted": ""
+          }
+        ]
+      }
+    ]
+  },
+  "workflow_generation_accuracy": {
+    "metric": "workflow_generation_accuracy",
+    "total": 8,
+    "correct": 8,
+    "accuracy_pct": 100.0,
+    "errors": []
+  },
+  "json_validity_rate": {
+    "metric": "json_validity_rate",
+    "total": 8,
+    "valid": 8,
+    "validity_pct": 100.0,
+    "errors": []
+  },
+  "missing_information_accuracy": {
+    "metric": "missing_information_accuracy",
+    "total": 7,
+    "correct": 5,
+    "accuracy_pct": 71.43,
+    "errors": [
+      {
+        "instruction": "Send email",
+        "expected_missing": [
+          "email"
+        ],
+        "predicted_missing": [
+          "email",
+          "subject"
+        ]
+      },
+      {
+        "instruction": "Delete customer",
+        "expected_missing": [
+          "name"
+        ],
+        "predicted_missing": []
+      }
+    ]
+  },
+  "hinglish_accuracy": {
+    "metric": "hinglish_accuracy",
+    "total": 10,
+    "correct": 9,
+    "accuracy_pct": 90.0,
+    "errors": [
+      {
+        "original": "Employee add karo",
+        "normalized": "employee add",
+        "expected": "ADD_CUSTOMER",
+        "predicted": "UNKNOWN"
+      }
+    ]
+  },
+  "unsupported_action_rate": {
+    "metric": "unsupported_action_rate",
+    "total_steps": 32,
+    "unsupported_steps": 3,
+    "unsupported_rate_pct": 9.38,
+    "unsupported_actions": [
+      "VERIFY_RECORD"
+    ]
+  },
+  "hallucination_rate": {
+    "metric": "hallucination_rate",
+    "total_steps": 32,
+    "hallucinated_steps": 16,
+    "hallucination_rate_pct": 50.0,
+    "examples": [
+      {
+        "instruction": "Add Rahul as customer with phone 9876543210",
+        "step": {
+          "action": "ENTER_TEXT",
+          "target": "customer-name",
+          "value": "Rahul"
+        },
+        "ungrounded": {
+          "target": "customer-name",
+          "value": null
+        }
+      },
+      {
+        "instruction": "Add Rahul as customer with phone 9876543210",
+        "step": {
+          "action": "ENTER_TEXT",
+          "target": "phone-number",
+          "value": "9876543210"
+        },
+        "ungrounded": {
+          "target": "phone-number",
+          "value": null
+        }
+      },
+      {
+        "instruction": "Add Rahul as customer with phone 9876543210",
+        "step": {
+          "action": "READ_TABLE",
+          "target": "customer-table"
+        },
+        "ungrounded": {
+          "target": "customer-table",
+          "value": null
+        }
+      },
+      {
+        "instruction": "Add Rahul as customer with phone 9876543210",
+        "step": {
+          "action": "VERIFY_RECORD",
+          "target": "customer-table",
+          "value": "Rahul"
+        },
+        "ungrounded": {
+          "target": "customer-table",
+          "value": null
+        }
+      },
+      {
+        "instruction": "Add Pankaj Koche as customer with phone 9876543210 and save",
+        "step": {
+          "action": "ENTER_TEXT",
+          "target": "customer-name",
+          "value": "Pankaj Koche"
+        },
+        "ungrounded": {
+          "target": "customer-name",
+          "value": null
+        }
+      }
+    ]
+  }
+}

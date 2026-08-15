@@ -91,7 +91,7 @@ def extract_entities(text):
     # Using a negative lookahead inside the capture group ensures
     # separator words ("as", "with", "customer", …) are never included.
 
-    _sep = r"(?:as|with|to|and|for|in|customer|employee|product|file|report)\b"
+    _sep = r"(?:as|with|to|and|for|in|email|phone|number|customer|employee|product|file|report)\b"
 
     name_patterns = [
 
@@ -100,14 +100,18 @@ def extract_entities(text):
         r"((?:(?!" + _sep + r")[A-Za-z]+)(?:\s+(?:(?!" + _sep + r")[A-Za-z]+)){0,2})"
         r"\s+(?=" + _sep + r")",
 
+        # add / create / register customer/client <Name>
+        r"\b(?:add|create|register)\s+(?:customer|client|employee|user)\s+"
+        r"((?:(?!" + _sep + r")[A-Za-z]+)(?:\s+(?:(?!" + _sep + r")[A-Za-z]+)){0,1})\b",
+
         # delete / remove  customer|employee  <Name>
-        r"\b(?:delete|remove)\s+(?:customer|employee)\s+"
+        r"\b(?:delete|remove)\s+(?:customer|employee|client|staff)\s+"
         r"([A-Za-z]+(?:\s+[A-Za-z]+){0,1})\b",
 
         # delete / remove  <Name>  customer|employee
         r"\b(?:delete|remove)\s+"
         r"((?:(?!" + _sep + r")[A-Za-z]+)(?:\s+(?:(?!" + _sep + r")[A-Za-z]+)){0,1})"
-        r"\s+(?=customer\b|employee\b)",
+        r"\s+(?=customer\b|employee\b|client\b|staff\b)",
     ]
 
     for pattern in name_patterns:
@@ -123,8 +127,9 @@ def extract_entities(text):
             candidate = match.group(1).strip()
 
             invalid_names = {
-                "a", "an", "the", "new",
+                "a", "an", "the", "new", "it",
                 "customer", "employee", "product", "file", "report",
+                "email", "phone", "number", "client", "user", "staff",
             }
 
             if candidate.lower() not in invalid_names:

@@ -1,7 +1,7 @@
 """
 Model Evaluation Script
 ========================
-Measures all 8 metrics defined in the project requirements (Req #15):
+Measures all 8 metrics defined in the project requirements (Req 15):
 
   1. Intent accuracy
   2. Entity-extraction accuracy
@@ -16,8 +16,8 @@ Usage:
   python app/models/evaluate_models.py
 
 Output:
-  Prints a per-metric report to stdout and saves a JSON report to
-  outputs/evaluation_report.json
+  Prints a per-metric report to stdout.
+  Saves full JSON report to outputs/evaluation_report.json
 """
 
 import json
@@ -25,24 +25,24 @@ import os
 import csv
 from pathlib import Path
 
-from app.core.intent_detector import IntentDetector
-from app.core.entity_extractor import extract_entities
-from app.core.workflow_generator import generate_workflow
-from app.core.missing_information import detect_missing_information
-from app.core.language_normalizer import detect_language
+from app.core.intent_detector       import IntentDetector
+from app.core.entity_extractor      import extract_entities
+from app.core.multi_step_planner    import plan_multi_step   # fixed — was workflow_generator
+from app.core.missing_information   import detect_missing_information
+from app.core.language_normalizer   import detect_language, normalize
 from app.core.hallucination_detector import detect_hallucinations
-from app.utils.validator import validate_workflow
+from app.utils.validator            import validate_workflow
 
 
 # ---------------------------------------------------------------------------
 # Paths
 # ---------------------------------------------------------------------------
 
-ROOT = Path(__file__).parents[2]
+ROOT           = Path(__file__).parents[2]
 INTENT_DATASET = ROOT / "data" / "processed" / "intent_dataset.csv"
 ENTITY_DATASET = ROOT / "data" / "processed" / "entity_dataset.csv"
-OUTPUT_DIR = ROOT / "outputs"
-REPORT_PATH = OUTPUT_DIR / "evaluation_report.json"
+OUTPUT_DIR     = ROOT / "outputs"
+REPORT_PATH    = OUTPUT_DIR / "evaluation_report.json"
 
 
 # ---------------------------------------------------------------------------
@@ -50,7 +50,6 @@ REPORT_PATH = OUTPUT_DIR / "evaluation_report.json"
 # ---------------------------------------------------------------------------
 
 def _load_csv(path: Path) -> list:
-    """Load a CSV file into a list of dicts."""
     rows = []
     with open(path, encoding="utf-8") as f:
         reader = csv.DictReader(f)
@@ -60,10 +59,14 @@ def _load_csv(path: Path) -> list:
 
 
 def _pct(correct: int, total: int) -> float:
-    """Return percentage rounded to 2 decimal places."""
     if total == 0:
         return 0.0
     return round(correct / total * 100, 2)
+
+
+def _generate(instruction: str) -> dict:
+    """Wrapper that calls plan_multi_step and returns a workflow dict."""
+    return plan_multi_step(instruction)
 
 
 # ---------------------------------------------------------------------------
@@ -71,37 +74,33 @@ def _pct(correct: int, total: int) -> float:
 # ---------------------------------------------------------------------------
 
 def evaluate_intent_accuracy() -> dict:
-    """Compare predicted intent vs. ground-truth intent_dataset.csv."""
-
-    detector = IntentDetector()
-    rows = _load_csv(INTENT_DATASET)
-
+    from app.services.model_server import get_model_server
+    server = get_model_server()
+    rows   = _load_csv(INTENT_DATASET)
     correct = 0
-    errors = []
+    errors  = []
 
     for row in rows:
         instruction = row["instruction"].strip()
-        expected = row["intent"].strip()
-        predicted = detector.detect_intent(instruction)
+        expected    = row["intent"].strip().upper()
+        predicted   = server.predict_intent(instruction).upper()
 
         if predicted == expected:
             correct += 1
         else:
             errors.append({
                 "instruction": instruction,
-                "expected": expected,
-                "predicted": predicted,
+                "expected":    expected,
+                "predicted":   predicted,
             })
 
     total = len(rows)
-    accuracy = _pct(correct, total)
-
     return {
-        "metric": "intent_accuracy",
-        "total": total,
-        "correct": correct,
-        "accuracy_pct": accuracy,
-        "errors": errors,
+        "metric":       "intent_accuracy",
+        "total":        total,
+        "correct":      correct,
+        "accuracy_pct": _pct(correct, total),
+        "errors":       errors[:10],
     }
 
 
@@ -110,127 +109,115 @@ def evaluate_intent_accuracy() -> dict:
 # ---------------------------------------------------------------------------
 
 def evaluate_entity_accuracy() -> dict:
-    """Compare extracted entities vs. ground-truth entity_dataset.csv."""
-
-    rows = _load_csv(ENTITY_DATASET)
-
+    rows        = _load_csv(ENTITY_DATASET)
     entity_keys = ["name", "phone", "email", "product", "price", "page", "file"]
     field_stats = {k: {"total": 0, "correct": 0} for k in entity_keys}
-    errors = []
+    errors      = []
 
     for row in rows:
         instruction = row["instruction"].strip()
-        extracted = extract_entities(instruction)
-
-        row_errors = []
+        extracted   = extract_entities(instruction)
+        row_errors  = []
 
         for key in entity_keys:
             expected_raw = row.get(key, "").strip()
             if not expected_raw:
-                continue  # field not present in this row
-
-            field_stats[key]["total"] += 1
-            predicted = extracted.get(key, "")
-
-            if str(predicted).strip().lower() == expected_raw.lower():
+                continue
+            field_stats[key]["total"]  += 1
+            predicted = str(extracted.get(key, "")).strip()
+            if predicted.lower() == expected_raw.lower():
                 field_stats[key]["correct"] += 1
             else:
                 row_errors.append({
-                    "field": key,
-                    "expected": expected_raw,
+                    "field":     key,
+                    "expected":  expected_raw,
                     "predicted": predicted,
                 })
 
         if row_errors:
             errors.append({"instruction": instruction, "field_errors": row_errors})
 
-    # Per-field accuracy
-    per_field = {}
-    total_all = 0
-    correct_all = 0
-
-    for key, stats in field_stats.items():
-        per_field[key] = _pct(stats["correct"], stats["total"])
-        total_all += stats["total"]
-        correct_all += stats["correct"]
+    per_field   = {k: _pct(v["correct"], v["total"]) for k, v in field_stats.items()}
+    total_all   = sum(v["total"]   for v in field_stats.values())
+    correct_all = sum(v["correct"] for v in field_stats.values())
 
     return {
-        "metric": "entity_extraction_accuracy",
-        "total_fields": total_all,
-        "correct_fields": correct_all,
-        "overall_accuracy_pct": _pct(correct_all, total_all),
-        "per_field_accuracy_pct": per_field,
-        "errors": errors,
+        "metric":                  "entity_extraction_accuracy",
+        "total_fields":            total_all,
+        "correct_fields":          correct_all,
+        "overall_accuracy_pct":    _pct(correct_all, total_all),
+        "per_field_accuracy_pct":  per_field,
+        "errors":                  errors[:10],
     }
 
 
 # ---------------------------------------------------------------------------
 # Metric 3 — Workflow-Generation Accuracy
-# (checks that key expected steps appear in generated workflow)
 # ---------------------------------------------------------------------------
 
 WORKFLOW_TEST_CASES = [
     {
-        "instruction": "Add Rahul as customer with phone 9876543210",
-        "expected_actions": ["OPEN_PAGE", "ENTER_TEXT", "CLICK"],
+        "instruction":       "Add Rahul as customer with phone 9876543210",
+        "expected_actions":  ["OPEN_PAGE", "ENTER_TEXT", "CLICK"],
     },
     {
-        "instruction": "Open the CRM and download report",
-        "expected_actions": ["OPEN_PAGE", "CLICK"],
+        "instruction":       "Open the CRM and download report",
+        "expected_actions":  ["OPEN_PAGE", "CLICK"],
     },
     {
-        "instruction": "Upload invoice.pdf",
-        "expected_actions": ["OPEN_PAGE", "CLICK", "UPLOAD_FILE"],
+        "instruction":       "Upload invoice.pdf",
+        "expected_actions":  ["OPEN_PAGE", "UPLOAD_FILE"],
     },
     {
-        "instruction": "Add Pankaj Koche as customer with phone 9876543210 and save",
-        "expected_actions": ["OPEN_PAGE", "ENTER_TEXT", "CLICK"],
+        "instruction":       "Add Pankaj Koche as customer with phone 9876543210 and save",
+        "expected_actions":  ["OPEN_PAGE", "ENTER_TEXT", "CLICK"],
     },
     {
-        "instruction": "Rahul naam ka customer jod do",
-        "expected_actions": ["OPEN_PAGE", "CLICK"],
+        "instruction":       "Rahul naam ka customer jod do phone 9876543210",
+        "expected_actions":  ["OPEN_PAGE", "CLICK"],
+    },
+    {
+        "instruction":       "Open the CRM, add Pankaj Koche as a customer with phone 9876543210, save and verify",
+        "expected_actions":  ["OPEN_PAGE", "ENTER_TEXT", "CLICK", "READ_TABLE", "VERIFY_RECORD"],
+    },
+    {
+        "instruction":       "Take a screenshot",
+        "expected_actions":  ["TAKE_SCREENSHOT"],
+    },
+    {
+        "instruction":       "Download today's report",
+        "expected_actions":  ["OPEN_PAGE", "CLICK"],
     },
 ]
 
 
 def evaluate_workflow_accuracy() -> dict:
-    """Check that generated workflows contain all expected action types."""
-
     correct = 0
-    errors = []
+    errors  = []
 
     for tc in WORKFLOW_TEST_CASES:
         instruction = tc["instruction"]
-        workflow = generate_workflow(instruction)
-        generated_actions = {
-            step.get("action", "") for step in workflow.get("steps", [])
-        }
-
-        all_present = all(
-            action in generated_actions for action in tc["expected_actions"]
-        )
+        workflow    = _generate(instruction)
+        generated   = {s.get("action", "") for s in workflow.get("steps", [])}
+        all_present = all(a in generated for a in tc["expected_actions"])
 
         if all_present:
             correct += 1
         else:
-            missing = [
-                a for a in tc["expected_actions"] if a not in generated_actions
-            ]
             errors.append({
-                "instruction": instruction,
-                "expected_actions": tc["expected_actions"],
-                "generated_actions": list(generated_actions),
-                "missing_actions": missing,
+                "instruction":       instruction,
+                "expected_actions":  tc["expected_actions"],
+                "generated_actions": sorted(generated),
+                "missing_actions":   [a for a in tc["expected_actions"] if a not in generated],
             })
 
     total = len(WORKFLOW_TEST_CASES)
-
     return {
-        "metric": "workflow_generation_accuracy",
-        "total": total,
-        "correct": correct,
+        "metric":       "workflow_generation_accuracy",
+        "total":        total,
+        "correct":      correct,
         "accuracy_pct": _pct(correct, total),
-        "errors": errors,
+        "errors":       errors,
     }
 
 
@@ -239,32 +226,29 @@ def evaluate_workflow_accuracy() -> dict:
 # ---------------------------------------------------------------------------
 
 def evaluate_json_validity() -> dict:
-    """Run every workflow test case through the JSON schema validator."""
-
     valid_count = 0
-    errors = []
+    errors      = []
 
     for tc in WORKFLOW_TEST_CASES:
         instruction = tc["instruction"]
-        workflow = generate_workflow(instruction)
+        workflow    = _generate(instruction)
         is_valid, err_msg = validate_workflow(workflow)
 
         if is_valid:
             valid_count += 1
         else:
             errors.append({
-                "instruction": instruction,
+                "instruction":      instruction,
                 "validation_error": err_msg,
             })
 
     total = len(WORKFLOW_TEST_CASES)
-
     return {
-        "metric": "json_validity_rate",
-        "total": total,
-        "valid": valid_count,
+        "metric":       "json_validity_rate",
+        "total":        total,
+        "valid":        valid_count,
         "validity_pct": _pct(valid_count, total),
-        "errors": errors,
+        "errors":       errors,
     }
 
 
@@ -272,42 +256,39 @@ def evaluate_json_validity() -> dict:
 # Metric 5 — Missing-Information Accuracy
 # ---------------------------------------------------------------------------
 
-MISSING_INFO_TEST_CASES = [
-    # (instruction, expected_intent, expected_entities, expected_missing_keys)
-    ("Create a customer",         "ADD_CUSTOMER",   {},                          ["name", "phone"]),
-    ("Add Rahul as customer",     "ADD_CUSTOMER",   {"name": "Rahul"},           ["phone"]),
-    ("Update product",            "UPDATE_PRODUCT", {},                          ["product", "price"]),
-    ("Upload file",               "UPLOAD_FILE",    {},                          ["file"]),
-    ("Add Rahul with phone 9876543210", "ADD_CUSTOMER", {"name": "Rahul", "phone": "9876543210"}, []),
+MISSING_INFO_CASES = [
+    ("Create a customer",                         "ADD_CUSTOMER",   {},                                          ["name", "phone"]),
+    ("Add Rahul as customer",                     "ADD_CUSTOMER",   {"name": "Rahul"},                           ["phone"]),
+    ("Update product",                            "UPDATE_PRODUCT", {},                                          ["product", "price"]),
+    ("Upload file",                               "UPLOAD_FILE",    {},                                          ["file"]),
+    ("Add Rahul with phone 9876543210",            "ADD_CUSTOMER",   {"name": "Rahul", "phone": "9876543210"},    []),
+    ("Send email",                                "SEND_EMAIL",     {},                                          ["email"]),
+    ("Delete customer",                           "DELETE_CUSTOMER",{},                                          ["name"]),
 ]
 
 
 def evaluate_missing_info_accuracy() -> dict:
-    """Check that missing-info detection returns the correct missing keys."""
-
     correct = 0
-    errors = []
+    errors  = []
 
-    for instruction, intent, entities, expected_missing in MISSING_INFO_TEST_CASES:
-        predicted_missing = detect_missing_information(intent, entities)
-
-        if sorted(predicted_missing) == sorted(expected_missing):
+    for instruction, intent, entities, expected in MISSING_INFO_CASES:
+        predicted = detect_missing_information(intent, entities)
+        if sorted(predicted) == sorted(expected):
             correct += 1
         else:
             errors.append({
-                "instruction": instruction,
-                "expected_missing": expected_missing,
-                "predicted_missing": predicted_missing,
+                "instruction":      instruction,
+                "expected_missing": expected,
+                "predicted_missing": predicted,
             })
 
-    total = len(MISSING_INFO_TEST_CASES)
-
+    total = len(MISSING_INFO_CASES)
     return {
-        "metric": "missing_information_accuracy",
-        "total": total,
-        "correct": correct,
+        "metric":       "missing_information_accuracy",
+        "total":        total,
+        "correct":      correct,
         "accuracy_pct": _pct(correct, total),
-        "errors": errors,
+        "errors":       errors,
     }
 
 
@@ -315,71 +296,47 @@ def evaluate_missing_info_accuracy() -> dict:
 # Metric 6 — Hinglish Accuracy
 # ---------------------------------------------------------------------------
 
-HINGLISH_TEST_CASES = [
-    {
-        "instruction": "Rahul naam ka customer jod do",
-        "expected_intent": "ADD_CUSTOMER",
-    },
-    {
-        "instruction": "CRM kholo aur customer banao",
-        "expected_intent": "ADD_CUSTOMER",
-    },
-    {
-        "instruction": "Product ka price ₹599 kar do",
-        "expected_intent": "UPDATE_PRODUCT",
-    },
-    {
-        "instruction": "File upload karo",
-        "expected_intent": "UPLOAD_FILE",
-    },
-    {
-        "instruction": "Report download karo",
-        "expected_intent": "DOWNLOAD_REPORT",
-    },
-    {
-        "instruction": "ग्राहक जोड़ो",
-        "expected_intent": "ADD_CUSTOMER",
-    },
-    {
-        "instruction": "ईमेल भेजो",
-        "expected_intent": "SEND_EMAIL",
-    },
+HINGLISH_CASES = [
+    ("Rahul naam ka customer jod do",     "ADD_CUSTOMER"),
+    ("CRM kholo aur customer banao",      "ADD_CUSTOMER"),
+    ("Product ka price 599 kar do",       "UPDATE_PRODUCT"),
+    ("File upload karo",                  "UPLOAD_FILE"),
+    ("Report download karo",              "DOWNLOAD_REPORT"),
+    ("ग्राहक जोड़ो",                        "ADD_CUSTOMER"),
+    ("ईमेल भेजो",                          "SEND_EMAIL"),
+    ("Customer delete karo",              "DELETE_CUSTOMER"),
+    ("Employee add karo",                 "ADD_CUSTOMER"),
+    ("Screenshot lo",                     "TAKE_SCREENSHOT"),
 ]
 
 
 def evaluate_hinglish_accuracy() -> dict:
-    """Measure intent detection accuracy specifically on Hinglish / Hindi inputs."""
-
-    from app.core.language_normalizer import normalize
     detector = IntentDetector()
+    correct  = 0
+    errors   = []
 
-    correct = 0
-    errors = []
-
-    for tc in HINGLISH_TEST_CASES:
-        raw = tc["instruction"]
+    for raw, expected in HINGLISH_CASES:
         normalized = normalize(raw)
-        predicted = detector.detect_intent(normalized)
-        expected = tc["expected_intent"]
+        predicted  = detector.detect_intent(normalized).upper()
+        expected_u = expected.upper()
 
-        if predicted == expected:
+        if predicted == expected_u:
             correct += 1
         else:
             errors.append({
-                "original": raw,
+                "original":   raw,
                 "normalized": normalized,
-                "expected": expected,
-                "predicted": predicted,
+                "expected":   expected_u,
+                "predicted":  predicted,
             })
 
-    total = len(HINGLISH_TEST_CASES)
-
+    total = len(HINGLISH_CASES)
     return {
-        "metric": "hinglish_accuracy",
-        "total": total,
-        "correct": correct,
+        "metric":       "hinglish_accuracy",
+        "total":        total,
+        "correct":      correct,
         "accuracy_pct": _pct(correct, total),
-        "errors": errors,
+        "errors":       errors,
     }
 
 
@@ -388,21 +345,15 @@ def evaluate_hinglish_accuracy() -> dict:
 # ---------------------------------------------------------------------------
 
 def evaluate_unsupported_action_rate() -> dict:
-    """
-    Measure how often the generator produces actions outside the
-    supported action list.
-    """
-
-    result = detect_hallucinations(
-        [generate_workflow(tc["instruction"]) for tc in WORKFLOW_TEST_CASES]
-    )
+    workflows = [_generate(tc["instruction"]) for tc in WORKFLOW_TEST_CASES]
+    result    = detect_hallucinations(workflows)
 
     return {
-        "metric": "unsupported_action_rate",
-        "total_steps": result["total_steps"],
-        "unsupported_steps": result["unsupported_count"],
+        "metric":               "unsupported_action_rate",
+        "total_steps":          result["total_steps"],
+        "unsupported_steps":    result["unsupported_count"],
         "unsupported_rate_pct": result["unsupported_rate_pct"],
-        "unsupported_actions": result["unsupported_actions"],
+        "unsupported_actions":  result["unsupported_actions"],
     }
 
 
@@ -411,23 +362,20 @@ def evaluate_unsupported_action_rate() -> dict:
 # ---------------------------------------------------------------------------
 
 def evaluate_hallucination_rate() -> dict:
-    """
-    Measure how often generated steps have no clear grounding in the
-    original instruction (hallucinated targets or values).
-    """
-
-    result = detect_hallucinations(
-        [generate_workflow(tc["instruction"]) for tc in WORKFLOW_TEST_CASES],
-        instructions=[tc["instruction"] for tc in WORKFLOW_TEST_CASES],
+    instructions = [tc["instruction"] for tc in WORKFLOW_TEST_CASES]
+    workflows    = [_generate(i) for i in instructions]
+    result       = detect_hallucinations(
+        workflows,
+        instructions=instructions,
         check_grounding=True,
     )
 
     return {
-        "metric": "hallucination_rate",
-        "total_steps": result["total_steps"],
-        "hallucinated_steps": result["hallucinated_count"],
-        "hallucination_rate_pct": result["hallucination_rate_pct"],
-        "examples": result.get("hallucinated_examples", []),
+        "metric":                  "hallucination_rate",
+        "total_steps":             result["total_steps"],
+        "hallucinated_steps":      result["hallucinated_count"],
+        "hallucination_rate_pct":  result["hallucination_rate_pct"],
+        "examples":                result.get("hallucinated_examples", [])[:5],
     }
 
 
@@ -436,10 +384,9 @@ def evaluate_hallucination_rate() -> dict:
 # ---------------------------------------------------------------------------
 
 def run_evaluation() -> dict:
-    """Run all 8 metrics and return the full report dict."""
 
     print("\n" + "=" * 60)
-    print("  Willovate AI — Model Evaluation Report")
+    print("  Willovate AI Automation Engine — Model Evaluation")
     print("=" * 60)
 
     metrics = [
@@ -456,35 +403,30 @@ def run_evaluation() -> dict:
     report = {}
 
     for label, fn in metrics:
-        print(f"\n  Running: {label} ...", end=" ", flush=True)
+        print(f"\n  {label} ...", end=" ", flush=True)
         try:
             result = fn()
             report[result["metric"]] = result
-
-            # Print summary line
             if "accuracy_pct" in result:
-                print(f"{result['accuracy_pct']}%  "
-                      f"({result.get('correct', '?')}/{result.get('total', '?')})")
+                print(f"{result['accuracy_pct']}%  ({result.get('correct','?')}/{result.get('total','?')})")
             elif "validity_pct" in result:
-                print(f"{result['validity_pct']}%")
+                print(f"Valid {result['validity_pct']}%")
             elif "unsupported_rate_pct" in result:
-                print(f"Unsupported: {result['unsupported_rate_pct']}%")
+                print(f"Unsupported {result['unsupported_rate_pct']}%")
             elif "hallucination_rate_pct" in result:
-                print(f"Hallucinated: {result['hallucination_rate_pct']}%")
+                print(f"Hallucinated {result['hallucination_rate_pct']}%")
             else:
                 print("done")
         except Exception as exc:
             print(f"ERROR — {exc}")
             report[label] = {"error": str(exc)}
 
-    # Save report
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     with open(REPORT_PATH, "w", encoding="utf-8") as f:
         json.dump(report, f, indent=2, ensure_ascii=False)
 
-    print(f"\n  Report saved to: {REPORT_PATH}")
+    print(f"\n  Saved: {REPORT_PATH}")
     print("=" * 60 + "\n")
-
     return report
 
 

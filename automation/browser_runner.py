@@ -166,10 +166,25 @@ async def execute_step(page, step: dict, crm_url: str, workflow: dict) -> dict:
         records = []
         for row in rows:
             cells = await row.locator("td").all_text_contents()
-            if len(cells) >= 3:
-                records.append({"name": cells[1].strip(), "phone": cells[2].strip()})
+            # 6-column CRM layout: # | Name | Phone | Email | Status | Actions
+            if len(cells) >= 4:
+                records.append({
+                    "name":  cells[1].strip(),
+                    "phone": cells[2].strip(),
+                    "email": cells[3].strip(),
+                })
+            elif len(cells) >= 3:
+                records.append({
+                    "name":  cells[1].strip(),
+                    "phone": cells[2].strip(),
+                    "email": "",
+                })
             elif len(cells) >= 2:
-                records.append({"name": cells[0].strip(), "phone": cells[1].strip()})
+                records.append({
+                    "name":  cells[0].strip(),
+                    "phone": cells[1].strip(),
+                    "email": "",
+                })
         return {"success": True, "records": records}
 
     # ── VERIFY_RECORD ───────────────────────────────────────────────────────
