@@ -122,6 +122,15 @@ def _steps_for(subtask: str, entities: dict) -> list:
 
         steps.append({"action": "CLICK", "target": "add-customer"})
 
+        # Always read the table after adding so result is visible
+        steps.append({"action": "READ_TABLE",    "target": "customer-table"})
+        if "name" in entities:
+            steps.append({
+                "action": "VERIFY_RECORD",
+                "target": "customer-table",
+                "value":  entities["name"],
+            })
+
     # ── ADD EMPLOYEE ────────────────────────────────────────────────────────
     elif _is_employee_add(t):
         if not any(s["action"] == "OPEN_PAGE" for s in steps):
@@ -144,17 +153,21 @@ def _steps_for(subtask: str, entities: dict) -> list:
 
     # ── SAVE ────────────────────────────────────────────────────────────────
     if re.search(r"\bsave\b|save\s*kar|सेव", t):
-        steps.append({"action": "CLICK", "target": "save"})
+        # Insert SAVE before the READ_TABLE we already added
+        # Find position of READ_TABLE and insert before it
+        rt_idx = next((i for i, s in enumerate(steps) if s["action"] == "READ_TABLE"), len(steps))
+        steps.insert(rt_idx, {"action": "CLICK", "target": "save"})
 
-    # ── VERIFY / READ TABLE ─────────────────────────────────────────────────
+    # ── EXTRA VERIFY / READ TABLE (only if not already present) ─────────────
     if re.search(r"\bverif|\bcheck|\bappear|\btable\b|\blist\b", t):
-        steps.append({"action": "READ_TABLE",    "target": "customer-table"})
-        if "name" in entities:
-            steps.append({
-                "action": "VERIFY_RECORD",
-                "target": "customer-table",
-                "value":  entities["name"],
-            })
+        if not any(s["action"] == "READ_TABLE" for s in steps):
+            steps.append({"action": "READ_TABLE",    "target": "customer-table"})
+            if "name" in entities:
+                steps.append({
+                    "action": "VERIFY_RECORD",
+                    "target": "customer-table",
+                    "value":  entities["name"],
+                })
 
     # ── DOWNLOAD REPORT ─────────────────────────────────────────────────────
     if "download" in t and ("report" in t or "csv" in t):
@@ -225,21 +238,6 @@ def plan_multi_step(instruction: str) -> dict:
     # Fallback: run planner on full instruction as single task
     if not all_steps:
         all_steps = _steps_for(instruction, entities)
-
-    # Auto-add READ_TABLE + VERIFY_RECORD if instruction says "verify" but
-    # no READ_TABLE step was generated yet
-    full = instruction.lower()
-    has_verify = re.search(r"\bverif|\bsave\s+and\s+verif", full)
-    has_read   = any(s["action"] == "READ_TABLE" for s in all_steps)
-
-    if has_verify and not has_read:
-        all_steps.append({"action": "READ_TABLE",    "target": "customer-table"})
-        if "name" in entities:
-            all_steps.append({
-                "action": "VERIFY_RECORD",
-                "target": "customer-table",
-                "value":  entities["name"],
-            })
 
     # Deduplicate consecutive identical steps
     deduped: list = []
