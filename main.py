@@ -15,12 +15,11 @@ import sys
 import asyncio
 
 # ── Windows / Python 3.13 fix ──────────────────────────────────────────────
-# Playwright spawns a subprocess. On Windows, asyncio needs the ProactorEventLoop
-# to support subprocess creation. Uvicorn sometimes installs SelectorEventLoop;
-# force ProactorEventLoop policy before anything else starts.
 if sys.platform == "win32":
     asyncio.set_event_loop_policy(asyncio.WindowsProactorEventLoopPolicy())
-# ──────────────────────────────────────────────────────────────────────────
+
+# ── Apply logging config (format, level) for the whole app ─────────────────
+import app.utils.logger  # noqa: F401  — side-effect import, sets basicConfig
 
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
