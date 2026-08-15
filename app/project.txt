@@ -1,0 +1,249 @@
+Project: Willovate AI Automation Engine
+Main Goal
+Build an AI system that understands a user’s instruction and converts it into an automation workflow
+that can be executed on any web application.
+Take reference from UiPath for understanding workflows, automation activities and bots.
+Example:
+User instruction:
+“Open the customer page, add Rahul with phone number 9876543210 and save.”
+AI output:
+{
+}
+"steps": [
+{
+"action": "OPEN_PAGE",
+"target": "customers"
+},
+{
+"action": "CLICK",
+"target": "add-customer"
+},
+{
+"action": "ENTER_TEXT",
+"target": "customer-name",
+
+"value": "Rahul"
+},
+{
+"action": "ENTER_TEXT",
+"target": "phone-number",
+"value": "9876543210"
+},
+{
+"action": "CLICK",
+"target": "save"
+}
+]
+1
+AI/ML Work
+1. Intent Detection
+Understand what the user wants to perform.
+Examples:
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+Add customer
+Update product
+Download report
+Fill form
+Upload file
+Read table
+Send email
+2. Entity Extraction
+Extract required values from the instruction:
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+Name
+Phone number
+Email
+Product name
+Price
+Date
+File name
+Page name
+3. Workflow Generation
+Convert one instruction into multiple ordered automation steps.
+4. Missing Information Detection
+When required data is missing, ask the user for it instead of guessing.
+Example:
+“Create a customer.”
+AI should ask:
+“What is the customer’s name and phone number?”
+5. Multi-Step Planning
+Understand complex instructions.
+Example:
+2
+“Download today’s report, convert it into Excel and email it to the manager.”
+6. English, Hindi and Hinglish Support
+Examples:
+• 
+• 
+• 
+“Add a new employee.”
+“Rahul naam ka employee add karo.”
+“Product ka price ₹599 kar do.”
+7. UI Element Understanding
+The AI should identify which button, input, dropdown or table is required for each action.
+8. Screenshot Understanding
+Use screenshots to detect:
+• 
+• 
+• 
+• 
+• 
+• 
+Buttons
+Input fields
+Dropdowns
+Tables
+Error messages
+Page structure
+9. Action Prediction
+Support actions such as:
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+OPEN_URL
+CLICK
+ENTER_TEXT
+SELECT_OPTION
+UPLOAD_FILE
+DOWNLOAD_FILE
+READ_TEXT
+READ_TABLE
+SCROLL
+WAIT
+SUBMIT
+TAKE_SCREENSHOT
+10. Error Understanding
+When automation fails, the AI should:
+• 
+• 
+• 
+• 
+Read the error
+Identify the failed step
+Suggest another action
+Retry when possible
+3
+11. Risk Detection
+Identify risky actions such as:
+• 
+• 
+• 
+• 
+Delete records
+Update multiple records
+Submit payments
+Change account settings
+Risky workflows must require confirmation.
+12. Workflow Validation
+The AI must ensure:
+• 
+• 
+• 
+• 
+• 
+JSON is valid
+Actions are supported
+Required parameters exist
+Steps are in the correct order
+Unsupported actions are rejected
+13. Training Dataset
+Create a dataset containing:
+• 
+• 
+• 
+• 
+• 
+• 
+User instruction
+Expected intent
+Extracted entities
+Expected workflow
+Missing fields
+Risk level
+Include English, Hindi, Hinglish, spelling mistakes and incomplete commands.
+14. Model Development
+• 
+• 
+• 
+• 
+• 
+Select a commercially permitted open-source model
+Test multiple models
+Measure accuracy
+Fine-tune the selected model using Willovate’s dataset
+Host the model through Willovate’s own API
+15. Evaluation
+Measure:
+• 
+• 
+• 
+• 
+• 
+• 
+Intent accuracy
+Entity-extraction accuracy
+Workflow-generation accuracy
+JSON validity
+Missing-information accuracy
+Hinglish accuracy
+4
+• 
+• 
+Unsupported-action rate
+Hallucination rate
+MVP Deliverable
+The AI/ML team must deliver:
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+• 
+Natural-language instruction API
+Intent and entity extraction
+Workflow JSON generation
+Missing-information questions
+English and Hinglish support
+Screenshot understanding
+Multi-step workflow planning
+Risk classification
+Error analysis
+Training dataset
+Model evaluation report
+Fine-tuned or optimized open-source model
+Working demo on one sample web application
+Final Demo Command
+“Open the CRM, add Pankaj Koche as a customer with phone number 9876543210, save the record and
+verify that the customer appears in the table.”
+The AI should generate the workflow, execute it through the automation runner and return the final
+result.
+5

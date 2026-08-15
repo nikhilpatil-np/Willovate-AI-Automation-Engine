@@ -250,3 +250,160 @@ Click search button,CLICK_BUTTON
 Click next button,CLICK_BUTTON
 Click submit form,CLICK_BUTTON
 Press confirm,CLICK_BUTTON
+Add Rahul as customer,ADD_CUSTOMER
+Add Pankaj Koche as customer,ADD_CUSTOMER
+Add Pankaj as a customer,ADD_CUSTOMER
+Add Sneha with phone 9876543210,ADD_CUSTOMER
+Add Amit with mobile number 9988776655,ADD_CUSTOMER
+Add new customer with phone number,ADD_CUSTOMER
+Add customer named Rahul with phone,ADD_CUSTOMER
+Create customer Pankaj with phone 9876543210,ADD_CUSTOMER
+Create new customer Sneha,ADD_CUSTOMER
+Create a new customer entry,ADD_CUSTOMER
+Create client record for Ankit,ADD_CUSTOMER
+Register Priya as new customer,ADD_CUSTOMER
+Register customer with phone number,ADD_CUSTOMER
+Add Rohan as client,ADD_CUSTOMER
+Add a new entry for customer,ADD_CUSTOMER
+Add customer and save,ADD_CUSTOMER
+Open CRM and add customer,ADD_CUSTOMER
+Open the CRM add Pankaj as customer,ADD_CUSTOMER
+Save the customer record,ADD_CUSTOMER
+Verify customer appears in table,ADD_CUSTOMER
+CRM mein customer add karo,ADD_CUSTOMER
+Rahul naam ka customer jod do,ADD_CUSTOMER
+Pankaj ko customer ke roop mein add karo,ADD_CUSTOMER
+Naye customer ki entry karo,ADD_CUSTOMER
+Ek naya customer add karo,ADD_CUSTOMER
+Customer banao aur save karo,ADD_CUSTOMER
+CRM kholo aur customer add karo,ADD_CUSTOMER
+ग्राहक जोड़ो,ADD_CUSTOMER
+ग्राहक बनाओ,ADD_CUSTOMER
+नया ग्राहक जोड़ो,ADD_CUSTOMER
+कस्टमर जोड़ो,ADD_CUSTOMER
+कस्टमर बनाओ,ADD_CUSTOMER
+Delete customer Pankaj,DELETE_CUSTOMER
+Remove customer Rohan,DELETE_CUSTOMER
+Delete client Sneha,DELETE_CUSTOMER
+Erase customer Amit,DELETE_CUSTOMER
+Remove client record,DELETE_CUSTOMER
+Delete customer with phone 9876543210,DELETE_CUSTOMER
+Customer hatao,DELETE_CUSTOMER
+Pankaj ko customer list se hatao,DELETE_CUSTOMER
+Customer record delete karo,DELETE_CUSTOMER
+ग्राहक हटाओ,DELETE_CUSTOMER
+ग्राहक हटा दो,DELETE_CUSTOMER
+Delete employee Rahul,DELETE_EMPLOYEE
+Remove employee Sneha,DELETE_EMPLOYEE
+Erase employee record,DELETE_EMPLOYEE
+Employee hatao,DELETE_EMPLOYEE
+Employee record delete karo,DELETE_EMPLOYEE
+Update customer Rahul phone number,UPDATE_CUSTOMER
+Change phone number of Pankaj,UPDATE_CUSTOMER
+Modify Sneha contact details,UPDATE_CUSTOMER
+Edit Amit customer information,UPDATE_CUSTOMER
+Update customer record for Rohan,UPDATE_CUSTOMER
+Customer ka phone number badlo,UPDATE_CUSTOMER
+Customer ki details update karo,UPDATE_CUSTOMER
+ग्राहक अपडेट करो,UPDATE_CUSTOMER
+Update employee Rahul salary,UPDATE_EMPLOYEE
+Change designation of Sneha,UPDATE_EMPLOYEE
+Modify Amit employee details,UPDATE_EMPLOYEE
+Employee ka phone number badlo,UPDATE_EMPLOYEE
+Employee ki salary update karo,UPDATE_EMPLOYEE
+Download today's report,DOWNLOAD_REPORT
+Download today report,DOWNLOAD_REPORT
+Download the report,DOWNLOAD_REPORT
+Get the report,DOWNLOAD_REPORT
+Download report and save,DOWNLOAD_REPORT
+Download report convert to Excel,DOWNLOAD_REPORT
+Aaj ka report download karo,DOWNLOAD_REPORT
+Report nikal do,DOWNLOAD_REPORT
+रिपोर्ट डाउनलोड करो,DOWNLOAD_REPORT
+रिपोर्ट डाउनलोड,DOWNLOAD_REPORT
+Upload invoice.pdf,UPLOAD_FILE
+Upload report.xlsx,UPLOAD_FILE
+Upload the file,UPLOAD_FILE
+Import the file,UPLOAD_FILE
+Upload document to system,UPLOAD_FILE
+File upload karo,UPLOAD_FILE
+फाइल अपलोड करो,UPLOAD_FILE
+फाइल अपलोड,UPLOAD_FILE
+Update product Laptop price to 65000,UPDATE_PRODUCT
+Change Mobile price to 15000,UPDATE_PRODUCT
+Set product price to 599,UPDATE_PRODUCT
+Update Keyboard price 1200,UPDATE_PRODUCT
+Product price update karo,UPDATE_PRODUCT
+Product ka price badlo,UPDATE_PRODUCT
+Product ki keemat badal do,UPDATE_PRODUCT
+Product ka price 599 kar do,UPDATE_PRODUCT
+प्रोडक्ट का मूल्य बदलो,UPDATE_PRODUCT
+प्रोडक्ट अपडेट करो,UPDATE_PRODUCT
+Send email to manager about report,SEND_EMAIL
+Email the report to HR,SEND_EMAIL
+Send mail to manager@company.com,SEND_EMAIL
+Email it to the manager,SEND_EMAIL
+Mail report to client,SEND_EMAIL
+Email bhejo manager ko,SEND_EMAIL
+Report email karo,SEND_EMAIL
+ईमेल भेजो,SEND_EMAIL
+ईमेल भेज दो,SEND_EMAIL
+Open CRM,OPEN_PAGE
+Open the CRM,OPEN_PAGE
+Launch the CRM,OPEN_PAGE
+Go to CRM,OPEN_PAGE
+Open customers page,OPEN_PAGE
+Open products page,OPEN_PAGE
+Go to settings,OPEN_PAGE
+CRM kholo,OPEN_PAGE
+Dashboard khol do,OPEN_PAGE
+Customer page open karo,OPEN_PAGE
+खोलो,OPEN_PAGE
+Take screenshot,TAKE_SCREENSHOT
+Capture screenshot,TAKE_SCREENSHOT
+Take a screenshot of current page,TAKE_SCREENSHOT
+Screenshot lo,TAKE_SCREENSHOT
+Screenshot lena,TAKE_SCREENSHOT
+Page ka screenshot lo,TAKE_SCREENSHOT
+स्क्रीनशॉट लो,TAKE_SCREENSHOT
+स्क्रीनशॉट लेना,TAKE_SCREENSHOT
+Delete employee Amit,DELETE_EMPLOYEE
+Remove employee Pankaj,DELETE_EMPLOYEE
+Delete staff member Rohan,DELETE_EMPLOYEE
+Remove employee from system,DELETE_EMPLOYEE
+Delete employee record permanently,DELETE_EMPLOYEE
+Erase employee profile,DELETE_EMPLOYEE
+Remove staff Sneha,DELETE_EMPLOYEE
+Delete employee account Rahul,DELETE_EMPLOYEE
+Remove this employee,DELETE_EMPLOYEE
+Delete worker record,DELETE_EMPLOYEE
+Employee ko hatao,DELETE_EMPLOYEE
+Employee delete kar do,DELETE_EMPLOYEE
+Staff member hatao,DELETE_EMPLOYEE
+ek employee delete karo,DELETE_EMPLOYEE
+Employee record mita do,DELETE_EMPLOYEE
+Take screenshot now,TAKE_SCREENSHOT
+Take a screenshot,TAKE_SCREENSHOT
+Capture a screenshot,TAKE_SCREENSHOT
+Take screenshot of this page,TAKE_SCREENSHOT
+Screenshot of current page,TAKE_SCREENSHOT
+Save screenshot,TAKE_SCREENSHOT
+Capture current page screenshot,TAKE_SCREENSHOT
+Take page screenshot,TAKE_SCREENSHOT
+Screenshot leke save karo,TAKE_SCREENSHOT
+Page ka screenshot lena,TAKE_SCREENSHOT
+Abhi screenshot lo,TAKE_SCREENSHOT
+Screenshot le lo,TAKE_SCREENSHOT
+Is page ka screenshot lo,TAKE_SCREENSHOT
+स्क्रीनशॉट लो अभी,TAKE_SCREENSHOT
+स्क्रीनशॉट ले लो,TAKE_SCREENSHOT
+Download today report then email it,DOWNLOAD_REPORT
+Download report and send email,DOWNLOAD_REPORT
+Download report then send to manager,DOWNLOAD_REPORT
+Download today report and email manager,DOWNLOAD_REPORT
+Download monthly report then mail it,DOWNLOAD_REPORT
+Get the report and send it by email,DOWNLOAD_REPORT
+Export report and email to HR,DOWNLOAD_REPORT
+Download report convert to Excel and email,DOWNLOAD_REPORT
+Download aur email karo,DOWNLOAD_REPORT
+Report download karo aur bhejo,DOWNLOAD_REPORT

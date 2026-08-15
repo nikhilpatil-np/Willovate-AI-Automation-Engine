@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Willovate Automation Engine</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23e63946'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-size='20' font-weight='bold' fill='white' font-family='Arial'>W</text></svg>" />
+<style>
+/* ── Reset ─────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 14px; }
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #f0f2f5;
+  color: #1a1a2e;
+  min-height: 100vh;
+}
+
+/* ── Header ─────────────────────────────────────────── */
+.header {
+  background: #1a1a2e;
+  color: #fff;
+  padding: 0 32px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 8px rgba(0,0,0,.25);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.header-brand { display: flex; align-items: center; gap: 12px; }
+.header-brand .logo {
+  width: 32px; height: 32px;
+  background: #e63946;
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; font-weight: 700; color: #fff;
+}
+.header-brand h1 { font-size: 15px; font-weight: 600; letter-spacing: .3px; }
+.header-brand span { color: #adb5bd; font-size: 12px; margin-left: 6px; }
+.header-status {
+  display: flex; align-items: center; gap: 7px;
+  font-size: 12px; color: #adb5bd;
+}
+.status-circle {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #6c757d; flex-shrink: 0;
+  transition: background .3s;
+}
+.status-circle.online  { background: #2dc653; box-shadow: 0 0 5px #2dc653; }
+.status-circle.offline { background: #e63946; }
+
+/* ── Layout ─────────────────────────────────────────── */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 24px;
+}
+
+.two-col {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+/* ── Card ─────────────────────────────────────────── */
+.card {
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid #dee2e6;
+  box-shadow: 0 1px 4px rgba(0,0,0,.06);
+}
+.card-head {
+  padding: 14px 18px 12px;
+  border-bottom: 1px solid #e9ecef;
+  display: flex; align-items: center; gap: 9px;
+}
+.card-head h2 { font-size: 13px; font-weight: 600; color: #343a40; }
+.card-head .icon { font-size: 15px; }
+.card-body { padding: 18px; }
+
+/* ── Command Input ─────────────────────────────────── */
+.cmd-box {
+  width: 100%;
+  min-height: 90px;
+  border: 1.5px solid #ced4da;
+  border-radius: 6px;
+  padding: 10px 13px;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 13.5px;
+  color: #212529;
+  resize: vertical;
+  transition: border-color .15s;
+  line-height: 1.55;
+}
+.cmd-box:focus { outline: none; border-color: #e63946; box-shadow: 0 0 0 3px rgba(230,57,70,.12); }
+.cmd-box::placeholder { color: #adb5bd; }
+
+.cmd-meta { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+.cmd-meta .hint { font-size: 11px; color: #868e96; }
+
+/* ── Buttons ─────────────────────────────────────────── */
+.btn-row { display: flex; gap: 9px; margin-top: 14px; }
+.btn {
+  padding: 8px 18px;
+  border-radius: 5px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all .15s;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+.btn-red   { background: #e63946; color: #fff; }
+.btn-red:not(:disabled):hover   { background: #c1121f; }
+.btn-dark  { background: #1a1a2e; color: #fff; }
+.btn-dark:not(:disabled):hover  { background: #2d2d44; }
+.btn-ghost { background: #fff; color: #495057; border: 1.5px solid #ced4da; }
+.btn-ghost:not(:disabled):hover { background: #f8f9fa; }
+.btn-sm { padding: 5px 12px; font-size: 12px; }
+
+/* ── Examples ─────────────────────────────────────────── */
+.examples-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .6px; color: #868e96; margin: 16px 0 8px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip {
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 11.5px;
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  color: #495057;
+  cursor: pointer;
+  transition: all .12s;
+}
+.chip:hover { background: #fff0f0; border-color: #e63946; color: #e63946; }
+
+/* ── Info rows ─────────────────────────────────────────── */
+.info-section { margin-top: 16px; }
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 7px 0;
+  border-bottom: 1px solid #f1f3f5;
+  gap: 10px;
+}
+.info-row:last-child { border-bottom: none; }
+.info-label { font-size: 12px; color: #868e96; flex-shrink: 0; }
+.info-val   { font-size: 12px; font-weight: 500; color: #343a40; text-align: right; word-break: break-word; max-width: 70%; }
+
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .3px;
+}
+.badge-green  { background: #d3f9d8; color: #2b8a3e; }
+.badge-red    { background: #ffe3e3; color: #c92a2a; }
+.badge-yellow { background: #fff3bf; color: #7d5a00; }
+.badge-blue   { background: #dbe4ff; color: #3b5bdb; }
+.badge-gray   { background: #f1f3f5; color: #495057; }
+
+.entity-pills { display: flex; flex-wrap: wrap; gap: 5px; justify-content: flex-end; }
+.entity-pill {
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  background: #e7f5ff;
+  border: 1px solid #a5d8ff;
+  color: #1864ab;
+}
+
+/* ── Right panel ─────────────────────────────────────── */
+.right-stack { display: flex; flex-direction: column; gap: 20px; }
+
+/* ── Steps ─────────────────────────────────────────── */
+.steps-list { display: flex; flex-direction: column; gap: 0; }
+
+.step-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  position: relative;
+}
+/* vertical connector line */
+.step-item:not(:last-child) .step-line { display: block; }
+.step-line {
+  display: none;
+  position: absolute;
+  left: 15px;
+  top: 30px;
+  bottom: -8px;
+  width: 2px;
+  background: #dee2e6;
+  z-index: 0;
+}
+.step-line.done { background: #2dc653; }
+.step-line.fail { background: #e63946; }
+
+.step-circle {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  border: 2px solid #dee2e6;
+  background: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700; color: #868e96;
+  flex-shrink: 0;
+  z-index: 1;
+  transition: all .2s;
+  margin-top: 2px;
+}
+.step-circle.done  { border-color: #2dc653; background: #2dc653; color: #fff; }
+.step-circle.fail  { border-color: #e63946; background: #e63946; color: #fff; }
+.step-circle.active{ border-color: #e63946; color: #e63946; }
+.step-circle.skip  { border-color: #ced4da; background: #f8f9fa; color: #adb5bd; }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+.spin-ring {
+  width: 14px; height: 14px;
+  border: 2px solid #dee2e6;
+  border-top-color: #e63946;
+  border-radius: 50%;
+  animation: spin .6s linear infinite;
+}
+
+.step-body {
+  flex: 1;
+  padding: 4px 0 14px 12px;
+}
+.step-title {
+  font-size: 12.5px; font-weight: 600; color: #343a40;
+  font-family: 'Courier New', monospace;
+  display: flex; align-items: center; gap: 8px;
+}
+.step-sub  { font-size: 11.5px; color: #868e96; margin-top: 2px; }
+.step-err  { font-size: 11px; color: #c92a2a; margin-top: 3px; }
+
+/* ── Result banner ─────────────────────────────────────── */
+.result-banner {
+  border-radius: 6px;
+  padding: 16px 18px;
+  border-left: 4px solid;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+.result-banner.success { background: #ebfbee; border-color: #2dc653; }
+.result-banner.fail    { background: #fff5f5; border-color: #e63946; }
+.result-banner.warn    { background: #fffbeb; border-color: #f59f00; }
+.result-banner.info    { background: #e7f5ff; border-color: #4dabf7; }
+
+.result-icon  { font-size: 26px; flex-shrink: 0; margin-top: 1px; }
+.result-title { font-size: 14px; font-weight: 700; color: #212529; margin-bottom: 4px; }
+.result-desc  { font-size: 12.5px; color: #495057; line-height: 1.6; }
+.result-meta  { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.meta-tag {
+  font-size: 11px;
+  padding: 2px 9px;
+  border-radius: 4px;
+  background: #fff;
+  border: 1px solid #dee2e6;
+  color: #495057;
+}
+
+/* ── Table ─────────────────────────────────────────── */
+.data-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+.data-table thead tr { background: #f8f9fa; }
+.data-table th {
+  padding: 8px 14px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  color: #868e96;
+  border-bottom: 2px solid #dee2e6;
+}
+.data-table td {
+  padding: 8px 14px;
+  border-bottom: 1px solid #f1f3f5;
+  color: #495057;
+}
+.data-table tbody tr:last-child td { border-bottom: none; }
+.data-table tbody tr:hover td { background: #f8f9fa; }
+.data-table .highlight td { background: #ebfbee; color: #2b8a3e; font-weight: 600; }
+
+/* ── JSON viewer ─────────────────────────────────────── */
+.json-viewer {
+  background: #1e1e2e;
+  color: #cdd6f4;
+  border-radius: 6px;
+  padding: 14px 16px;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-y: auto;
+  max-height: 260px;
+}
+.json-viewer .jk { color: #89b4fa; }  /* key    */
+.json-viewer .jv { color: #a6e3a1; }  /* string */
+.json-viewer .jn { color: #fab387; }  /* number */
+.json-viewer .jb { color: #f38ba8; }  /* bool   */
+
+/* ── Empty state ─────────────────────────────────────── */
+.empty {
+  text-align: center;
+  padding: 48px 24px;
+  color: #adb5bd;
+}
+.empty .empty-icon { font-size: 40px; margin-bottom: 12px; opacity: .6; }
+.empty h3 { font-size: 14px; font-weight: 600; color: #868e96; margin-bottom: 6px; }
+.empty p  { font-size: 12.5px; max-width: 300px; margin: 0 auto; line-height: 1.6; }
+
+/* ── Section title ─────────────────────────────────────── */
+.section-title {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .6px;
+  color: #868e96;
+  margin-bottom: 14px;
+  padding-bottom: 7px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+/* ── Notification toast ─────────────────────────────────── */
+#toast {
+  position: fixed;
+  bottom: 24px; right: 24px;
+  z-index: 9999;
+  max-width: 340px;
+  padding: 11px 16px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  box-shadow: 0 4px 16px rgba(0,0,0,.15);
+  display: none;
+  border-left: 4px solid;
+}
+#toast.show { display: block; animation: slideUp .2s ease; }
+#toast.success { background: #ebfbee; border-color: #2dc653; color: #2b8a3e; }
+#toast.error   { background: #fff5f5; border-color: #e63946; color: #c92a2a; }
+#toast.info    { background: #e7f5ff; border-color: #4dabf7; color: #1864ab; }
+
+@keyframes slideUp { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+
+/* ── Responsive ─────────────────────────────────────── */
+@media (max-width: 860px) {
+  .two-col { grid-template-columns: 1fr; }
+}
+
+/* ── Scrollbar ─────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-thumb { background: #ced4da; border-radius: 10px; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════ HEADER ═══════════ -->
+<div class="header">
+  <div class="header-brand">
+    <div class="logo">W</div>
+    <h1>Willovate Automation Engine <span>v1.0</span></h1>
+  </div>
+  <div class="header-status">
+    <div class="status-circle" id="statusCircle"></div>
+    <span id="statusText">Checking server…</span>
+  </div>
+</div>
+
+<!-- ═══════════ BODY ═══════════ -->
+<div class="container">
+  <div class="two-col">
+
+    <!-- LEFT COLUMN -->
+    <div>
+
+      <!-- Instruction Card -->
+      <div class="card">
+        <div class="card-head">
+          <span class="icon">⌨</span>
+          <h2>Instruction</h2>
+        </div>
+        <div class="card-body">
+          <textarea
+            class="cmd-box"
+            id="cmdInput"
+            placeholder="Type your instruction here…&#10;e.g. &quot;Add Pankaj Koche as a customer with phone 9876543210&quot;"
+            maxlength="500"
+            oninput="onType()"
+            onkeydown="handleKey(event)"
+          ></textarea>
+          <div class="cmd-meta">
+            <span class="hint">Ctrl+Enter to execute &nbsp;·&nbsp; Shift+Enter to analyze</span>
+            <span id="charCount" style="font-size:11px;color:#adb5bd">0/500</span>
+          </div>
+
+          <div class="btn-row">
+            <button class="btn btn-red"   id="btnExecute" onclick="doExecute()" disabled>▶ Execute</button>
+            <button class="btn btn-dark"  id="btnAnalyze" onclick="doAnalyze()" disabled>🔍 Analyze</button>
+            <button class="btn btn-ghost" onclick="doClear()">✕ Clear</button>
+          </div>
+
+          <div class="examples-label">Quick examples</div>
+          <div class="chips">
+            <span class="chip" onclick="fillEx(this)">Add Pankaj Koche as customer with phone 9876543210</span>
+            <span class="chip" onclick="fillEx(this)">Open the CRM, add Pankaj Koche as a customer with phone number 9876543210, save the record and verify that the customer appears in the table.</span>
+            <span class="chip" onclick="fillEx(this)">Add Nikhil as customer with phone 9823456789</span>
+            <span class="chip" onclick="fillEx(this)">Rahul naam ka customer jod do phone 9876543210</span>
+            <span class="chip" onclick="fillEx(this)">Download today's report</span>
+            <span class="chip" onclick="fillEx(this)">Delete all customers</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pipeline Info Card (populated after analyze/execute) -->
+      <div class="card" id="infoCard" style="margin-top:16px; display:none;">
+        <div class="card-head">
+          <span class="icon">📋</span>
+          <h2>Pipeline Analysis</h2>
+        </div>
+        <div class="card-body" id="infoBody"></div>
+      </div>
+
+    </div><!-- /left column -->
+
+    <!-- RIGHT COLUMN -->
+    <div class="right-stack" id="rightStack">
+      <div class="card">
+        <div class="card-body">
+          <div class="empty">
+            <div class="empty-icon">⚙</div>
+            <h3>Nothing running yet</h3>
+            <p>Enter a natural-language instruction on the left and press <strong>Execute</strong> or <strong>Analyze</strong>.</p>
+          </div>
+        </div>
+      </div>
+    </div><!-- /right column -->
+
+  </div>
+</div><!-- /container -->
+
+<!-- Toast -->
+<div id="toast"></div>
+
+<script>
+/* ════════════════════════════════
+   Config
+════════════════════════════════ */
+const API = 'http://127.0.0.1:8000';
+let busy = false;
+
+/* ════════════════════════════════
+   Health check
+════════════════════════════════ */
+async function checkHealth() {
+  const circle = document.getElementById('statusCircle');
+  const text   = document.getElementById('statusText');
+  try {
+    const r = await fetch(`${API}/api/v1/health`, { signal: AbortSignal.timeout(3000) });
+    if (r.ok) {
+      circle.className = 'status-circle online';
+      text.textContent = 'Server online';
+    } else throw new Error();
+  } catch {
+    circle.className = 'status-circle offline';
+    text.textContent = 'Server offline';
+  }
+}
+checkHealth();
+setInterval(checkHealth, 8000);
+
+/* ════════════════════════════════
+   Input helpers
+════════════════════════════════ */
+function onType() {
+  const val = document.getElementById('cmdInput').value;
+  document.getElementById('charCount').textContent = `${val.length}/500`;
+  const empty = !val.trim();
+  document.getElementById('btnExecute').disabled = empty || busy;
+  document.getElementById('btnAnalyze').disabled = empty || busy;
+}
+
+function handleKey(e) {
+  if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') { e.preventDefault(); doExecute(); }
+  if (e.shiftKey && e.key === 'Enter') { e.preventDefault(); doAnalyze(); }
+}
+
+function fillEx(el) {
+  document.getElementById('cmdInput').value = el.textContent.trim();
+  document.getElementById('cmdInput').focus();
+  onType();
+}
+
+function doClear() {
+  document.getElementById('cmdInput').value = '';
+  onType();
+  document.getElementById('infoCard').style.display = 'none';
+  showEmptyRight();
+}
+
+function setBusy(val) {
+  busy = val;
+  onType();
+  document.getElementById('btnExecute').textContent = val ? '…' : '▶ Execute';
+}
+
+/* ════════════════════════════════
+   Analyze only
+════════════════════════════════ */
+async function doAnalyze() {
+  const instruction = document.getElementById('cmdInput').value.trim();
+  if (!instruction || busy) return;
+  setBusy(true);
+  showLoadingRight('Analyzing instruction…');
+
+  try {
+    const data = await apiPost('/api/v1/generate-workflow', { instruction, lang: 'auto' });
+    renderInfoCard(data);
+    renderAnalysisRight(data);
+  } catch(e) {
+    showErrorRight(e.message);
+    toast(e.message, 'error');
+  } finally { setBusy(false); }
+}
+
+/* ════════════════════════════════
+   Full execute
+════════════════════════════════ */
+async function doExecute() {
+  const instruction = document.getElementById('cmdInput').value.trim();
+  if (!instruction || busy) return;
+  setBusy(true);
+
+  try {
+    // Stage 1 — get pipeline data first for immediate UI
+    const pipeData = await apiPost('/api/v1/generate-workflow', { instruction, lang: 'auto' });
+    renderInfoCard(pipeData);
+
+    const risk = (pipeData.risk?.risk_level || 'LOW').toUpperCase();
+    if (risk === 'HIGH') {
+      renderBlockedRight(pipeData);
+      setBusy(false);
+      return;
+    }
+
+    const steps = pipeData.workflow?.steps || [];
+    renderStepsCard(steps, null); // pending state
+
+    // Stage 2 — full execution
+    const execData = await apiPost('/api/v1/execute', { instruction, lang: 'auto', headless: true });
+    const exec = execData.execution || {};
+
+    renderStepsCard(steps, exec.step_results || []);
+    renderResultCard(exec, execData.entities || {});
+
+    if (exec.customers && exec.customers.length > 0) {
+      renderTableCard(exec.customers, execData.entities || {});
+    }
+
+    toast(exec.success ? 'Execution completed successfully' : 'Execution failed', exec.success ? 'success' : 'error');
+
+  } catch(e) {
+    showErrorRight(e.message);
+    toast(e.message, 'error');
+  } finally { setBusy(false); }
+}
+
+/* ════════════════════════════════
+   API helper
+════════════════════════════════ */
+async function apiPost(path, body) {
+  const r = await fetch(API + path, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  });
+  const data = await r.json();
+  if (!r.ok) throw new Error(data.detail || `HTTP ${r.status}`);
+  return data;
+}
+
+/* ════════════════════════════════
+   Left panel — info card
+════════════════════════════════ */
+function renderInfoCard(d) {
+  const card = document.getElementById('infoCard');
+  const body = document.getElementById('infoBody');
+  card.style.display = '';
+
+  const entities = d.entities || {};
+  const eKeys = Object.keys(entities);
+  const missing = d.missing || [];
+  const risk = d.risk || {};
+  const riskLevel = (risk.risk_level || 'LOW').toUpperCase();
+  const riskBadge = riskLevel === 'HIGH' ? 'badge-red' : riskLevel === 'MEDIUM' ? 'badge-yellow' : 'badge-green';
+
+  body.innerHTML = `
+    <div class="info-row">
+      <span class="info-label">Language</span>
+      <span class="info-val">${langLabel(d.detected_language)}</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">Intent</span>
+      <span class="info-val"><span class="badge badge-blue">${e(d.intent || '—')}</span></span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">Normalized</span>
+      <span class="info-val" style="font-style:italic;color:#868e96;font-size:11.5px">${e(d.normalized_instruction || '')}</span>
+    </div>
+    ${eKeys.length > 0 ? `
+    <div class="info-row">
+      <span class="info-label">Entities</span>
+      <span class="info-val">
+        <div class="entity-pills">
+          ${eKeys.map(k => `<span class="entity-pill"><b>${e(k)}:</b> ${e(entities[k])}</span>`).join('')}
+        </div>
+      </span>
+    </div>` : ''}
+    ${missing.length > 0 ? `
+    <div class="info-row">
+      <span class="info-label">Missing</span>
+      <span class="info-val" style="color:#f59f00">${missing.map(m => e(m)).join(', ')}</span>
+    </div>` : ''}
+    <div class="info-row">
+      <span class="info-label">Risk</span>
+      <span class="info-val"><span class="badge ${riskBadge}">${riskLevel}</span></span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">Workflow valid</span>
+      <span class="info-val">
+        <span class="badge ${d.valid ? 'badge-green' : 'badge-red'}">${d.valid ? 'YES' : 'NO'}</span>
+      </span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">Steps</span>
+      <span class="info-val">${(d.workflow?.steps || []).length} steps</span>
+    </div>`;
+}
+
+function langLabel(lang) {
+  return lang === 'hi' ? '🇮🇳 Hindi' : lang === 'hinglish' ? '🔀 Hinglish' : '🇬🇧 English';
+}
+
+/* ════════════════════════════════
+   Right panel helpers
+════════════════════════════════ */
+function showEmptyRight() {
+  document.getElementById('rightStack').innerHTML = `
+    <div class="card"><div class="card-body">
+      <div class="empty">
+        <div class="empty-icon">⚙</div>
+        <h3>Nothing running yet</h3>
+        <p>Enter a natural-language instruction on the left and press <strong>Execute</strong> or <strong>Analyze</strong>.</p>
+      </div>
+    </div></div>`;
+}
+
+function showLoadingRight(msg) {
+  document.getElementById('rightStack').innerHTML = `
+    <div class="card"><div class="card-body">
+      <div class="empty">
+        <div class="empty-icon" style="animation:spin .8s linear infinite;display:inline-block">⚙</div>
+        <h3 style="margin-top:10px">${e(msg)}</h3>
+        <p>Please wait…</p>
+      </div>
+    </div></div>`;
+}
+
+function showErrorRight(msg) {
+  document.getElementById('rightStack').innerHTML = `
+    <div class="card"><div class="card-body">
+      <div class="result-banner fail">
+        <div class="result-icon">❌</div>
+        <div>
+          <div class="result-title">Error</div>
+          <div class="result-desc">${e(msg)}</div>
+          <div class="result-meta">
+            <span class="meta-tag">Is the server running on port 8000?</span>
+            <span class="meta-tag">uvicorn main:app --port 8000</span>
+          </div>
+        </div>
+      </div>
+    </div></div>`;
+}
+
+function renderBlockedRight(data) {
+  document.getElementById('rightStack').innerHTML = `
+    <div class="card"><div class="card-body">
+      <div class="result-banner warn">
+        <div class="result-icon">🚫</div>
+        <div>
+          <div class="result-title">Execution Blocked — HIGH Risk</div>
+          <div class="result-desc">${e(data.risk?.reason || 'This instruction requires manual confirmation before execution.')}</div>
+          <div class="result-meta"><span class="meta-tag">Risk level: HIGH</span></div>
+        </div>
+      </div>
+    </div></div>`;
+  appendJsonCard(data.workflow);
+}
+
+function renderAnalysisRight(data) {
+  const rs = document.getElementById('rightStack');
+  rs.innerHTML = '';
+  const steps = data.workflow?.steps || [];
+  if (steps.length > 0) {
+    rs.appendChild(makeStepsCard(steps, null));
+  }
+  rs.appendChild(makeJsonCard(data.workflow));
+}
+
+/* ════════════════════════════════
+   Steps card
+════════════════════════════════ */
+function renderStepsCard(steps, results) {
+  const rs = document.getElementById('rightStack');
+  // Replace or insert at top
+  const existing = document.getElementById('stepsCard');
+  const card = makeStepsCard(steps, results);
+  card.id = 'stepsCard';
+  if (existing) existing.replaceWith(card);
+  else rs.insertBefore(card, rs.firstChild);
+}
+
+function makeStepsCard(steps, results) {
+  const card = div('card');
+  card.id = 'stepsCard';
+  card.innerHTML = `<div class="card-head"><span class="icon">⚡</span><h2>Workflow Steps</h2></div>`;
+  const body = div('card-body');
+
+  if (!steps || steps.length === 0) {
+    body.innerHTML = '<p style="color:#adb5bd;font-size:12.5px">No steps generated.</p>';
+    card.appendChild(body);
+    return card;
+  }
+
+  const list = div('steps-list');
+
+  steps.forEach((step, i) => {
+    const res = results ? results.find(r => r.step === i + 1) : null;
+    let state = 'pending';
+    if (results) {
+      if (!res) state = 'pending';
+      else if (res.skipped) state = 'skip';
+      else if (res.success) state = 'done';
+      else state = 'fail';
+    }
+
+    const item  = div('step-item');
+    const line  = div('step-line' + (state === 'done' ? ' done' : state === 'fail' ? ' fail' : ''));
+    const circ  = div('step-circle' + (state === 'done' ? ' done' : state === 'fail' ? ' fail' : state === 'skip' ? ' skip' : ''));
+    const body2 = div('step-body');
+
+    if (state === 'done')  circ.textContent = '✓';
+    else if (state === 'fail') circ.textContent = '✕';
+    else if (state === 'skip') circ.textContent = '—';
+    else circ.textContent = i + 1;
+
+    body2.innerHTML = `
+      <div class="step-title">
+        <span style="color:${state==='done'?'#2b8a3e':state==='fail'?'#c92a2a':'#343a40'}">${e(step.action)}</span>
+        <span style="color:#868e96;font-family:inherit;font-size:12px">→ ${e(step.target || '')}</span>
+      </div>
+      ${step.value ? `<div class="step-sub">value: "${e(step.value)}"</div>` : ''}
+      ${res?.error ? `<div class="step-err">⚠ ${e(res.error)}</div>` : ''}
+      ${res?.skipped ? `<div class="step-sub">skipped — ${e(res.reason || '')}</div>` : ''}`;
+
+    item.appendChild(line);
+    item.appendChild(circ);
+    item.appendChild(body2);
+    list.appendChild(item);
+  });
+
+  body.appendChild(list);
+  card.appendChild(body);
+  return card;
+}
+
+/* ════════════════════════════════
+   Result card
+════════════════════════════════ */
+function renderResultCard(exec, entities) {
+  const rs = document.getElementById('rightStack');
+  const card = div('card');
+
+  const ok       = exec.success;
+  const verified = exec.verification;
+  const name     = entities.name || '';
+  const phone    = entities.phone || '';
+
+  let icon, title, desc, cls;
+  if (ok && verified) {
+    icon = '✅'; cls = 'success';
+    title = 'Execution Successful — Record Verified';
+    desc  = `Customer <strong>${e(name)}</strong> (${e(phone)}) was added and confirmed in the table.`;
+  } else if (ok) {
+    icon = '✅'; cls = 'success';
+    title = 'Execution Completed';
+    desc  = `All ${exec.steps_executed} steps ran successfully.`;
+  } else {
+    icon = '❌'; cls = 'fail';
+    title = `Execution Failed at Step ${exec.failed_step || '?'} (${e(exec.failed_action || '?')})`;
+    desc  = e(exec.error?.message || 'Unknown error');
+  }
+
+  card.innerHTML = `
+    <div class="card-head"><span class="icon">${icon}</span><h2>Result</h2></div>
+    <div class="card-body">
+      <div class="result-banner ${cls}">
+        <div class="result-icon">${icon}</div>
+        <div>
+          <div class="result-title">${title}</div>
+          <div class="result-desc">${desc}</div>
+          <div class="result-meta">
+            <span class="meta-tag">Steps: ${exec.steps_executed}/${exec.steps_total}</span>
+            <span class="meta-tag">Retries: ${exec.retry_count || 0}</span>
+            ${verified ? '<span class="meta-tag" style="color:#2b8a3e;border-color:#2dc653">✓ Verified in table</span>' : ''}
+          </div>
+        </div>
+      </div>
+    </div>`;
+
+  rs.insertBefore(card, rs.firstChild);
+}
+
+/* ════════════════════════════════
+   Table card
+════════════════════════════════ */
+function renderTableCard(customers, entities) {
+  const rs = document.getElementById('rightStack');
+  const card = div('card');
+
+  const rows = customers.map((c, i) => {
+    const isMatch = entities.name &&
+      (c.name || '').toLowerCase() === entities.name.toLowerCase() &&
+      c.phone === entities.phone;
+    return `<tr class="${isMatch ? 'highlight' : ''}">
+      <td>${i+1}</td>
+      <td>${e(c.name||'')}${isMatch?' <span style="color:#2dc653">✓</span>':''}</td>
+      <td>${e(c.phone||'')}</td>
+    </tr>`;
+  }).join('');
+
+  card.innerHTML = `
+    <div class="card-head"><span class="icon">📊</span><h2>Customer Table (${customers.length} records)</h2></div>
+    <div class="card-body">
+      <table class="data-table">
+        <thead><tr><th>#</th><th>Name</th><th>Phone</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>`;
+  rs.appendChild(card);
+}
+
+/* ════════════════════════════════
+   JSON card
+════════════════════════════════ */
+function makeJsonCard(workflow) {
+  const card = div('card');
+  card.innerHTML = `
+    <div class="card-head"><span class="icon">{ }</span><h2>Generated Workflow JSON</h2></div>
+    <div class="card-body">
+      <div class="json-viewer">${syntaxHL(JSON.stringify(workflow, null, 2))}</div>
+    </div>`;
+  return card;
+}
+
+function appendJsonCard(workflow) {
+  document.getElementById('rightStack').appendChild(makeJsonCard(workflow));
+}
+
+/* ════════════════════════════════
+   Utilities
+════════════════════════════════ */
+function div(cls) {
+  const d = document.createElement('div');
+  if (cls) d.className = cls;
+  return d;
+}
+
+function e(s) {
+  return String(s)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function syntaxHL(json) {
+  return json.replace(
+    /("(\\u[\da-fA-F]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g,
+    m => {
+      let c = 'jn';
+      if (/^"/.test(m)) c = /:$/.test(m) ? 'jk' : 'jv';
+      else if (/true|false/.test(m)) c = 'jb';
+      return `<span class="${c}">${m}</span>`;
+    }
+  );
+}
+
+function toast(msg, type = 'info') {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = `show ${type}`;
+  setTimeout(() => { t.className = ''; }, 4000);
+}
+</script>
+</body>
+</html>

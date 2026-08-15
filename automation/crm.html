@@ -1,128 +1,682 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>CRM Web Application</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Willovate CRM</title>
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: #f0f2f5; color: #222; }
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 40px;
-        }
+    /* ── Layout ── */
+    .app      { display: flex; min-height: 100vh; }
+    .sidebar  { width: 220px; background: #1a2340; color: #fff; display: flex; flex-direction: column; padding: 0; flex-shrink: 0; }
+    .main     { flex: 1; display: flex; flex-direction: column; }
+    .topbar   { background: #fff; padding: 14px 28px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #e0e0e0; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+    .content  { padding: 28px; flex: 1; }
 
-        .container {
-            max-width: 800px;
-            margin: auto;
-        }
+    /* ── Sidebar ── */
+    .sidebar-logo { padding: 22px 20px 18px; font-size: 20px; font-weight: 700; letter-spacing: .5px; border-bottom: 1px solid rgba(255,255,255,.1); }
+    .sidebar-logo span { color: #4f8ef7; }
+    .nav-item { display: flex; align-items: center; gap: 10px; padding: 13px 22px; cursor: pointer; font-size: 14px; transition: background .15s; border-left: 3px solid transparent; }
+    .nav-item:hover    { background: rgba(255,255,255,.07); }
+    .nav-item.active   { background: rgba(79,142,247,.18); border-left-color: #4f8ef7; color: #4f8ef7; }
+    .nav-item .icon    { font-size: 17px; width: 22px; text-align: center; }
+    .sidebar-section   { padding: 12px 22px 4px; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,.35); margin-top: 8px; }
 
-        input {
-            display: block;
-            width: 400px;
-            padding: 10px;
-            margin: 10px 0 20px;
-        }
+    /* ── Topbar ── */
+    .topbar-title  { font-size: 18px; font-weight: 600; color: #1a2340; }
+    .topbar-right  { display: flex; align-items: center; gap: 14px; }
+    .badge         { background: #4f8ef7; color: #fff; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; }
 
-        button {
-            padding: 10px 20px;
-            cursor: pointer;
-        }
+    /* ── Cards / Panels ── */
+    .card          { background: #fff; border-radius: 10px; padding: 24px; box-shadow: 0 1px 6px rgba(0,0,0,.07); margin-bottom: 22px; }
+    .card-title    { font-size: 15px; font-weight: 600; color: #1a2340; margin-bottom: 18px; padding-bottom: 10px; border-bottom: 1px solid #f0f0f0; }
 
-        table {
-            width: 100%;
-            margin-top: 30px;
-            border-collapse: collapse;
-        }
+    /* ── Stats row ── */
+    .stats-row     { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 22px; }
+    .stat-card     { background: #fff; border-radius: 10px; padding: 20px 22px; box-shadow: 0 1px 6px rgba(0,0,0,.07); display: flex; flex-direction: column; gap: 6px; }
+    .stat-label    { font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: .5px; }
+    .stat-value    { font-size: 28px; font-weight: 700; color: #1a2340; }
+    .stat-icon     { font-size: 24px; margin-bottom: 4px; }
 
-        th, td {
-            border: 1px solid #ccc;
-            padding: 10px;
-            text-align: left;
-        }
-    </style>
+    /* ── Form ── */
+    .form-grid     { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group    { display: flex; flex-direction: column; gap: 6px; }
+    .form-group label { font-size: 13px; font-weight: 500; color: #444; }
+    .form-group input, .form-group select {
+      padding: 10px 12px; border: 1px solid #d8d8d8; border-radius: 7px;
+      font-size: 14px; transition: border .15s; outline: none;
+    }
+    .form-group input:focus, .form-group select:focus { border-color: #4f8ef7; box-shadow: 0 0 0 3px rgba(79,142,247,.12); }
+    .form-actions  { display: flex; gap: 10px; margin-top: 18px; }
+
+    /* ── Buttons ── */
+    .btn           { padding: 10px 22px; border: none; border-radius: 7px; cursor: pointer; font-size: 14px; font-weight: 500; transition: opacity .15s, box-shadow .15s; }
+    .btn:hover     { opacity: .88; box-shadow: 0 2px 8px rgba(0,0,0,.12); }
+    .btn-primary   { background: #4f8ef7; color: #fff; }
+    .btn-success   { background: #27ae60; color: #fff; }
+    .btn-danger    { background: #e74c3c; color: #fff; }
+    .btn-secondary { background: #eee; color: #444; }
+    .btn-sm        { padding: 6px 14px; font-size: 13px; }
+
+    /* ── Table ── */
+    .table-wrap    { overflow-x: auto; }
+    table          { width: 100%; border-collapse: collapse; font-size: 14px; }
+    thead tr       { background: #f7f8fa; }
+    th             { padding: 11px 14px; text-align: left; font-size: 12px; text-transform: uppercase; letter-spacing: .5px; color: #888; border-bottom: 2px solid #eee; }
+    td             { padding: 12px 14px; border-bottom: 1px solid #f0f0f0; }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td    { background: #fafbff; }
+    .empty-state   { text-align: center; color: #bbb; padding: 40px 0; font-size: 15px; }
+
+    /* ── Badges ── */
+    .tag           { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 12px; font-weight: 500; }
+    .tag-active    { background: #e8f5e9; color: #27ae60; }
+    .tag-inactive  { background: #fce4ec; color: #e74c3c; }
+    .tag-medium    { background: #fff3e0; color: #e67e22; }
+
+    /* ── Toast ── */
+    #toast         { position: fixed; bottom: 28px; right: 28px; background: #1a2340; color: #fff; padding: 13px 22px; border-radius: 8px; font-size: 14px; opacity: 0; pointer-events: none; transition: opacity .3s; z-index: 9999; box-shadow: 0 4px 16px rgba(0,0,0,.18); }
+    #toast.show    { opacity: 1; }
+    #toast.success { background: #27ae60; }
+    #toast.error   { background: #e74c3c; }
+
+    /* ── Page visibility ── */
+    .page          { display: none; }
+    .page.active   { display: block; }
+
+    /* ── Search bar ── */
+    .search-bar    { display: flex; gap: 10px; margin-bottom: 18px; }
+    .search-bar input { flex: 1; padding: 9px 14px; border: 1px solid #d8d8d8; border-radius: 7px; font-size: 14px; outline: none; }
+    .search-bar input:focus { border-color: #4f8ef7; }
+
+    /* ── Responsive ── */
+    @media (max-width: 700px) {
+      .stats-row { grid-template-columns: 1fr 1fr; }
+      .form-grid { grid-template-columns: 1fr; }
+      .sidebar   { width: 60px; }
+      .nav-item span.label { display: none; }
+      .sidebar-logo, .sidebar-section { display: none; }
+    }
+  </style>
 </head>
-
 <body>
 
-<div class="container">
+<div id="toast"></div>
 
-    <h1>CRM Web Application</h1>
+<div class="app">
 
-    <h2>Add Customer</h2>
+  <!-- ── Sidebar ── -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">Willovate <span>CRM</span></div>
 
-    <label for="customerName">Customer Name</label>
-    <input
-        type="text"
-        id="customerName"
-        placeholder="Enter customer name"
-    >
+    <div class="sidebar-section">Main</div>
+    <div class="nav-item active" onclick="navigate('dashboard')">
+      <span class="icon">📊</span><span class="label">Dashboard</span>
+    </div>
 
-    <label for="phoneNumber">Phone Number</label>
-    <input
-        type="text"
-        id="phoneNumber"
-        placeholder="Enter phone number"
-    >
+    <div class="sidebar-section">Records</div>
+    <div class="nav-item" onclick="navigate('customers')">
+      <span class="icon">👥</span><span class="label">Customers</span>
+    </div>
+    <div class="nav-item" onclick="navigate('products')">
+      <span class="icon">📦</span><span class="label">Products</span>
+    </div>
+    <div class="nav-item" onclick="navigate('employees')">
+      <span class="icon">🧑‍💼</span><span class="label">Employees</span>
+    </div>
 
-    <button id="addCustomer">Add Customer</button>
+    <div class="sidebar-section">Tools</div>
+    <div class="nav-item" onclick="navigate('reports')">
+      <span class="icon">📄</span><span class="label">Reports</span>
+    </div>
+    <div class="nav-item" onclick="navigate('upload')">
+      <span class="icon">📤</span><span class="label">Upload</span>
+    </div>
+    <div class="nav-item" onclick="navigate('settings')">
+      <span class="icon">⚙️</span><span class="label">Settings</span>
+    </div>
+  </aside>
 
-    <h2>Customer List</h2>
+  <!-- ── Main ── -->
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-title" id="topbar-title">Dashboard</div>
+      <div class="topbar-right">
+        <span style="font-size:13px;color:#888;">No Database — In-Memory Storage</span>
+        <div class="badge">W</div>
+      </div>
+    </div>
 
-    <table id="customerTable">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Phone</th>
-            </tr>
-        </thead>
+    <div class="content">
 
-        <tbody id="customerTableBody">
-        </tbody>
-    </table>
+      <!-- ═══════════════════ DASHBOARD ═══════════════════ -->
+      <div id="page-dashboard" class="page active">
+        <div class="stats-row">
+          <div class="stat-card">
+            <div class="stat-icon">👥</div>
+            <div class="stat-label">Total Customers</div>
+            <div class="stat-value" id="stat-customers">0</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">📦</div>
+            <div class="stat-label">Total Products</div>
+            <div class="stat-value" id="stat-products">0</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">🧑‍💼</div>
+            <div class="stat-label">Employees</div>
+            <div class="stat-value" id="stat-employees">0</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">📄</div>
+            <div class="stat-label">Reports</div>
+            <div class="stat-value" id="stat-reports">0</div>
+          </div>
+        </div>
 
-</div>
+        <div class="card">
+          <div class="card-title">Recent Customers</div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Name</th><th>Phone</th><th>Email</th><th>Status</th></tr></thead>
+              <tbody id="dashboard-recent-customers">
+                <tr><td colspan="4" class="empty-state">No customers yet</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════ CUSTOMERS ═══════════════════ -->
+      <div id="page-customers" class="page">
+        <div class="card">
+          <div class="card-title">Add Customer</div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="customerName">Customer Name</label>
+              <input type="text" id="customerName" placeholder="Enter customer name" />
+            </div>
+            <div class="form-group">
+              <label for="phoneNumber">Phone Number</label>
+              <input type="text" id="phoneNumber" placeholder="Enter phone number" />
+            </div>
+            <div class="form-group">
+              <label for="customerEmail">Email</label>
+              <input type="email" id="customerEmail" placeholder="Enter email address" />
+            </div>
+            <div class="form-group">
+              <label for="customerStatus">Status</label>
+              <select id="customerStatus">
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button class="btn btn-primary" id="addCustomer" onclick="addCustomer()">Add Customer</button>
+            <button class="btn btn-success" id="saveCustomer" onclick="saveCustomer()">Save</button>
+            <button class="btn btn-secondary" onclick="clearCustomerForm()">Clear</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Customer List</div>
+          <div class="search-bar">
+            <input type="text" id="customerSearch" placeholder="Search by name or phone..." oninput="filterCustomers()" />
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>#</th><th>Name</th><th>Phone</th><th>Email</th><th>Status</th><th>Actions</th></tr>
+              </thead>
+              <tbody id="customerTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════ PRODUCTS ═══════════════════ -->
+      <div id="page-products" class="page">
+        <div class="card">
+          <div class="card-title">Add Product</div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="productName">Product Name</label>
+              <input type="text" id="productName" placeholder="Enter product name" />
+            </div>
+            <div class="form-group">
+              <label for="productPrice">Price (₹)</label>
+              <input type="number" id="productPrice" placeholder="Enter price" />
+            </div>
+            <div class="form-group">
+              <label for="productCategory">Category</label>
+              <input type="text" id="productCategory" placeholder="e.g. Electronics" />
+            </div>
+            <div class="form-group">
+              <label for="productStock">Stock</label>
+              <input type="number" id="productStock" placeholder="Quantity" value="0" />
+            </div>
+          </div>
+          <div class="form-actions">
+            <button class="btn btn-primary" onclick="addProduct()">Add Product</button>
+            <button class="btn btn-success" onclick="saveProduct()">Save</button>
+            <button class="btn btn-secondary" onclick="clearProductForm()">Clear</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Product List</div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>#</th><th>Name</th><th>Price</th><th>Category</th><th>Stock</th><th>Actions</th></tr>
+              </thead>
+              <tbody id="productTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════ EMPLOYEES ═══════════════════ -->
+      <div id="page-employees" class="page">
+        <div class="card">
+          <div class="card-title">Add Employee</div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="employeeName">Employee Name</label>
+              <input type="text" id="employeeName" placeholder="Enter employee name" />
+            </div>
+            <div class="form-group">
+              <label for="employeePhone">Phone</label>
+              <input type="text" id="employeePhone" placeholder="Enter phone number" />
+            </div>
+            <div class="form-group">
+              <label for="employeeEmail">Email</label>
+              <input type="email" id="employeeEmail" placeholder="Enter email" />
+            </div>
+            <div class="form-group">
+              <label for="employeeDept">Department</label>
+              <input type="text" id="employeeDept" placeholder="e.g. Sales" />
+            </div>
+          </div>
+          <div class="form-actions">
+            <button class="btn btn-primary" onclick="addEmployee()">Add Employee</button>
+            <button class="btn btn-success" onclick="saveEmployee()">Save</button>
+            <button class="btn btn-secondary" onclick="clearEmployeeForm()">Clear</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Employee List</div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>#</th><th>Name</th><th>Phone</th><th>Email</th><th>Dept</th><th>Actions</th></tr>
+              </thead>
+              <tbody id="employeeTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════ REPORTS ═══════════════════ -->
+      <div id="page-reports" class="page">
+        <div class="card">
+          <div class="card-title">Available Reports</div>
+          <table>
+            <thead><tr><th>Report Name</th><th>Type</th><th>Records</th><th>Action</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>Customer Report</td><td>CSV</td>
+                <td id="report-customer-count">0</td>
+                <td><button class="btn btn-primary btn-sm" id="downloadCustomerReport" onclick="downloadReport('customers')">Download</button></td>
+              </tr>
+              <tr>
+                <td>Product Report</td><td>CSV</td>
+                <td id="report-product-count">0</td>
+                <td><button class="btn btn-primary btn-sm" id="downloadProductReport" onclick="downloadReport('products')">Download</button></td>
+              </tr>
+              <tr>
+                <td>Employee Report</td><td>CSV</td>
+                <td id="report-employee-count">0</td>
+                <td><button class="btn btn-primary btn-sm" id="downloadEmployeeReport" onclick="downloadReport('employees')">Download</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <div class="card-title">Download Status</div>
+          <p id="download-status" style="color:#888;font-size:14px;">No downloads yet.</p>
+        </div>
+      </div>
+
+      <!-- ═══════════════════ UPLOAD ═══════════════════ -->
+      <div id="page-upload" class="page">
+        <div class="card">
+          <div class="card-title">Upload File</div>
+          <div class="form-group" style="max-width:400px;">
+            <label>Select File</label>
+            <input type="file" id="uploadFile" accept=".csv,.xlsx,.pdf,.jpg,.png,.zip" />
+          </div>
+          <div class="form-actions" style="margin-top:14px;">
+            <button class="btn btn-primary" id="uploadFileBtn" onclick="uploadFile()">Upload File</button>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">Uploaded Files</div>
+          <table>
+            <thead><tr><th>#</th><th>File Name</th><th>Size</th><th>Uploaded At</th></tr></thead>
+            <tbody id="uploadedFilesBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ═══════════════════ SETTINGS ═══════════════════ -->
+      <div id="page-settings" class="page">
+        <div class="card">
+          <div class="card-title">Account Settings</div>
+          <div class="form-grid" style="max-width:500px;">
+            <div class="form-group">
+              <label>Company Name</label>
+              <input type="text" id="settingCompany" value="Willovate" />
+            </div>
+            <div class="form-group">
+              <label>Admin Email</label>
+              <input type="email" id="settingEmail" value="admin@willovate.com" />
+            </div>
+          </div>
+          <div class="form-actions">
+            <button class="btn btn-primary" onclick="saveSettings()">Save Settings</button>
+          </div>
+        </div>
+        <div class="card" style="border-left: 4px solid #e74c3c;">
+          <div class="card-title" style="color:#e74c3c;">Danger Zone</div>
+          <p style="font-size:14px;color:#888;margin-bottom:14px;">These actions are irreversible. Proceed with caution.</p>
+          <button class="btn btn-danger" onclick="clearAllData()">Clear All Data</button>
+        </div>
+      </div>
+
+    </div><!-- /content -->
+  </div><!-- /main -->
+</div><!-- /app -->
 
 <script>
+  // ─── In-memory store (no database) ───
+  const DB = {
+    customers: [],
+    products:  [],
+    employees: [],
+    uploads:   [],
+    reportDownloads: 0,
+  };
 
-    document
-        .getElementById("addCustomer")
-        .addEventListener("click", function () {
+  // ─── Navigation ───
+  function navigate(page) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    document.getElementById('page-' + page).classList.add('active');
+    // highlight sidebar item
+    document.querySelectorAll('.nav-item').forEach(n => {
+      if (n.getAttribute('onclick') === "navigate('" + page + "')") n.classList.add('active');
+    });
+    const titles = { dashboard:'Dashboard', customers:'Customers', products:'Products', employees:'Employees', reports:'Reports', upload:'Upload', settings:'Settings' };
+    document.getElementById('topbar-title').textContent = titles[page] || page;
+    if (page === 'dashboard')  refreshDashboard();
+    if (page === 'reports')    refreshReportCounts();
+  }
 
-            const name =
-                document.getElementById("customerName").value;
+  // ─── Toast ───
+  function toast(msg, type = '') {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.className = 'show ' + type;
+    setTimeout(() => { t.className = ''; }, 3000);
+  }
 
-            const phone =
-                document.getElementById("phoneNumber").value;
+  // ═══════════════ CUSTOMERS ═══════════════
 
-            if (!name || !phone) {
-                alert("Please enter customer name and phone number.");
-                return;
-            }
+  function addCustomer() {
+    const name   = document.getElementById('customerName').value.trim();
+    const phone  = document.getElementById('phoneNumber').value.trim();
+    const email  = document.getElementById('customerEmail').value.trim();
+    const status = document.getElementById('customerStatus').value;
 
-            const tableBody =
-                document.getElementById("customerTableBody");
+    if (!name || !phone) { toast('Customer name and phone are required.', 'error'); return; }
 
-            const row =
-                document.createElement("tr");
+    DB.customers.push({ name, phone, email, status });
+    renderCustomers();
+    clearCustomerForm();
+    toast('Customer "' + name + '" added successfully.', 'success');
+  }
 
-            const nameCell =
-                document.createElement("td");
+  function saveCustomer() {
+    // Save = same as Add Customer in this in-memory CRM
+    const name  = document.getElementById('customerName').value.trim();
+    const phone = document.getElementById('phoneNumber').value.trim();
+    if (name && phone) {
+      addCustomer();
+    } else {
+      toast('Fill in at least name and phone before saving.', 'error');
+    }
+  }
 
-            const phoneCell =
-                document.createElement("td");
+  function clearCustomerForm() {
+    ['customerName','phoneNumber','customerEmail'].forEach(id => document.getElementById(id).value = '');
+    document.getElementById('customerStatus').value = 'Active';
+  }
 
-            nameCell.textContent = name;
-            phoneCell.textContent = phone;
+  function deleteCustomer(index) {
+    const name = DB.customers[index].name;
+    DB.customers.splice(index, 1);
+    renderCustomers();
+    toast('Customer "' + name + '" deleted.', 'error');
+  }
 
-            row.appendChild(nameCell);
-            row.appendChild(phoneCell);
+  function filterCustomers() {
+    const q = document.getElementById('customerSearch').value.toLowerCase();
+    renderCustomers(q);
+  }
 
-            tableBody.appendChild(row);
+  function renderCustomers(filter = '') {
+    const tbody = document.getElementById('customerTableBody');
+    const rows = DB.customers
+      .map((c, i) => ({ ...c, _i: i }))
+      .filter(c => !filter || c.name.toLowerCase().includes(filter) || c.phone.includes(filter));
 
-            document.getElementById("customerName").value = "";
-            document.getElementById("phoneNumber").value = "";
-        });
+    if (rows.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="6" class="empty-state">No customers found</td></tr>';
+      return;
+    }
+    tbody.innerHTML = rows.map(c =>
+      '<tr>' +
+      '<td>' + (c._i + 1) + '</td>' +
+      '<td>' + c.name + '</td>' +
+      '<td>' + c.phone + '</td>' +
+      '<td>' + (c.email || '—') + '</td>' +
+      '<td><span class="tag ' + (c.status === 'Active' ? 'tag-active' : 'tag-inactive') + '">' + c.status + '</span></td>' +
+      '<td><button class="btn btn-danger btn-sm" onclick="deleteCustomer(' + c._i + ')">Delete</button></td>' +
+      '</tr>'
+    ).join('');
+  }
 
+  // ═══════════════ PRODUCTS ═══════════════
+
+  function addProduct() {
+    const name     = document.getElementById('productName').value.trim();
+    const price    = document.getElementById('productPrice').value.trim();
+    const category = document.getElementById('productCategory').value.trim();
+    const stock    = document.getElementById('productStock').value.trim();
+    if (!name || !price) { toast('Product name and price are required.', 'error'); return; }
+    DB.products.push({ name, price, category, stock });
+    renderProducts();
+    clearProductForm();
+    toast('Product "' + name + '" added.', 'success');
+  }
+
+  function saveProduct() {
+    const name  = document.getElementById('productName').value.trim();
+    const price = document.getElementById('productPrice').value.trim();
+    if (name && price) { addProduct(); }
+    else { toast('Fill in product name and price before saving.', 'error'); }
+  }
+
+  function clearProductForm() {
+    ['productName','productPrice','productCategory','productStock'].forEach(id => document.getElementById(id).value = '');
+    document.getElementById('productStock').value = '0';
+  }
+
+  function deleteProduct(index) {
+    DB.products.splice(index, 1);
+    renderProducts();
+    toast('Product deleted.', 'error');
+  }
+
+  function renderProducts() {
+    const tbody = document.getElementById('productTableBody');
+    if (DB.products.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="6" class="empty-state">No products yet</td></tr>';
+      return;
+    }
+    tbody.innerHTML = DB.products.map((p, i) =>
+      '<tr><td>' + (i+1) + '</td><td>' + p.name + '</td><td>₹' + p.price +
+      '</td><td>' + (p.category||'—') + '</td><td>' + (p.stock||0) +
+      '</td><td><button class="btn btn-danger btn-sm" onclick="deleteProduct(' + i + ')">Delete</button></td></tr>'
+    ).join('');
+  }
+
+  // ═══════════════ EMPLOYEES ═══════════════
+
+  function addEmployee() {
+    const name  = document.getElementById('employeeName').value.trim();
+    const phone = document.getElementById('employeePhone').value.trim();
+    const email = document.getElementById('employeeEmail').value.trim();
+    const dept  = document.getElementById('employeeDept').value.trim();
+    if (!name) { toast('Employee name is required.', 'error'); return; }
+    DB.employees.push({ name, phone, email, dept });
+    renderEmployees();
+    clearEmployeeForm();
+    toast('Employee "' + name + '" added.', 'success');
+  }
+
+  function saveEmployee() {
+    const name = document.getElementById('employeeName').value.trim();
+    if (name) { addEmployee(); }
+    else { toast('Enter employee name before saving.', 'error'); }
+  }
+
+  function clearEmployeeForm() {
+    ['employeeName','employeePhone','employeeEmail','employeeDept'].forEach(id => document.getElementById(id).value = '');
+  }
+
+  function deleteEmployee(index) {
+    DB.employees.splice(index, 1);
+    renderEmployees();
+    toast('Employee deleted.', 'error');
+  }
+
+  function renderEmployees() {
+    const tbody = document.getElementById('employeeTableBody');
+    if (DB.employees.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="6" class="empty-state">No employees yet</td></tr>';
+      return;
+    }
+    tbody.innerHTML = DB.employees.map((e, i) =>
+      '<tr><td>' + (i+1) + '</td><td>' + e.name + '</td><td>' + (e.phone||'—') +
+      '</td><td>' + (e.email||'—') + '</td><td>' + (e.dept||'—') +
+      '</td><td><button class="btn btn-danger btn-sm" onclick="deleteEmployee(' + i + ')">Delete</button></td></tr>'
+    ).join('');
+  }
+
+  // ═══════════════ REPORTS ═══════════════
+
+  function refreshReportCounts() {
+    document.getElementById('report-customer-count').textContent = DB.customers.length;
+    document.getElementById('report-product-count').textContent  = DB.products.length;
+    document.getElementById('report-employee-count').textContent = DB.employees.length;
+  }
+
+  function downloadReport(type) {
+    const dataMap = { customers: DB.customers, products: DB.products, employees: DB.employees };
+    const data = dataMap[type];
+    if (!data || data.length === 0) { toast('No records to download.', 'error'); return; }
+    const keys = Object.keys(data[0]);
+    const csv  = [keys.join(','), ...data.map(row => keys.map(k => '"' + (row[k]||'') + '"').join(','))].join('\n');
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    a.href = url; a.download = type + '_report.csv'; a.click();
+    URL.revokeObjectURL(url);
+    DB.reportDownloads++;
+    document.getElementById('download-status').textContent = type + '_report.csv downloaded at ' + new Date().toLocaleTimeString();
+    toast('Report downloaded.', 'success');
+  }
+
+  // ═══════════════ UPLOAD ═══════════════
+
+  function uploadFile() {
+    const fileInput = document.getElementById('uploadFile');
+    const file = fileInput.files[0];
+    if (!file) { toast('Please select a file first.', 'error'); return; }
+    DB.uploads.push({ name: file.name, size: (file.size / 1024).toFixed(1) + ' KB', time: new Date().toLocaleTimeString() });
+    renderUploads();
+    fileInput.value = '';
+    toast('File "' + file.name + '" uploaded.', 'success');
+  }
+
+  function renderUploads() {
+    const tbody = document.getElementById('uploadedFilesBody');
+    if (DB.uploads.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="4" class="empty-state">No files uploaded yet</td></tr>';
+      return;
+    }
+    tbody.innerHTML = DB.uploads.map((f, i) =>
+      '<tr><td>' + (i+1) + '</td><td>' + f.name + '</td><td>' + f.size + '</td><td>' + f.time + '</td></tr>'
+    ).join('');
+  }
+
+  // ═══════════════ SETTINGS ═══════════════
+
+  function saveSettings() {
+    toast('Settings saved.', 'success');
+  }
+
+  function clearAllData() {
+    if (!confirm('This will delete all customers, products and employees from memory. Continue?')) return;
+    DB.customers = []; DB.products = []; DB.employees = []; DB.uploads = [];
+    renderCustomers(); renderProducts(); renderEmployees(); renderUploads();
+    refreshDashboard();
+    toast('All data cleared.', 'error');
+  }
+
+  // ═══════════════ DASHBOARD ═══════════════
+
+  function refreshDashboard() {
+    document.getElementById('stat-customers').textContent = DB.customers.length;
+    document.getElementById('stat-products').textContent  = DB.products.length;
+    document.getElementById('stat-employees').textContent = DB.employees.length;
+    document.getElementById('stat-reports').textContent   = DB.reportDownloads;
+
+    const tbody = document.getElementById('dashboard-recent-customers');
+    const recent = DB.customers.slice(-5).reverse();
+    if (recent.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="4" class="empty-state">No customers yet</td></tr>';
+      return;
+    }
+    tbody.innerHTML = recent.map(c =>
+      '<tr><td>' + c.name + '</td><td>' + c.phone + '</td><td>' + (c.email||'—') + '</td>' +
+      '<td><span class="tag ' + (c.status==='Active'?'tag-active':'tag-inactive') + '">' + c.status + '</span></td></tr>'
+    ).join('');
+  }
+
+  // ─── Init ───
+  renderCustomers();
+  renderProducts();
+  renderEmployees();
+  renderUploads();
+  refreshDashboard();
 </script>
-
 </body>
 </html>

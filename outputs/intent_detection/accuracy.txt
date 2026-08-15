@@ -1,0 +1,27 @@
+Accuracy : 0.8293
+
+Model     : TF-IDF + Logistic Regression
+Dataset   : 251 samples
+Intents   : 14 classes
+Train/Test: 80/20 split
+
+Per-class results:
+
+  ADD_CUSTOMER       F1 = 0.76   (support: 13)
+  CLICK_BUTTON       F1 = 0.50   (support:  3)
+  DELETE_CUSTOMER    F1 = 0.71   (support:  7)
+  DELETE_EMPLOYEE    F1 = 0.89   (support:  5)
+  DOWNLOAD_REPORT    F1 = 0.95   (support:  9)
+  FILL_FORM          F1 = 1.00   (support:  4)
+  OPEN_PAGE          F1 = 0.80   (support:  6)
+  READ_TABLE         F1 = 0.67   (support:  4)
+  SEND_EMAIL         F1 = 0.80   (support:  6)
+  TAKE_SCREENSHOT    F1 = 1.00   (support:  5)
+  UPDATE_CUSTOMER    F1 = 0.73   (support:  5)
+  UPDATE_EMPLOYEE    F1 = 0.67   (support:  5)
+  UPDATE_PRODUCT     F1 = 1.00   (support:  4)
+  UPLOAD_FILE        F1 = 1.00   (support:  6)
+
+  Macro avg F1       : 0.82
+  Weighted avg F1    : 0.82
+  Overall accuracy   : 82.93%
