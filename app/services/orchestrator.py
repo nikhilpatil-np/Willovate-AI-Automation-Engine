@@ -211,8 +211,27 @@ async def execute_instruction(instruction: str, lang: str = "auto", headless: bo
         }
         return pipeline_result
 
-    # ------------------------------------------------------------------
-    # Stage 2 — Execute workflow through browser runner
+    # Abort if required fields are missing — do not run browser with empty form
+    missing = pipeline_result.get("missing", [])
+    if missing:
+        logger.warning("Execution blocked — missing required fields: %s", missing)
+        pipeline_result["execution"] = {
+            "success":        False,
+            "steps_executed": 0,
+            "steps_total":    len(pipeline_result["workflow"].get("steps", [])),
+            "failed_step":    None,
+            "failed_action":  None,
+            "error":          {
+                "message": f"Missing required fields: {', '.join(missing)}. "
+                           f"Please provide: {', '.join(missing)}."
+            },
+            "retry_count":    0,
+            "verification":   False,
+            "customers":      None,
+            "step_results":   [],
+        }
+        return pipeline_result
+
     # ------------------------------------------------------------------
     from automation.browser_runner import execute_workflow
 

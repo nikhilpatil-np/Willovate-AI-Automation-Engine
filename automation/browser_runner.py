@@ -291,7 +291,7 @@ async def execute_workflow(workflow: dict, headless: bool = True) -> dict:
         for idx, step in enumerate(steps, start=1):
             action = step.get("action", "")
             target = step.get("target", "")
-            print(f"  Step {idx}/{len(steps)}: {action} → {target}")
+            print(f"  Step {idx}/{len(steps)}: {action} -> {target}")
 
             step_res = {
                 "step":    idx,
