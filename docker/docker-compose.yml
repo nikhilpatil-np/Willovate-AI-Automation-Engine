@@ -1,0 +1,39 @@
+version: "3.9"
+
+# ---------------------------------------------------------------------------
+# Willovate AI Automation Engine — Docker Compose
+# ---------------------------------------------------------------------------
+# Services:
+#   api  — FastAPI NL pipeline (port 8000)
+#
+# Usage:
+#   Start :  docker-compose up --build
+#   Stop  :  docker-compose down
+#   Logs  :  docker-compose logs -f api
+# ---------------------------------------------------------------------------
+
+services:
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: willovate_api
+    ports:
+      - "8000:8000"
+    volumes:
+      # Mount outputs folder so reports persist on the host
+      - ./outputs:/app/outputs
+      # Mount models folder so updated .pkl files are picked up without rebuild
+      - ./models:/app/models
+    environment:
+      - PYTHONUNBUFFERED=1
+      # Set to "production" to suppress debug logs
+      - APP_ENV=development
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s

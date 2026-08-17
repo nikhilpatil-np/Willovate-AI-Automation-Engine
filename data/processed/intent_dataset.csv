@@ -4,249 +4,1047 @@ Create a new customer,ADD_CUSTOMER
 Register customer Rahul,ADD_CUSTOMER
 Add customer Amit,ADD_CUSTOMER
 Please create a customer account,ADD_CUSTOMER
+Add Pankaj Koche as customer with phone 9876543210,ADD_CUSTOMER
+Add Nikhil as customer with phone 9823456789,ADD_CUSTOMER
+Create customer record for Rahul,ADD_CUSTOMER
+New customer Amit Singh phone 9988776655,ADD_CUSTOMER
+Register a new client Rohit,ADD_CUSTOMER
+Add a customer named Suresh,ADD_CUSTOMER
+Create a new client account,ADD_CUSTOMER
+Add client Priya with email priya@test.com,ADD_CUSTOMER
+Register new customer with phone number,ADD_CUSTOMER
+Add customer entry for Mahesh,ADD_CUSTOMER
+Create customer profile Sunita,ADD_CUSTOMER
+Add new user as customer,ADD_CUSTOMER
+Insert customer record,ADD_CUSTOMER
+Add Ramesh as a new customer,ADD_CUSTOMER
+Create account for customer Deepak,ADD_CUSTOMER
+Add custmer Rahul,ADD_CUSTOMER
+Creat new customer,ADD_CUSTOMER
+Addcustomer Pankaj,ADD_CUSTOMER
+Add custommer Amit,ADD_CUSTOMER
+Regster customer Suresh,ADD_CUSTOMER
+Add costomer Nikhil,ADD_CUSTOMER
+Create custmer record,ADD_CUSTOMER
+Add a new costumer,ADD_CUSTOMER
+Rahul naam ka customer add karo,ADD_CUSTOMER
+Customer banao Amit ka,ADD_CUSTOMER
+Naya customer jod do,ADD_CUSTOMER
+Rahul ko customer ke roop mein register karo,ADD_CUSTOMER
+Customer add karo phone ke saath,ADD_CUSTOMER
+Pankaj Koche ko customer bana do,ADD_CUSTOMER
+Ek naya customer create karo,ADD_CUSTOMER
+Customer ka record add karo,ADD_CUSTOMER
+Nikhil naam ka naya customer,ADD_CUSTOMER
+Customer jodna hai Rahul ko,ADD_CUSTOMER
+Naya client add karo,ADD_CUSTOMER
+Amit ka customer account banao,ADD_CUSTOMER
+ग्राहक जोड़ो,ADD_CUSTOMER
+नया ग्राहक बनाएं,ADD_CUSTOMER
+ग्राहक Rahul को जोड़ें,ADD_CUSTOMER
+नया ग्राहक पंजीकृत करें,ADD_CUSTOMER
+ग्राहक का रिकॉर्ड बनाएं,ADD_CUSTOMER
+राहुल को ग्राहक के रूप में जोड़ें,ADD_CUSTOMER
+ग्राहक अमित को जोड़ें,ADD_CUSTOMER
+नए ग्राहक का विवरण दर्ज करें,ADD_CUSTOMER
+Open CRM and add customer Rahul,ADD_CUSTOMER
+Open the CRM add Pankaj as customer with phone 9876543210 save and verify,ADD_CUSTOMER
+Add Rahul customer email rahul@test.com phone 9876543210,ADD_CUSTOMER
+Add customer Priya with email priya@company.com,ADD_CUSTOMER
+Create customer with name Rohit email rohit@test.com,ADD_CUSTOMER
+Update customer phone number,UPDATE_CUSTOMER
+Change Rahul phone number,UPDATE_CUSTOMER
+Modify customer details,UPDATE_CUSTOMER
+Update customer information,UPDATE_CUSTOMER
+Edit customer record Amit,UPDATE_CUSTOMER
+Change customer email address,UPDATE_CUSTOMER
+Update contact details for Rahul,UPDATE_CUSTOMER
+Modify Pankaj Koche customer record,UPDATE_CUSTOMER
+Update customer Nikhil phone,UPDATE_CUSTOMER
+Change details of customer Suresh,UPDATE_CUSTOMER
+Edit customer profile Priya,UPDATE_CUSTOMER
+Update phone for customer Amit,UPDATE_CUSTOMER
+Change customer address details,UPDATE_CUSTOMER
+Modify client information Rohit,UPDATE_CUSTOMER
+Update customer email to new address,UPDATE_CUSTOMER
+Change Rahul ka phone number,UPDATE_CUSTOMER
+Customer ka detail update karo,UPDATE_CUSTOMER
+Amit ka phone number badlo,UPDATE_CUSTOMER
+Customer record modify karo,UPDATE_CUSTOMER
+Pankaj ka email update karo,UPDATE_CUSTOMER
+ग्राहक की जानकारी अपडेट करें,UPDATE_CUSTOMER
+राहुल का फोन नंबर बदलें,UPDATE_CUSTOMER
+ग्राहक विवरण संशोधित करें,UPDATE_CUSTOMER
+Updaet customer Rahul,UPDATE_CUSTOMER
+Chagne customer phone,UPDATE_CUSTOMER
+Modfy customer details,UPDATE_CUSTOMER
+Updat contact for Amit,UPDATE_CUSTOMER
+Edit custmer record,UPDATE_CUSTOMER
+Update custommer email,UPDATE_CUSTOMER
+Change costomer details,UPDATE_CUSTOMER
 Delete customer Rahul,DELETE_CUSTOMER
 Remove customer Amit,DELETE_CUSTOMER
 Delete this customer record,DELETE_CUSTOMER
 Remove the selected customer,DELETE_CUSTOMER
-Update customer phone number,UPDATE_CUSTOMER
-Change Rahul's phone number,UPDATE_CUSTOMER
-Modify customer details,UPDATE_CUSTOMER
+Delete client Pankaj,DELETE_CUSTOMER
+Remove customer entry Nikhil,DELETE_CUSTOMER
+Delete customer account Suresh,DELETE_CUSTOMER
+Remove client record Priya,DELETE_CUSTOMER
+Delete selected customer,DELETE_CUSTOMER
+Remove this customer from system,DELETE_CUSTOMER
+Delete customer Rohit from database,DELETE_CUSTOMER
+Remove customer profile Deepak,DELETE_CUSTOMER
+Delete customer Amit permanently,DELETE_CUSTOMER
+Customer Rahul ko delete karo,DELETE_CUSTOMER
+Customer record hatao,DELETE_CUSTOMER
+Amit ko system se remove karo,DELETE_CUSTOMER
+Customer ka record delete karo,DELETE_CUSTOMER
+ग्राहक हटाएं,DELETE_CUSTOMER
+राहुल का रिकॉर्ड हटाएं,DELETE_CUSTOMER
+ग्राहक अमित को हटाएं,DELETE_CUSTOMER
+Delet customer Rahul,DELETE_CUSTOMER
+Remov customer Amit,DELETE_CUSTOMER
+Delette this customer,DELETE_CUSTOMER
+Romove customer entry,DELETE_CUSTOMER
+Dlete selected customer,DELETE_CUSTOMER
 Update employee details,UPDATE_EMPLOYEE
 Edit employee information,UPDATE_EMPLOYEE
 Change employee salary,UPDATE_EMPLOYEE
+Modify employee record,UPDATE_EMPLOYEE
+Update employee Rahul,UPDATE_EMPLOYEE
+Change employee phone number,UPDATE_EMPLOYEE
+Edit staff information,UPDATE_EMPLOYEE
+Update employee email,UPDATE_EMPLOYEE
+Modify staff record Amit,UPDATE_EMPLOYEE
+Change employee department,UPDATE_EMPLOYEE
+Update employee Pankaj details,UPDATE_EMPLOYEE
+Modify employee contact,UPDATE_EMPLOYEE
+Edit employee profile Suresh,UPDATE_EMPLOYEE
+Update salary of employee Nikhil,UPDATE_EMPLOYEE
+Change department for Rohit,UPDATE_EMPLOYEE
+Employee ka detail update karo,UPDATE_EMPLOYEE
+Rahul ki salary badlo,UPDATE_EMPLOYEE
+Employee record modify karo,UPDATE_EMPLOYEE
+Staff ka information update karo,UPDATE_EMPLOYEE
+कर्मचारी विवरण अपडेट करें,UPDATE_EMPLOYEE
+राहुल की जानकारी बदलें,UPDATE_EMPLOYEE
+कर्मचारी रिकॉर्ड संशोधित करें,UPDATE_EMPLOYEE
+Updaet employee Rahul,UPDATE_EMPLOYEE
+Chagne employee salary,UPDATE_EMPLOYEE
+Modfy staff record,UPDATE_EMPLOYEE
+Edit employe details,UPDATE_EMPLOYEE
+Delete employee Rahul,DELETE_EMPLOYEE
+Remove employee Amit,DELETE_EMPLOYEE
+Delete staff record,DELETE_EMPLOYEE
+Remove employee from system,DELETE_EMPLOYEE
+Delete employee Pankaj,DELETE_EMPLOYEE
+Remove staff Nikhil,DELETE_EMPLOYEE
+Delete employee entry Suresh,DELETE_EMPLOYEE
+Remove employee Priya from database,DELETE_EMPLOYEE
+Delete selected employee,DELETE_EMPLOYEE
+Remove this staff member,DELETE_EMPLOYEE
+Employee Rahul ko delete karo,DELETE_EMPLOYEE
+Staff record hatao,DELETE_EMPLOYEE
+Employee ko system se remove karo,DELETE_EMPLOYEE
+कर्मचारी हटाएं,DELETE_EMPLOYEE
+राहुल को हटाएं,DELETE_EMPLOYEE
+कर्मचारी रिकॉर्ड हटाएं,DELETE_EMPLOYEE
+Delet employee Rahul,DELETE_EMPLOYEE
+Remov staff Amit,DELETE_EMPLOYEE
+Delette employee record,DELETE_EMPLOYEE
 Download today's report,DOWNLOAD_REPORT
 Download monthly report,DOWNLOAD_REPORT
 Export sales report,DOWNLOAD_REPORT
 Get the report in PDF,DOWNLOAD_REPORT
+Download customer report,DOWNLOAD_REPORT
+Export data to CSV,DOWNLOAD_REPORT
+Download weekly report,DOWNLOAD_REPORT
+Get report file,DOWNLOAD_REPORT
+Download annual sales report,DOWNLOAD_REPORT
+Export employee report,DOWNLOAD_REPORT
+Download inventory report,DOWNLOAD_REPORT
+Get today's summary report,DOWNLOAD_REPORT
+Download financial report,DOWNLOAD_REPORT
+Export customer list to CSV,DOWNLOAD_REPORT
+Download product report,DOWNLOAD_REPORT
+Download last month report,DOWNLOAD_REPORT
+Get the quarterly report,DOWNLOAD_REPORT
+Export database report,DOWNLOAD_REPORT
+Download backup report,DOWNLOAD_REPORT
+Get system report,DOWNLOAD_REPORT
+Report download karo,DOWNLOAD_REPORT
+Aaj ki report download karo,DOWNLOAD_REPORT
+Report file lo,DOWNLOAD_REPORT
+CSV mein report export karo,DOWNLOAD_REPORT
+Monthly report lo,DOWNLOAD_REPORT
+रिपोर्ट डाउनलोड करें,DOWNLOAD_REPORT
+आज की रिपोर्ट डाउनलोड करें,DOWNLOAD_REPORT
+रिपोर्ट निर्यात करें,DOWNLOAD_REPORT
+Downlod today report,DOWNLOAD_REPORT
+Downlaod monthly report,DOWNLOAD_REPORT
+Exprot sales report,DOWNLOAD_REPORT
+Donwload customer report,DOWNLOAD_REPORT
+Dowload report file,DOWNLOAD_REPORT
 Upload customer file,UPLOAD_FILE
 Upload Excel file,UPLOAD_FILE
 Import customer data,UPLOAD_FILE
+Upload invoice PDF,UPLOAD_FILE
+Upload report.xlsx,UPLOAD_FILE
+Import data file,UPLOAD_FILE
+Upload employees.csv,UPLOAD_FILE
+Upload product list,UPLOAD_FILE
+Import Excel spreadsheet,UPLOAD_FILE
+Upload the document,UPLOAD_FILE
+Upload invoice.pdf to system,UPLOAD_FILE
+Import data from file,UPLOAD_FILE
+Upload customer data file,UPLOAD_FILE
+Upload the CSV file,UPLOAD_FILE
+Import product catalog,UPLOAD_FILE
+Upload employee records file,UPLOAD_FILE
+Upload backup data,UPLOAD_FILE
+Import the zip file,UPLOAD_FILE
+Upload report file to system,UPLOAD_FILE
+Upload the attachment,UPLOAD_FILE
+File upload karo,UPLOAD_FILE
+Excel file upload karo,UPLOAD_FILE
+Data file import karo,UPLOAD_FILE
+Invoice upload karo,UPLOAD_FILE
+File upload karna hai,UPLOAD_FILE
+फ़ाइल अपलोड करें,UPLOAD_FILE
+एक्सेल फ़ाइल अपलोड करें,UPLOAD_FILE
+डेटा फ़ाइल आयात करें,UPLOAD_FILE
+Uplod customer file,UPLOAD_FILE
+Uppload Excel file,UPLOAD_FILE
+Improt data file,UPLOAD_FILE
+Upoad invoice PDF,UPLOAD_FILE
+Upload excl file,UPLOAD_FILE
 Fill the registration form,FILL_FORM
 Complete the application form,FILL_FORM
 Submit the employee form,FILL_FORM
+Fill out the contact form,FILL_FORM
+Complete registration form,FILL_FORM
+Fill the feedback form,FILL_FORM
+Submit the inquiry form,FILL_FORM
+Fill in the customer form,FILL_FORM
+Complete order form,FILL_FORM
+Fill the new employee form,FILL_FORM
+Submit application form,FILL_FORM
+Fill and submit the form,FILL_FORM
+Complete the onboarding form,FILL_FORM
+Fill in all required fields,FILL_FORM
+Submit the support form,FILL_FORM
+Form bharo,FILL_FORM
+Application form fill karo,FILL_FORM
+Form submit karo,FILL_FORM
+Registration form complete karo,FILL_FORM
+फॉर्म भरें,FILL_FORM
+पंजीकरण फॉर्म भरें,FILL_FORM
+Fil the registration form,FILL_FORM
+Complet application form,FILL_FORM
+Submitt the employee form,FILL_FORM
+Fil out contact form,FILL_FORM
 Read the customer table,READ_TABLE
 Display customer records,READ_TABLE
 Show employee list,READ_TABLE
-Send email to manager,SEND_EMAIL
-Mail today's report,SEND_EMAIL
-Email the customer list,SEND_EMAIL
-Open customer page,OPEN_PAGE
-Open employee page,OPEN_PAGE
-Go to reports page,OPEN_PAGE
-Click save button,CLICK_BUTTON
-Press submit button,CLICK_BUTTON
-Click on Add Customer,CLICK_BUTTON
-Rahul naam ka customer add karo,ADD_CUSTOMER
-Naya customer create karo,ADD_CUSTOMER
-Customer delete karo,DELETE_CUSTOMER
-Employee update karo,UPDATE_EMPLOYEE
-Aaj ka report download karo,DOWNLOAD_REPORT
-Customer file upload karo,UPLOAD_FILE
-Form fill karo,FILL_FORM
-Manager ko email bhejo,SEND_EMAIL
-Customer table dikhao,READ_TABLE
-Product ka price update karo,UPDATE_PRODUCT
-Change product price to 500,UPDATE_PRODUCT
-Update product information,UPDATE_PRODUCT
-Add new client,ADD_CUSTOMER
-Create customer account,ADD_CUSTOMER
-Register a customer,ADD_CUSTOMER
-Add customer named Pankaj,ADD_CUSTOMER
-Create Rahul customer profile,ADD_CUSTOMER
-Insert new customer,ADD_CUSTOMER
-New customer entry,ADD_CUSTOMER
-Save customer details,ADD_CUSTOMER
-Register new client,ADD_CUSTOMER
-Add one more customer,ADD_CUSTOMER
-Remove customer record,DELETE_CUSTOMER
-Delete customer account,DELETE_CUSTOMER
-Erase customer details,DELETE_CUSTOMER
-Delete selected customer,DELETE_CUSTOMER
-Remove this client,DELETE_CUSTOMER
-Delete employee record,DELETE_EMPLOYEE
-Remove employee details,DELETE_EMPLOYEE
-Delete employee account,DELETE_EMPLOYEE
-Update customer address,UPDATE_CUSTOMER
-Update customer email,UPDATE_CUSTOMER
-Edit customer profile,UPDATE_CUSTOMER
-Modify customer information,UPDATE_CUSTOMER
-Change customer mobile number,UPDATE_CUSTOMER
-Update employee phone number,UPDATE_EMPLOYEE
-Edit employee profile,UPDATE_EMPLOYEE
-Modify employee department,UPDATE_EMPLOYEE
-Change employee designation,UPDATE_EMPLOYEE
-Update salary details,UPDATE_EMPLOYEE
-Download invoice report,DOWNLOAD_REPORT
-Download sales report,DOWNLOAD_REPORT
-Download attendance report,DOWNLOAD_REPORT
-Export customer report,DOWNLOAD_REPORT
-Generate PDF report,DOWNLOAD_REPORT
-Export report to Excel,DOWNLOAD_REPORT
-Upload customer Excel sheet,UPLOAD_FILE
-Upload invoice document,UPLOAD_FILE
-Import employee data,UPLOAD_FILE
-Upload CSV file,UPLOAD_FILE
-Upload report file,UPLOAD_FILE
-Complete customer registration form,FILL_FORM
-Fill employee form,FILL_FORM
-Fill application details,FILL_FORM
-Submit registration form,FILL_FORM
-Complete profile form,FILL_FORM
-Read employee table,READ_TABLE
-Display sales table,READ_TABLE
-Open customer records,READ_TABLE
-Show product table,READ_TABLE
-View employee list,READ_TABLE
-Send report to manager,SEND_EMAIL
-Email customer report,SEND_EMAIL
-Mail invoice to client,SEND_EMAIL
-Share report by email,SEND_EMAIL
-Email monthly summary,SEND_EMAIL
-Open dashboard,OPEN_PAGE
-Open login page,OPEN_PAGE
-Open reports page,OPEN_PAGE
-Open settings page,OPEN_PAGE
-Go to customer dashboard,OPEN_PAGE
-Click Add button,CLICK_BUTTON
-Click Update button,CLICK_BUTTON
-Click Delete button,CLICK_BUTTON
-Click Confirm button,CLICK_BUTTON
-Press Save button,CLICK_BUTTON
-Product price change to 1000,UPDATE_PRODUCT
-Update laptop price,UPDATE_PRODUCT
-Modify product details,UPDATE_PRODUCT
-Change item price,UPDATE_PRODUCT
-Edit product information,UPDATE_PRODUCT
-Rahul ko customer banao,ADD_CUSTOMER
-Naya client add karo,ADD_CUSTOMER
-Customer account banao,ADD_CUSTOMER
-Ek naya customer register karo,ADD_CUSTOMER
-Customer delete kar do,DELETE_CUSTOMER
-Employee delete karo,DELETE_EMPLOYEE
-Employee details update karo,UPDATE_EMPLOYEE
-Customer details update karo,UPDATE_CUSTOMER
-Aaj ki report download karo,DOWNLOAD_REPORT
-Monthly report download karo,DOWNLOAD_REPORT
-Excel file upload karo,UPLOAD_FILE
-CSV upload karo,UPLOAD_FILE
-Customer form fill karo,FILL_FORM
-Employee form submit karo,FILL_FORM
-Customer list dikhao,READ_TABLE
-Employee list open karo,READ_TABLE
-Manager ko report bhejo,SEND_EMAIL
-Customer ko email bhejo,SEND_EMAIL
-Dashboard kholo,OPEN_PAGE
-Customer page kholo,OPEN_PAGE
-Save button dabao,CLICK_BUTTON
-Delete button dabao,CLICK_BUTTON
-Product ka rate badal do,UPDATE_PRODUCT
-Product ka price 799 kar do,UPDATE_PRODUCT
-Customer add krdo,ADD_CUSTOMER
-Custmer add karo,ADD_CUSTOMER
-Dwonload report,DOWNLOAD_REPORT
-Update employe details,UPDATE_EMPLOYEE
-Delte customer,DELETE_CUSTOMER
-Open custmer page,OPEN_PAGE
-Send mail to HR,SEND_EMAIL
-Upload attendance sheet,UPLOAD_FILE
-Show all customers,READ_TABLE
-Create a customer named Rohan,ADD_CUSTOMER
-Add customer Sneha,ADD_CUSTOMER
-Register new client Ankit,ADD_CUSTOMER
-Create account for Priya,ADD_CUSTOMER
-Add customer with mobile number,ADD_CUSTOMER
-Make a new customer profile,ADD_CUSTOMER
-Insert customer details,ADD_CUSTOMER
-Save new customer information,ADD_CUSTOMER
-Create customer record,ADD_CUSTOMER
-Register business customer,ADD_CUSTOMER
-Remove Rohan from customers,DELETE_CUSTOMER
-Delete customer Sneha,DELETE_CUSTOMER
-Erase customer profile,DELETE_CUSTOMER
-Remove selected client,DELETE_CUSTOMER
-Delete customer permanently,DELETE_CUSTOMER
-Remove duplicate customer,DELETE_CUSTOMER
-Delete old customer record,DELETE_CUSTOMER
-Remove inactive customer,DELETE_CUSTOMER
-Delete unwanted customer,DELETE_CUSTOMER
-Delete existing customer,DELETE_CUSTOMER
-Update customer city,UPDATE_CUSTOMER
-Change customer address,UPDATE_CUSTOMER
-Edit customer contact,UPDATE_CUSTOMER
-Modify customer mobile,UPDATE_CUSTOMER
-Update customer profile,UPDATE_CUSTOMER
-Correct customer details,UPDATE_CUSTOMER
-Update customer GST number,UPDATE_CUSTOMER
-Change customer company name,UPDATE_CUSTOMER
-Update customer status,UPDATE_CUSTOMER
-Modify customer information,UPDATE_CUSTOMER
-Update employee salary,UPDATE_EMPLOYEE
-Modify employee role,UPDATE_EMPLOYEE
-Change employee department,UPDATE_EMPLOYEE
-Update employee contact,UPDATE_EMPLOYEE
-Edit employee profile,UPDATE_EMPLOYEE
-Update employee joining date,UPDATE_EMPLOYEE
-Modify HR employee details,UPDATE_EMPLOYEE
-Change employee email,UPDATE_EMPLOYEE
-Update staff information,UPDATE_EMPLOYEE
-Edit staff profile,UPDATE_EMPLOYEE
-Download customer report,DOWNLOAD_REPORT
-Download employee report,DOWNLOAD_REPORT
-Export attendance report,DOWNLOAD_REPORT
-Export invoice report,DOWNLOAD_REPORT
-Generate monthly report,DOWNLOAD_REPORT
-Generate yearly report,DOWNLOAD_REPORT
-Export transaction report,DOWNLOAD_REPORT
-Save report as PDF,DOWNLOAD_REPORT
-Export report to CSV,DOWNLOAD_REPORT
-Download analytics report,DOWNLOAD_REPORT
-Upload attendance file,UPLOAD_FILE
-Import CSV data,UPLOAD_FILE
-Upload salary sheet,UPLOAD_FILE
-Upload employee document,UPLOAD_FILE
-Import customer list,UPLOAD_FILE
-Upload image file,UPLOAD_FILE
-Upload profile photo,UPLOAD_FILE
-Upload report document,UPLOAD_FILE
-Upload invoice PDF,UPLOAD_FILE
-Import contacts,UPLOAD_FILE
-Fill customer registration form,FILL_FORM
-Complete HR form,FILL_FORM
-Fill employee application,FILL_FORM
-Complete joining form,FILL_FORM
-Submit customer details,FILL_FORM
-Enter registration information,FILL_FORM
-Complete onboarding form,FILL_FORM
-Fill contact form,FILL_FORM
-Submit application,FILL_FORM
-Complete profile details,FILL_FORM
-Show customer table,READ_TABLE
-View sales records,READ_TABLE
-Display employee records,READ_TABLE
-Read invoice table,READ_TABLE
-View attendance table,READ_TABLE
-Open report table,READ_TABLE
-Display customer information,READ_TABLE
+View the data table,READ_TABLE
+Read customer data from table,READ_TABLE
+Show all records in table,READ_TABLE
+Display product list,READ_TABLE
+Read the employee table,READ_TABLE
+Show customer records,READ_TABLE
+View employee data,READ_TABLE
+List all customers,READ_TABLE
+Display report data,READ_TABLE
+Show data in the table,READ_TABLE
+Read table data,READ_TABLE
+View customer list,READ_TABLE
 Show product inventory,READ_TABLE
-Read customer database,READ_TABLE
-Display transaction history,READ_TABLE
-Send report via email,SEND_EMAIL
-Mail attendance report,SEND_EMAIL
+List employee records,READ_TABLE
+Display all entries,READ_TABLE
+Read the sales table,READ_TABLE
+View the records,READ_TABLE
+Table ka data dikha,READ_TABLE
+Customer list dikhao,READ_TABLE
+Records padhna hai,READ_TABLE
+Table mein data check karo,READ_TABLE
+तालिका का डेटा दिखाएं,READ_TABLE
+ग्राहक सूची दिखाएं,READ_TABLE
+Raed customer table,READ_TABLE
+Disply records,READ_TABLE
+Viw employee list,READ_TABLE
+Shwo customer data,READ_TABLE
+Send email to manager,SEND_EMAIL
+Send email to admin@example.com,SEND_EMAIL
+Email the report to HR,SEND_EMAIL
+Send mail to team,SEND_EMAIL
 Email customer invoice,SEND_EMAIL
-Share report with HR,SEND_EMAIL
-Email sales summary,SEND_EMAIL
-Send invoice to customer,SEND_EMAIL
-Mail payment receipt,SEND_EMAIL
-Email employee details,SEND_EMAIL
-Share monthly analytics,SEND_EMAIL
-Send confirmation email,SEND_EMAIL
+Send email notification,SEND_EMAIL
+Mail the document to manager,SEND_EMAIL
+Send email to hr@company.com,SEND_EMAIL
+Email the summary to director,SEND_EMAIL
+Send mail to client,SEND_EMAIL
+Email the report,SEND_EMAIL
+Send email attachment,SEND_EMAIL
+Mail invoice to customer,SEND_EMAIL
+Send email to sales@company.com,SEND_EMAIL
+Email the data file,SEND_EMAIL
+Send notification email,SEND_EMAIL
+Mail the document to team,SEND_EMAIL
+Send email with attachment,SEND_EMAIL
+Email report to manager@company.com,SEND_EMAIL
+Send mail to CEO,SEND_EMAIL
+Manager ko email bhejo,SEND_EMAIL
+Email send karo,SEND_EMAIL
+Mail bhejo HR ko,SEND_EMAIL
+Report email karo,SEND_EMAIL
+ईमेल भेजो,SEND_EMAIL
+प्रबंधक को ईमेल भेजें,SEND_EMAIL
+Sned email to manager,SEND_EMAIL
+Emial the report,SEND_EMAIL
+Sedn mail to HR,SEND_EMAIL
+Eamil customer invoice,SEND_EMAIL
+Take a screenshot,TAKE_SCREENSHOT
+Capture the screen,TAKE_SCREENSHOT
+Take screenshot of current page,TAKE_SCREENSHOT
+Screenshot lena hai,TAKE_SCREENSHOT
+Capture page screenshot,TAKE_SCREENSHOT
+Take a screen capture,TAKE_SCREENSHOT
+Screenshot of the dashboard,TAKE_SCREENSHOT
+Capture current state,TAKE_SCREENSHOT
+Take screenshot for records,TAKE_SCREENSHOT
+Save screenshot of page,TAKE_SCREENSHOT
+Capture the current screen,TAKE_SCREENSHOT
+Take a page screenshot,TAKE_SCREENSHOT
+Screenshot the form,TAKE_SCREENSHOT
+Capture screen for proof,TAKE_SCREENSHOT
+Take screenshot of table,TAKE_SCREENSHOT
+Screenshot lene ke liye click karo,TAKE_SCREENSHOT
+Aaj ka screenshot lo,TAKE_SCREENSHOT
+Screen capture karo,TAKE_SCREENSHOT
+स्क्रीनशॉट लें,TAKE_SCREENSHOT
+स्क्रीन कैप्चर करें,TAKE_SCREENSHOT
+Tak a screenshot,TAKE_SCREENSHOT
+Captur the screen,TAKE_SCREENSHOT
+Screenshott of page,TAKE_SCREENSHOT
+Take scrennshot,TAKE_SCREENSHOT
+Update product price,UPDATE_PRODUCT
+Change product price to 599,UPDATE_PRODUCT
+Modify product details,UPDATE_PRODUCT
+Update product Laptop price to 55000,UPDATE_PRODUCT
+Change item price,UPDATE_PRODUCT
+Update product information,UPDATE_PRODUCT
+Modify product record,UPDATE_PRODUCT
+Change product name,UPDATE_PRODUCT
+Update product stock,UPDATE_PRODUCT
+Edit product description,UPDATE_PRODUCT
+Change price of product,UPDATE_PRODUCT
+Update product category,UPDATE_PRODUCT
+Modify item details,UPDATE_PRODUCT
+Change product details,UPDATE_PRODUCT
+Update inventory price,UPDATE_PRODUCT
+Edit product Laptop,UPDATE_PRODUCT
+Change product quantity,UPDATE_PRODUCT
+Update product listing,UPDATE_PRODUCT
+Modify product price to 999,UPDATE_PRODUCT
+Change item information,UPDATE_PRODUCT
+Product ka price update karo,UPDATE_PRODUCT
+Product ka naam badlo,UPDATE_PRODUCT
+Item ki price change karo,UPDATE_PRODUCT
+Product details modify karo,UPDATE_PRODUCT
+Product ka price 599 kar do,UPDATE_PRODUCT
+प्रोडक्ट की कीमत बदलें,UPDATE_PRODUCT
+उत्पाद विवरण अपडेट करें,UPDATE_PRODUCT
+Updaet product price,UPDATE_PRODUCT
+Chagne item price,UPDATE_PRODUCT
+Modfy product details,UPDATE_PRODUCT
+Updat product name,UPDATE_PRODUCT
 Open CRM page,OPEN_PAGE
-Go to employee page,OPEN_PAGE
-Launch reports dashboard,OPEN_PAGE
-Open inventory page,OPEN_PAGE
-Navigate to settings,OPEN_PAGE
-Click login button,CLICK_BUTTON
-Click search button,CLICK_BUTTON
-Click next button,CLICK_BUTTON
-Click submit form,CLICK_BUTTON
+Go to customer section,OPEN_PAGE
+Navigate to reports page,OPEN_PAGE
+Open dashboard,OPEN_PAGE
+Go to settings,OPEN_PAGE
+Open the customer page,OPEN_PAGE
+Navigate to employee section,OPEN_PAGE
+Open product page,OPEN_PAGE
+Go to upload page,OPEN_PAGE
+Navigate to the reports section,OPEN_PAGE
+Open CRM dashboard,OPEN_PAGE
+Go to the home page,OPEN_PAGE
+Navigate to customers,OPEN_PAGE
+Open settings page,OPEN_PAGE
+Go to products section,OPEN_PAGE
+Navigate to employees page,OPEN_PAGE
+Open the main page,OPEN_PAGE
+Go to reports,OPEN_PAGE
+Navigate to upload section,OPEN_PAGE
+Open admin panel,OPEN_PAGE
+CRM kholo,OPEN_PAGE
+Dashboard pe jao,OPEN_PAGE
+Customer page kholo,OPEN_PAGE
+Report section mein jao,OPEN_PAGE
+Settings page kholo,OPEN_PAGE
+होम पेज खोलें,OPEN_PAGE
+डैशबोर्ड पर जाएं,OPEN_PAGE
+Opn CRM page,OPEN_PAGE
+Naviage to dashboard,OPEN_PAGE
+Go to custmer section,OPEN_PAGE
+Open dashbord,OPEN_PAGE
+Click the save button,CLICK_BUTTON
+Click add customer,CLICK_BUTTON
+Press the submit button,CLICK_BUTTON
+Click the delete button,CLICK_BUTTON
+Click save,CLICK_BUTTON
 Press confirm,CLICK_BUTTON
+Click the OK button,CLICK_BUTTON
+Press the cancel button,CLICK_BUTTON
+Click add product,CLICK_BUTTON
+Press save button,CLICK_BUTTON
+Click the upload button,CLICK_BUTTON
+Press the download button,CLICK_BUTTON
+Click submit form,CLICK_BUTTON
+Press the back button,CLICK_BUTTON
+Click add employee,CLICK_BUTTON
+Save button dabao,CLICK_BUTTON
+Submit button click karo,CLICK_BUTTON
+OK pe click karo,CLICK_BUTTON
+Cancel dabao,CLICK_BUTTON
+सेव बटन क्लिक करें,CLICK_BUTTON
+सबमिट बटन दबाएं,CLICK_BUTTON
+Clck save button,CLICK_BUTTON
+Prss submit button,CLICK_BUTTON
+Clik the OK,CLICK_BUTTON
+Add Rahul as a customer,ADD_CUSTOMER
+Add Sanjay with phone 9900112233,ADD_CUSTOMER
+Create customer Vikram Sharma,ADD_CUSTOMER
+Register new customer Pooja,ADD_CUSTOMER
+Add customer entry Ravi,ADD_CUSTOMER
+New customer Kavita phone 9876543210,ADD_CUSTOMER
+Add Arjun as customer,ADD_CUSTOMER
+Create profile for customer Meera,ADD_CUSTOMER
+Add Vishal with phone 9812345678,ADD_CUSTOMER
+Register customer Anita Singh,ADD_CUSTOMER
+Add customer Ganesh,ADD_CUSTOMER
+Create new entry for Leela,ADD_CUSTOMER
+Add customer Ramesh with email ramesh@test.com,ADD_CUSTOMER
+Register Sundar as customer,ADD_CUSTOMER
+Add new customer Bhavesh,ADD_CUSTOMER
+Customer Kiran ko add karo,ADD_CUSTOMER
+Nayi customer entry banao Neha ki,ADD_CUSTOMER
+Sandeep ko customer ke taur pe add karo,ADD_CUSTOMER
+Customer record daalo Sunil ka,ADD_CUSTOMER
+Shyam ko naya customer banao,ADD_CUSTOMER
+Update customer Sanjay phone,UPDATE_CUSTOMER
+Change email of Ravi,UPDATE_CUSTOMER
+Modify Pooja customer record,UPDATE_CUSTOMER
+Update contact Vikram,UPDATE_CUSTOMER
+Edit customer Arjun details,UPDATE_CUSTOMER
+Meera ka phone update karo,UPDATE_CUSTOMER
+Kavita ki email badlo,UPDATE_CUSTOMER
+Anita ka record update karo,UPDATE_CUSTOMER
+Ganesh ka detail modify karo,UPDATE_CUSTOMER
+Sundar ka contact update karo,UPDATE_CUSTOMER
+Delete customer Sanjay,DELETE_CUSTOMER
+Remove Pooja from customer list,DELETE_CUSTOMER
+Delete client Vikram,DELETE_CUSTOMER
+Remove customer Kiran,DELETE_CUSTOMER
+Delete Arjun customer account,DELETE_CUSTOMER
+Sanjay ko delete karo customer list se,DELETE_CUSTOMER
+Pooja ka record hatao,DELETE_CUSTOMER
+Vikram ko system se remove karo,DELETE_CUSTOMER
+Kiran ka customer record delete karo,DELETE_CUSTOMER
+Arjun ko remove karo,DELETE_CUSTOMER
+Update employee Sanjay salary,UPDATE_EMPLOYEE
+Modify Pooja employee record,UPDATE_EMPLOYEE
+Change Vikram department,UPDATE_EMPLOYEE
+Edit employee Kiran details,UPDATE_EMPLOYEE
+Update staff Arjun phone,UPDATE_EMPLOYEE
+Delete employee Sanjay,DELETE_EMPLOYEE
+Remove staff Pooja,DELETE_EMPLOYEE
+Delete Vikram employee record,DELETE_EMPLOYEE
+Remove employee Kiran,DELETE_EMPLOYEE
+Delete staff Arjun,DELETE_EMPLOYEE
+Download sales report this month,DOWNLOAD_REPORT
+Export product report to CSV,DOWNLOAD_REPORT
+Get employee report,DOWNLOAD_REPORT
+Download inventory summary,DOWNLOAD_REPORT
+Export customer data report,DOWNLOAD_REPORT
+Sales report download karo,DOWNLOAD_REPORT
+Product report export karo,DOWNLOAD_REPORT
+Employee ki report lo,DOWNLOAD_REPORT
+Inventory report download karo,DOWNLOAD_REPORT
+Customer data export karo,DOWNLOAD_REPORT
+Upload sales_data.xlsx,UPLOAD_FILE
+Import employees.csv file,UPLOAD_FILE
+Upload product_list.pdf,UPLOAD_FILE
+Import data from customers.xlsx,UPLOAD_FILE
+Upload backup.zip,UPLOAD_FILE
+Sales data file upload karo,UPLOAD_FILE
+Employee CSV import karo,UPLOAD_FILE
+Product list upload karo,UPLOAD_FILE
+Backup file upload karo,UPLOAD_FILE
+Data import karo file se,UPLOAD_FILE
+Fill employee registration form,FILL_FORM
+Complete new hire form,FILL_FORM
+Fill customer inquiry form,FILL_FORM
+Submit product request form,FILL_FORM
+Fill in the support ticket,FILL_FORM
+Employee form bharo,FILL_FORM
+New hire form complete karo,FILL_FORM
+Customer inquiry form fill karo,FILL_FORM
+Support form submit karo,FILL_FORM
+Product request form bharo,FILL_FORM
+Show all customers in table,READ_TABLE
+Read product table data,READ_TABLE
+Display employee records list,READ_TABLE
+View all entries in table,READ_TABLE
+List all products,READ_TABLE
+Product table dekho,READ_TABLE
+Employee records list karo,READ_TABLE
+Saare entries table mein dekho,READ_TABLE
+Products ki list dikhao,READ_TABLE
+Table mein customer data padhna hai,READ_TABLE
+Send report email to director,SEND_EMAIL
+Email invoice to client,SEND_EMAIL
+Send notification to sales team,SEND_EMAIL
+Mail summary to stakeholders,SEND_EMAIL
+Email the monthly report,SEND_EMAIL
+Director ko report email karo,SEND_EMAIL
+Client ko invoice bhejo,SEND_EMAIL
+Sales team ko notification bhejo,SEND_EMAIL
+Monthly report email karo,SEND_EMAIL
+Summary mail karo stakeholders ko,SEND_EMAIL
+Capture dashboard screenshot,TAKE_SCREENSHOT
+Screenshot of customer table,TAKE_SCREENSHOT
+Take screen capture after save,TAKE_SCREENSHOT
+Screenshot for documentation,TAKE_SCREENSHOT
+Capture the page for records,TAKE_SCREENSHOT
+Dashboard ka screenshot lo,TAKE_SCREENSHOT
+Customer table capture karo,TAKE_SCREENSHOT
+Save ke baad screenshot lo,TAKE_SCREENSHOT
+Documentation ke liye screenshot,TAKE_SCREENSHOT
+Page capture karo record ke liye,TAKE_SCREENSHOT
+Update product Laptop price,UPDATE_PRODUCT
+Change price of Mobile to 15000,UPDATE_PRODUCT
+Modify product category Electronics,UPDATE_PRODUCT
+Update item quantity for Laptop,UPDATE_PRODUCT
+Change product description,UPDATE_PRODUCT
+Laptop ka price update karo,UPDATE_PRODUCT
+Mobile ki price 15000 karo,UPDATE_PRODUCT
+Product category badlo,UPDATE_PRODUCT
+Item quantity update karo,UPDATE_PRODUCT
+Product description modify karo,UPDATE_PRODUCT
+Open employee page,OPEN_PAGE
+Navigate to product section,OPEN_PAGE
+Go to inventory,OPEN_PAGE
+Open login page,OPEN_PAGE
+Navigate to billing section,OPEN_PAGE
+Employee section kholo,OPEN_PAGE
+Product page pe jao,OPEN_PAGE
+Inventory pe navigate karo,OPEN_PAGE
+Login page kholo,OPEN_PAGE
+Billing section mein jao,OPEN_PAGE
+Click the confirm button,CLICK_BUTTON
+Press add employee button,CLICK_BUTTON
+Click download button,CLICK_BUTTON
+Press the import button,CLICK_BUTTON
+Click the export button,CLICK_BUTTON
+Confirm button dabao,CLICK_BUTTON
+Add employee pe click karo,CLICK_BUTTON
+Download button press karo,CLICK_BUTTON
+Import button dabao,CLICK_BUTTON
+Export pe click karo,CLICK_BUTTON
+Add new customer Rahul Verma phone 9876543210,ADD_CUSTOMER
+Create customer Ananya with email ananya@gmail.com,ADD_CUSTOMER
+Register customer Rohan phone 9823456789,ADD_CUSTOMER
+Add Priya Sharma as customer,ADD_CUSTOMER
+Customer add karo Rajan ka,ADD_CUSTOMER
+Naya customer Divya phone 9900334455,ADD_CUSTOMER
+Add customer Manish with phone 9812211334,ADD_CUSTOMER
+Create new customer Sheela,ADD_CUSTOMER
+Add client Tarun,ADD_CUSTOMER
+Register new user as customer Geeta,ADD_CUSTOMER
+addd new customer,ADD_CUSTOMER
+crete customer,ADD_CUSTOMER
+add custmer with phone,ADD_CUSTOMER
+creat new custommer,ADD_CUSTOMER
+add clent Rahul,ADD_CUSTOMER
+Update Rahul Verma details,UPDATE_CUSTOMER
+Change phone for Ananya,UPDATE_CUSTOMER
+Modify Rohan customer info,UPDATE_CUSTOMER
+Edit contact details Priya Sharma,UPDATE_CUSTOMER
+Update client Divya email,UPDATE_CUSTOMER
+Delete customer Rahul Verma,DELETE_CUSTOMER
+Remove Ananya from records,DELETE_CUSTOMER
+Delete client Rohan,DELETE_CUSTOMER
+Remove Priya Sharma,DELETE_CUSTOMER
+Delete entry Divya,DELETE_CUSTOMER
+Update employee Rajan salary,UPDATE_EMPLOYEE
+Change Divya department,UPDATE_EMPLOYEE
+Modify Manish employee contact,UPDATE_EMPLOYEE
+Edit staff Sheela details,UPDATE_EMPLOYEE
+Update employee Tarun record,UPDATE_EMPLOYEE
+Delete employee Rajan,DELETE_EMPLOYEE
+Remove staff Divya,DELETE_EMPLOYEE
+Delete Manish employee account,DELETE_EMPLOYEE
+Remove employee Sheela,DELETE_EMPLOYEE
+Delete staff Tarun,DELETE_EMPLOYEE
+Download quarterly report,DOWNLOAD_REPORT
+Export annual report CSV,DOWNLOAD_REPORT
+Get customer summary report,DOWNLOAD_REPORT
+Download profit report,DOWNLOAD_REPORT
+Export HR report,DOWNLOAD_REPORT
+Quarterly report download karo,DOWNLOAD_REPORT
+Annual CSV report lo,DOWNLOAD_REPORT
+HR report export karo,DOWNLOAD_REPORT
+Profit report download karo,DOWNLOAD_REPORT
+Customer summary export karo,DOWNLOAD_REPORT
+Upload HR_data.xlsx,UPLOAD_FILE
+Import customers.csv,UPLOAD_FILE
+Upload financial_report.pdf,UPLOAD_FILE
+Import product_data.xlsx,UPLOAD_FILE
+Upload employee_list.csv,UPLOAD_FILE
+HR data upload karo,UPLOAD_FILE
+Customer CSV import karo,UPLOAD_FILE
+Financial report upload karo,UPLOAD_FILE
+Product data import karo,UPLOAD_FILE
+Employee list upload karo,UPLOAD_FILE
+Fill HR registration form,FILL_FORM
+Submit payroll form,FILL_FORM
+Complete leave application form,FILL_FORM
+Fill onboarding form for new hire,FILL_FORM
+Submit feedback form,FILL_FORM
+HR form bharo,FILL_FORM
+Payroll form submit karo,FILL_FORM
+Leave application form complete karo,FILL_FORM
+Onboarding form fill karo,FILL_FORM
+Feedback form bharo aur submit karo,FILL_FORM
+List all employees in table,READ_TABLE
+Display sales table data,READ_TABLE
+Read the invoice table,READ_TABLE
+View order records,READ_TABLE
+Show all product entries,READ_TABLE
+Employee table mein list karo,READ_TABLE
+Sales data padhna hai,READ_TABLE
+Invoice table dekho,READ_TABLE
+Order records dikhao,READ_TABLE
+Product entries list karo,READ_TABLE
+Email weekly summary to team,SEND_EMAIL
+Send invoice email to Rahul,SEND_EMAIL
+Mail product update to sales,SEND_EMAIL
+Send email to support@company.com,SEND_EMAIL
+Email the attachment to HR,SEND_EMAIL
+Weekly summary email karo team ko,SEND_EMAIL
+Rahul ko invoice email bhejo,SEND_EMAIL
+Sales ko product update mail karo,SEND_EMAIL
+Support email bhejo,SEND_EMAIL
+HR ko attachment email karo,SEND_EMAIL
+Take screenshot of invoice,TAKE_SCREENSHOT
+Capture employee table screenshot,TAKE_SCREENSHOT
+Screenshot of the product page,TAKE_SCREENSHOT
+Screen capture of report,TAKE_SCREENSHOT
+Take screenshot before submit,TAKE_SCREENSHOT
+Invoice ka screenshot lo,TAKE_SCREENSHOT
+Employee table capture karo,TAKE_SCREENSHOT
+Product page ka screenshot,TAKE_SCREENSHOT
+Report ka screen capture karo,TAKE_SCREENSHOT
+Submit se pehle screenshot lo,TAKE_SCREENSHOT
+Update product Mobile price to 12000,UPDATE_PRODUCT
+Change Laptop stock to 50,UPDATE_PRODUCT
+Modify product TV description,UPDATE_PRODUCT
+Update price of Tablet,UPDATE_PRODUCT
+Change product AC stock,UPDATE_PRODUCT
+Mobile ka price 12000 karo,UPDATE_PRODUCT
+Laptop ka stock 50 karo,UPDATE_PRODUCT
+TV product description modify karo,UPDATE_PRODUCT
+Tablet ki price update karo,UPDATE_PRODUCT
+AC product stock change karo,UPDATE_PRODUCT
+Go to home page,OPEN_PAGE
+Open the CRM,OPEN_PAGE
+Navigate to customer list,OPEN_PAGE
+Open reports section,OPEN_PAGE
+Go to employee management,OPEN_PAGE
+Home page pe jao,OPEN_PAGE
+CRM open karo,OPEN_PAGE
+Customer list pe navigate karo,OPEN_PAGE
+Reports section kholo,OPEN_PAGE
+Employee management mein jao,OPEN_PAGE
+Click save record,CLICK_BUTTON
+Press update button,CLICK_BUTTON
+Click the delete confirmation,CLICK_BUTTON
+Press the new entry button,CLICK_BUTTON
+Click refresh,CLICK_BUTTON
+Record save karo,CLICK_BUTTON
+Update button press karo,CLICK_BUTTON
+Delete confirm karo,CLICK_BUTTON
+New entry button dabao,CLICK_BUTTON
+Refresh karo,CLICK_BUTTON
+Add customer Nikhil Patil with phone 9823456789 and email nikhil@willovate.com,ADD_CUSTOMER
+Create customer Aditya email aditya@test.com phone 9988112233,ADD_CUSTOMER
+Add new customer Pallavi,ADD_CUSTOMER
+Register customer Hardik with phone 9876001234,ADD_CUSTOMER
+Add client Disha email disha@company.com,ADD_CUSTOMER
+Nikhil Patil ko customer banao,ADD_CUSTOMER
+Aditya ka customer account create karo,ADD_CUSTOMER
+Pallavi ko add karo customer list mein,ADD_CUSTOMER
+Hardik ka record add karo,ADD_CUSTOMER
+Disha ko naya customer ke roop mein register karo,ADD_CUSTOMER
+Update Nikhil Patil contact,UPDATE_CUSTOMER
+Change Aditya email,UPDATE_CUSTOMER
+Modify Pallavi customer record,UPDATE_CUSTOMER
+Edit Hardik details,UPDATE_CUSTOMER
+Update Disha phone number,UPDATE_CUSTOMER
+Delete Nikhil Patil,DELETE_CUSTOMER
+Remove customer Aditya,DELETE_CUSTOMER
+Delete Pallavi from list,DELETE_CUSTOMER
+Remove Hardik entry,DELETE_CUSTOMER
+Delete customer Disha,DELETE_CUSTOMER
+Update employee Nikhil salary,UPDATE_EMPLOYEE
+Change Aditya department to IT,UPDATE_EMPLOYEE
+Edit employee Pallavi record,UPDATE_EMPLOYEE
+Modify Hardik staff details,UPDATE_EMPLOYEE
+Update Disha employee contact,UPDATE_EMPLOYEE
+Delete employee Nikhil,DELETE_EMPLOYEE
+Remove Aditya from employee list,DELETE_EMPLOYEE
+Delete Pallavi employee record,DELETE_EMPLOYEE
+Remove employee Hardik,DELETE_EMPLOYEE
+Delete staff Disha,DELETE_EMPLOYEE
+Download this month sales report,DOWNLOAD_REPORT
+Export finance report,DOWNLOAD_REPORT
+Get the HR summary,DOWNLOAD_REPORT
+Download year-end report,DOWNLOAD_REPORT
+Export transaction log,DOWNLOAD_REPORT
+Is month ki sales report lo,DOWNLOAD_REPORT
+Finance report export karo,DOWNLOAD_REPORT
+HR summary download karo,DOWNLOAD_REPORT
+Year-end report lo,DOWNLOAD_REPORT
+Transaction log export karo,DOWNLOAD_REPORT
+Upload transactions.csv,UPLOAD_FILE
+Import report_data.xlsx,UPLOAD_FILE
+Upload customer_backup.zip,UPLOAD_FILE
+Import attendance.csv,UPLOAD_FILE
+Upload payroll.xlsx,UPLOAD_FILE
+Transactions CSV upload karo,UPLOAD_FILE
+Report data import karo,UPLOAD_FILE
+Customer backup upload karo,UPLOAD_FILE
+Attendance CSV import karo,UPLOAD_FILE
+Payroll Excel upload karo,UPLOAD_FILE
+Fill transaction form,FILL_FORM
+Complete vendor registration form,FILL_FORM
+Fill out the complaint form,FILL_FORM
+Submit the access request form,FILL_FORM
+Fill monthly timesheet,FILL_FORM
+Transaction form bharo,FILL_FORM
+Vendor registration form complete karo,FILL_FORM
+Complaint form fill karo,FILL_FORM
+Access request form submit karo,FILL_FORM
+Monthly timesheet bharo,FILL_FORM
+Show customer table,READ_TABLE
+Read employee data,READ_TABLE
+Display product records,READ_TABLE
+View all transaction records,READ_TABLE
+List all invoice entries,READ_TABLE
+Customer table dikhao,READ_TABLE
+Employee data padhna hai,READ_TABLE
+Product records dekho,READ_TABLE
+Transaction records list karo,READ_TABLE
+Invoice entries dikhao,READ_TABLE
+Send weekly report email,SEND_EMAIL
+Email the invoice to client Rahul,SEND_EMAIL
+Send confirmation email,SEND_EMAIL
+Mail approval to manager,SEND_EMAIL
+Send email reminder,SEND_EMAIL
+Weekly report email bhejo,SEND_EMAIL
+Client Rahul ko invoice email karo,SEND_EMAIL
+Confirmation email bhejo,SEND_EMAIL
+Manager ko approval mail karo,SEND_EMAIL
+Reminder email bhejo,SEND_EMAIL
+Take screenshot of confirmation,TAKE_SCREENSHOT
+Capture form screenshot,TAKE_SCREENSHOT
+Screenshot before deletion,TAKE_SCREENSHOT
+Take screen capture of result,TAKE_SCREENSHOT
+Screenshot for audit trail,TAKE_SCREENSHOT
+Confirmation ka screenshot lo,TAKE_SCREENSHOT
+Form capture karo,TAKE_SCREENSHOT
+Delete se pehle screenshot lo,TAKE_SCREENSHOT
+Result ka screen capture karo,TAKE_SCREENSHOT
+Audit ke liye screenshot lo,TAKE_SCREENSHOT
+Update product Refrigerator price,UPDATE_PRODUCT
+Change Washing Machine price to 25000,UPDATE_PRODUCT
+Modify Microwave product details,UPDATE_PRODUCT
+Update stock for Air Conditioner,UPDATE_PRODUCT
+Change product Fan category,UPDATE_PRODUCT
+Refrigerator ka price update karo,UPDATE_PRODUCT
+Washing Machine 25000 kar do,UPDATE_PRODUCT
+Microwave product details modify karo,UPDATE_PRODUCT
+AC ka stock update karo,UPDATE_PRODUCT
+Fan ki category change karo,UPDATE_PRODUCT
+Navigate to billing page,OPEN_PAGE
+Open transaction history,OPEN_PAGE
+Go to the profile page,OPEN_PAGE
+Open customer support section,OPEN_PAGE
+Navigate to the admin settings,OPEN_PAGE
+Billing page kholo,OPEN_PAGE
+Transaction history dekho,OPEN_PAGE
+Profile page pe jao,OPEN_PAGE
+Customer support section open karo,OPEN_PAGE
+Admin settings mein navigate karo,OPEN_PAGE
+Click the proceed button,CLICK_BUTTON
+Press close window,CLICK_BUTTON
+Click activate button,CLICK_BUTTON
+Press deactivate,CLICK_BUTTON
+Click verify button,CLICK_BUTTON
+Proceed button click karo,CLICK_BUTTON
+Window band karo,CLICK_BUTTON
+Activate button dabao,CLICK_BUTTON
+Deactivate press karo,CLICK_BUTTON
+Verify pe click karo,CLICK_BUTTON
+Add Shreya as customer with phone 9900123456,ADD_CUSTOMER
+Create customer Vinod email vinod@test.com,ADD_CUSTOMER
+Register Jayesh with phone 9811234567,ADD_CUSTOMER
+Add new customer Rashmi,ADD_CUSTOMER
+Create entry for customer Sonal,ADD_CUSTOMER
+Add customer Hitesh phone 9822334455,ADD_CUSTOMER
+Register Minal as new customer,ADD_CUSTOMER
+Add client Farhan email farhan@biz.com,ADD_CUSTOMER
+Create customer record Deepika,ADD_CUSTOMER
+Add Yashwant as customer,ADD_CUSTOMER
+Shreya ko customer banao,ADD_CUSTOMER
+Vinod ka customer account create karo,ADD_CUSTOMER
+Jayesh ko add karo,ADD_CUSTOMER
+Rashmi ka naya customer record,ADD_CUSTOMER
+Sonal ko customer list mein daalo,ADD_CUSTOMER
+Hitesh ka record add karo,ADD_CUSTOMER
+Minal ko register karo customer ke roop mein,ADD_CUSTOMER
+Farhan ka account banana hai,ADD_CUSTOMER
+Deepika ka customer entry create karo,ADD_CUSTOMER
+Yashwant ko naya customer banao,ADD_CUSTOMER
+Update Shreya phone number,UPDATE_CUSTOMER
+Change Vinod email address,UPDATE_CUSTOMER
+Modify Jayesh customer contact,UPDATE_CUSTOMER
+Edit Rashmi details,UPDATE_CUSTOMER
+Update client Sonal phone,UPDATE_CUSTOMER
+Delete customer Shreya,DELETE_CUSTOMER
+Remove Vinod from list,DELETE_CUSTOMER
+Delete Jayesh entry,DELETE_CUSTOMER
+Remove customer Rashmi,DELETE_CUSTOMER
+Delete Sonal record,DELETE_CUSTOMER
+Update employee Hitesh salary,UPDATE_EMPLOYEE
+Modify Minal staff record,UPDATE_EMPLOYEE
+Change Farhan employee department,UPDATE_EMPLOYEE
+Edit Deepika employee details,UPDATE_EMPLOYEE
+Update employee Yashwant contact,UPDATE_EMPLOYEE
+Delete employee Hitesh,DELETE_EMPLOYEE
+Remove Minal from staff,DELETE_EMPLOYEE
+Delete Farhan employee,DELETE_EMPLOYEE
+Remove employee Deepika,DELETE_EMPLOYEE
+Delete staff Yashwant,DELETE_EMPLOYEE
+Download revenue report,DOWNLOAD_REPORT
+Export accounts report to CSV,DOWNLOAD_REPORT
+Get performance summary report,DOWNLOAD_REPORT
+Download tax report,DOWNLOAD_REPORT
+Export all records report,DOWNLOAD_REPORT
+Revenue report download karo,DOWNLOAD_REPORT
+Accounts report CSV mein export karo,DOWNLOAD_REPORT
+Performance summary lo,DOWNLOAD_REPORT
+Tax report download karo,DOWNLOAD_REPORT
+All records export karo,DOWNLOAD_REPORT
+Upload vendor_list.xlsx,UPLOAD_FILE
+Import contracts.pdf,UPLOAD_FILE
+Upload the data.csv file,UPLOAD_FILE
+Import bills.xlsx,UPLOAD_FILE
+Upload photos.zip,UPLOAD_FILE
+Vendor list upload karo,UPLOAD_FILE
+Contracts PDF import karo,UPLOAD_FILE
+Data CSV upload karo,UPLOAD_FILE
+Bills import karo,UPLOAD_FILE
+Photos zip upload karo,UPLOAD_FILE
+Fill the vendor onboarding form,FILL_FORM
+Submit the complaint registration form,FILL_FORM
+Complete the expense claim form,FILL_FORM
+Fill the IT request form,FILL_FORM
+Submit asset request form,FILL_FORM
+Vendor form bharo,FILL_FORM
+Complaint registration form submit karo,FILL_FORM
+Expense claim form complete karo,FILL_FORM
+IT request form fill karo,FILL_FORM
+Asset request bharo,FILL_FORM
+View all sales records,READ_TABLE
+Read billing table,READ_TABLE
+Display all vendor entries,READ_TABLE
+Show attendance records,READ_TABLE
+View the order list,READ_TABLE
+Sales records dekho,READ_TABLE
+Billing table padhna hai,READ_TABLE
+Vendor entries dikhao,READ_TABLE
+Attendance records show karo,READ_TABLE
+Order list view karo,READ_TABLE
+Email daily report to supervisor,SEND_EMAIL
+Send meeting invite email,SEND_EMAIL
+Mail project update to team,SEND_EMAIL
+Send email to vendor@partner.com,SEND_EMAIL
+Email the contract to legal,SEND_EMAIL
+Supervisor ko daily report email karo,SEND_EMAIL
+Meeting invite email bhejo,SEND_EMAIL
+Team ko project update mail karo,SEND_EMAIL
+Vendor ko email bhejo,SEND_EMAIL
+Legal team ko contract email karo,SEND_EMAIL
+Screenshot of invoice page,TAKE_SCREENSHOT
+Capture the payment confirmation,TAKE_SCREENSHOT
+Take screenshot of error message,TAKE_SCREENSHOT
+Screen capture after upload,TAKE_SCREENSHOT
+Screenshot of the order summary,TAKE_SCREENSHOT
+Invoice page ka screenshot,TAKE_SCREENSHOT
+Payment confirmation capture karo,TAKE_SCREENSHOT
+Error message ka screenshot lo,TAKE_SCREENSHOT
+Upload ke baad screen capture,TAKE_SCREENSHOT
+Order summary screenshot lo,TAKE_SCREENSHOT
+Update product Chair price to 3500,UPDATE_PRODUCT
+Change Desk price to 8000,UPDATE_PRODUCT
+Modify product Printer details,UPDATE_PRODUCT
+Update Monitor stock,UPDATE_PRODUCT
+Change Scanner product category,UPDATE_PRODUCT
+Chair ka price 3500 karo,UPDATE_PRODUCT
+Desk 8000 mein update karo,UPDATE_PRODUCT
+Printer product details modify karo,UPDATE_PRODUCT
+Monitor ka stock update karo,UPDATE_PRODUCT
+Scanner ki category change karo,UPDATE_PRODUCT
+Go to notifications page,OPEN_PAGE
+Open the help center,OPEN_PAGE
+Navigate to the audit log,OPEN_PAGE
+Open backup settings,OPEN_PAGE
+Go to user management,OPEN_PAGE
+Notifications page kholo,OPEN_PAGE
+Help center open karo,OPEN_PAGE
+Audit log page pe jao,OPEN_PAGE
+Backup settings navigate karo,OPEN_PAGE
+User management kholo,OPEN_PAGE
+Click the submit application,CLICK_BUTTON
+Press the search button,CLICK_BUTTON
+Click filter results,CLICK_BUTTON
+Press the print button,CLICK_BUTTON
+Click the reset button,CLICK_BUTTON
+Submit application click karo,CLICK_BUTTON
+Search button press karo,CLICK_BUTTON
+Filter results dabao,CLICK_BUTTON
+Print button click karo,CLICK_BUTTON
+Reset button dabao,CLICK_BUTTON
+Add new customer Tejas phone 9823000001,ADD_CUSTOMER
+Create customer Nalini email nalini@test.com,ADD_CUSTOMER
+Register customer Devraj,ADD_CUSTOMER
+Add Varsha as customer with phone 9811000002,ADD_CUSTOMER
+Create new customer Balraj,ADD_CUSTOMER
+Tejas ko customer banao,ADD_CUSTOMER
+Nalini ka customer account create karo,ADD_CUSTOMER
+Devraj ko add karo customer list mein,ADD_CUSTOMER
+Varsha ka record add karo,ADD_CUSTOMER
+Balraj ko naya customer banao,ADD_CUSTOMER
+Update Tejas contact details,UPDATE_CUSTOMER
+Change Nalini phone,UPDATE_CUSTOMER
+Modify Devraj record,UPDATE_CUSTOMER
+Edit Varsha customer info,UPDATE_CUSTOMER
+Update Balraj email,UPDATE_CUSTOMER
+Delete Tejas customer record,DELETE_CUSTOMER
+Remove Nalini entry,DELETE_CUSTOMER
+Delete customer Devraj,DELETE_CUSTOMER
+Remove Varsha from list,DELETE_CUSTOMER
+Delete Balraj entry,DELETE_CUSTOMER
+Update employee Tejas details,UPDATE_EMPLOYEE
+Modify Nalini staff record,UPDATE_EMPLOYEE
+Change Devraj employee contact,UPDATE_EMPLOYEE
+Update employee Varsha salary,UPDATE_EMPLOYEE
+Edit staff Balraj,UPDATE_EMPLOYEE
+Delete employee Tejas,DELETE_EMPLOYEE
+Remove Nalini from staff list,DELETE_EMPLOYEE
+Delete Devraj employee record,DELETE_EMPLOYEE
+Remove employee Varsha,DELETE_EMPLOYEE
+Delete staff Balraj,DELETE_EMPLOYEE
+Download expense report,DOWNLOAD_REPORT
+Export payroll summary,DOWNLOAD_REPORT
+Get the audit report,DOWNLOAD_REPORT
+Download project status report,DOWNLOAD_REPORT
+Export budget report,DOWNLOAD_REPORT
+Expense report lo,DOWNLOAD_REPORT
+Payroll summary export karo,DOWNLOAD_REPORT
+Audit report download karo,DOWNLOAD_REPORT
+Project status report lo,DOWNLOAD_REPORT
+Budget report export karo,DOWNLOAD_REPORT
+Upload expenses.xlsx,UPLOAD_FILE
+Import payroll_data.csv,UPLOAD_FILE
+Upload project_plan.pdf,UPLOAD_FILE
+Import budget.xlsx,UPLOAD_FILE
+Upload audit_log.zip,UPLOAD_FILE
+Expenses Excel upload karo,UPLOAD_FILE
+Payroll CSV import karo,UPLOAD_FILE
+Project plan PDF upload karo,UPLOAD_FILE
+Budget file import karo,UPLOAD_FILE
+Audit log upload karo,UPLOAD_FILE
+Fill project request form,FILL_FORM
+Submit budget approval form,FILL_FORM
+Complete audit checklist form,FILL_FORM
+Fill the purchase order form,FILL_FORM
+Submit travel reimbursement form,FILL_FORM
+Project request form bharo,FILL_FORM
+Budget approval form submit karo,FILL_FORM
+Audit checklist complete karo,FILL_FORM
+Purchase order form fill karo,FILL_FORM
+Travel reimbursement form bharo,FILL_FORM
+Display purchase orders table,READ_TABLE
+Read the expense table,READ_TABLE
+View all audit log entries,READ_TABLE
+Show budget records,READ_TABLE
+List all payroll data,READ_TABLE
+Purchase orders dikhao,READ_TABLE
+Expense table padhna hai,READ_TABLE
+Audit log entries dekho,READ_TABLE
+Budget records show karo,READ_TABLE
+Payroll data list karo,READ_TABLE
+Email project update to client,SEND_EMAIL
+Send budget approval email,SEND_EMAIL
+Mail the audit findings,SEND_EMAIL
+Send email to finance@company.com,SEND_EMAIL
+Email the purchase order,SEND_EMAIL
+Client ko project update email karo,SEND_EMAIL
+Budget approval email bhejo,SEND_EMAIL
+Audit findings mail karo,SEND_EMAIL
+Finance team email bhejo,SEND_EMAIL
+Purchase order email karo,SEND_EMAIL
+Screenshot of budget page,TAKE_SCREENSHOT
+Capture audit log screenshot,TAKE_SCREENSHOT
+Take screenshot of project status,TAKE_SCREENSHOT
+Screen capture of purchase order,TAKE_SCREENSHOT
+Screenshot before approval,TAKE_SCREENSHOT
+Budget page ka screenshot lo,TAKE_SCREENSHOT
+Audit log capture karo,TAKE_SCREENSHOT
+Project status screenshot lo,TAKE_SCREENSHOT
+Purchase order screen capture,TAKE_SCREENSHOT
+Approval se pehle screenshot lo,TAKE_SCREENSHOT
+Update product Keyboard price,UPDATE_PRODUCT
+Change Mouse price to 500,UPDATE_PRODUCT
+Modify Headphone product info,UPDATE_PRODUCT
+Update Webcam stock quantity,UPDATE_PRODUCT
+Change product Speaker category,UPDATE_PRODUCT
+Keyboard ka price update karo,UPDATE_PRODUCT
+Mouse 500 mein karo,UPDATE_PRODUCT
+Headphone details modify karo,UPDATE_PRODUCT
+Webcam ka stock update karo,UPDATE_PRODUCT
+Speaker ki category change karo,UPDATE_PRODUCT
+Open the invoice section,OPEN_PAGE
+Navigate to purchase orders,OPEN_PAGE
+Go to the project dashboard,OPEN_PAGE
+Open expense tracker,OPEN_PAGE
+Navigate to payroll section,OPEN_PAGE
+Invoice section kholo,OPEN_PAGE
+Purchase orders pe jao,OPEN_PAGE
+Project dashboard open karo,OPEN_PAGE
+Expense tracker navigate karo,OPEN_PAGE
+Payroll section kholo,OPEN_PAGE
+Click approve button,CLICK_BUTTON
+Press reject button,CLICK_BUTTON
+Click the next page button,CLICK_BUTTON
+Press back to list,CLICK_BUTTON
+Click the edit button,CLICK_BUTTON
+Approve button click karo,CLICK_BUTTON
+Reject button dabao,CLICK_BUTTON
+Next page button press karo,CLICK_BUTTON
+Back to list pe jao,CLICK_BUTTON
+Edit button click karo,CLICK_BUTTON

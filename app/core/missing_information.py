@@ -1,4 +1,24 @@
-from entity_extractor import extract_entities
+def detect_missing_information(intent: str, entities: dict):
+    """Return list of missing entity keys required for the given intent."""
+
+    required = []
+
+    if intent == "ADD_CUSTOMER":
+        required = ["name", "phone"]
+
+    elif intent == "UPDATE_PRODUCT":
+        required = ["product", "price"]
+
+    elif intent == "UPLOAD_FILE":
+        required = ["file"]
+
+    elif intent == "SEND_EMAIL":
+        required = ["email", "subject"]
+
+    missing = [k for k in required if k not in entities or not entities.get(k)]
+
+    return missing
+from app.core.entity_extractor import extract_entities
 
 def check_missing_information(text):
 

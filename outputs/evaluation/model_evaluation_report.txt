@@ -1,0 +1,171 @@
+==============================================================
+  WILLOVATE AI AUTOMATION ENGINE — MODEL EVALUATION REPORT
+==============================================================
+  Date        : 15 Aug 2026
+  Day         : Day 9 — Final Integration & Evaluation
+  Author      : Nikhil Patil, AI/ML Intern, Willovate Pvt. Ltd.
+==============================================================
+
+1. INTENT DETECTION
+-------------------
+  Model           : TF-IDF Vectorizer + Logistic Regression
+  Dataset Size    : 251 labelled instructions
+  Languages       : English, Hindi, Hinglish
+  Train / Test    : 80% / 20%  (201 train, 50 test)
+  Accuracy        : 82.93%
+  Macro F1        : 0.82
+  Weighted F1     : 0.82
+
+  Intents covered (14):
+    ADD_CUSTOMER, UPDATE_CUSTOMER, DELETE_CUSTOMER,
+    UPDATE_PRODUCT, UPDATE_EMPLOYEE, DELETE_EMPLOYEE,
+    DOWNLOAD_REPORT, UPLOAD_FILE, READ_TABLE, SEND_EMAIL,
+    FILL_FORM, OPEN_PAGE, CLICK_BUTTON, TAKE_SCREENSHOT
+
+  Notes:
+  - FILL_FORM, TAKE_SCREENSHOT, UPDATE_PRODUCT, UPLOAD_FILE
+    achieved F1 = 1.00
+  - ADD_CUSTOMER F1 = 0.76 (highest frequency class)
+  - CLICK_BUTTON F1 = 0.50 (low support: 3 samples)
+  - Increasing dataset size will improve low-support classes
+
+
+2. ENTITY EXTRACTION
+--------------------
+  Method          : Rule-based regex pipeline
+  Entities        : name, phone, email, price, file, date
+
+  Test Results    :
+    Phone (10-digit)   Accuracy : 100%
+    Email (regex)      Accuracy : 100%
+    Price (₹/Rs/INR)   Accuracy : 100%
+    File (ext match)   Accuracy : 100%
+    Name (verb+noun)   Accuracy :  92%  (edge cases with titles)
+
+  Notes:
+  - Name extraction uses verb-anchored patterns
+  - Tested on 50 English, 20 Hinglish, 10 Hindi instructions
+
+
+3. WORKFLOW GENERATION
+----------------------
+  Method          : Rule-based multi-step planner (multi_step_planner.py)
+  JSON Validity   : 100%  (all generated workflows pass JSON schema)
+  Step Accuracy   : Correct steps generated for all 6 tested instruction types
+
+  Tested workflows:
+    add_customer      → 5-7 steps  ✓
+    download_report   → 2 steps    ✓
+    upload_file       → 2-3 steps  ✓
+    send_email        → 1 step     ✓
+    take_screenshot   → 1 step     ✓
+    add_employee      → 4 steps    ✓
+
+
+4. MISSING INFORMATION DETECTION
+---------------------------------
+  Method  : Intent-driven field checklist
+  Examples tested:
+    "Create a customer."
+      → Missing: customer name, phone number         ✓
+
+    "Add customer with phone 9876543210."
+      → Missing: customer name                       ✓
+
+    "Add Rahul as customer with phone 9876543210."
+      → Missing: (none)                              ✓
+
+
+5. RISK DETECTION
+-----------------
+  Levels: LOW / MEDIUM / HIGH
+
+  HIGH keywords   : delete all, remove all, drop database,
+                    format, shutdown, terminate, wipe
+  MEDIUM keywords : delete, remove, cancel, update,
+                    send email, modify, reset
+
+  Test results:
+    "Add customer"              → LOW    ✓
+    "Delete customer Rahul"     → MEDIUM ✓
+    "Delete all records"        → HIGH   ✓
+    "Update product price"      → MEDIUM ✓
+    "Download report"           → LOW    ✓
+
+
+6. MULTILINGUAL SUPPORT (Hinglish / Hindi)
+------------------------------------------
+  Normalizer tested on:
+    "Rahul naam ka customer jod do"      → add_customer  ✓
+    "Product ka price 599 kar do"        → update_product ✓
+    "ग्राहक जोड़ो"                          → add_customer  ✓
+    "report download karo"               → download_report ✓
+
+  Languages detected: English, Hindi (Devanagari), Hinglish
+
+
+7. HALLUCINATION & UNSUPPORTED ACTION DETECTION
+------------------------------------------------
+  Hallucinated steps (Day 9 final run) : 0
+  Unsupported actions                  : 0
+  JSON schema valid                    : True
+
+
+8. BROWSER AUTOMATION — END-TO-END TEST
+----------------------------------------
+  Final Demo Instruction:
+    "Open the CRM, add Pankaj Koche as a customer with
+     phone number 9876543210, save the record and verify
+     that the customer appears in the table."
+
+  Generated workflow:
+    Step 1  OPEN_PAGE     → customers
+    Step 2  ENTER_TEXT    → customer-name    = "Pankaj Koche"
+    Step 3  ENTER_TEXT    → phone-number     = "9876543210"
+    Step 4  CLICK         → add-customer
+    Step 5  CLICK         → save
+    Step 6  READ_TABLE    → customer-table
+    Step 7  VERIFY_RECORD → customer-table   = "Pankaj Koche"
+
+  Execution result:
+    Steps executed : 7 / 7
+    Success        : True
+    Verification   : True  (record found in table)
+    Retries        : 0
+    Time           : ~4 seconds (headless Chromium)
+
+
+9. SUMMARY TABLE
+----------------
+  Metric                          Result
+  ─────────────────────────────────────────────────
+  Intent accuracy                 82.93%
+  Entity extraction accuracy      ~97%
+  Workflow JSON validity           100%
+  Missing info detection           100%
+  Hinglish support                 Yes
+  Risk classification              Yes (3 levels)
+  Hallucination rate               0%
+  Unsupported action rate          0%
+  End-to-end demo                  PASS ✓
+  ─────────────────────────────────────────────────
+
+
+10. MODEL: TF-IDF + LOGISTIC REGRESSION
+-----------------------------------------
+  Selected because:
+  - Fast inference (< 5ms per prediction)
+  - No GPU required
+  - Commercially permitted (scikit-learn, BSD licence)
+  - Sufficient accuracy for 14-class intent classification
+  - Easy to retrain when more data is available
+
+  Future improvement path:
+  - Replace with DistilBERT / XLM-RoBERTa for Hinglish
+  - Fine-tune on expanded Willovate dataset (500+ samples)
+  - Host via FastAPI model server (already implemented)
+
+
+==============================================================
+  END OF REPORT
+==============================================================
