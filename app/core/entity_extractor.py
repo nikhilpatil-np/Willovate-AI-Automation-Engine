@@ -95,6 +95,12 @@ def extract_entities(text):
 
     name_patterns = [
 
+        # name at end: "add customer named nikhil" / "add customer as nikhil"
+        # handles normalized Hinglish: jodo customer as nikhil → add customer named nikhil
+        r"\b(?:add|create|register)\s+(?:customer|client|employee|user)\s+"
+        r"(?:named?|as)\s+"
+        r"([A-Za-z]+(?:\s+[A-Za-z]+){0,1})\s*(?:phone|email|with|$)",
+
         # add / create / register  <Name>  as|with|to|customer|employee
         r"\b(?:add|create|register)\s+"
         r"((?:(?!" + _sep + r")[A-Za-z]+)(?:\s+(?:(?!" + _sep + r")[A-Za-z]+)){0,2})"
@@ -129,18 +135,38 @@ def extract_entities(text):
         )
 
         if match:
-
             candidate = match.group(1).strip()
 
             invalid_names = {
                 "a", "an", "the", "new", "it",
                 "customer", "employee", "product", "file", "report",
                 "email", "phone", "number", "client", "user", "staff",
+                "named", "name", "karo", "kar", "do", "ka", "ki", "ko",
+                "jodo", "jod", "banao", "bana", "add", "create",
             }
 
             if candidate.lower() not in invalid_names:
-                entities["name"] = candidate
+                entities["name"] = candidate.title() if candidate.islower() else candidate
                 break
+
+    # If name still not found on original, try on normalized text
+    if "name" not in entities:
+        from app.core.language_normalizer import normalize
+        norm_text = normalize(text)
+        for pattern in name_patterns:
+            match = re.search(pattern, norm_text, re.IGNORECASE)
+            if match:
+                candidate = match.group(1).strip()
+                invalid_names = {
+                    "a", "an", "the", "new", "it",
+                    "customer", "employee", "product", "file", "report",
+                    "email", "phone", "number", "client", "user", "staff",
+                    "named", "name", "karo", "kar", "do", "ka", "ki", "ko",
+                    "jodo", "jod", "banao", "bana", "add", "create",
+                }
+                if candidate.lower() not in invalid_names:
+                    entities["name"] = candidate.title() if candidate.islower() else candidate
+                    break
 
 
     return entities

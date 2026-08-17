@@ -31,6 +31,7 @@ DEVANAGARI_MAP = {
     "कस्टमर जोड़ो": "add customer",
     "कस्टमर बनाओ": "create customer",
     "कस्टमर हटाओ": "delete customer",
+    "Naam ka":"add customer",
     # Products
     "प्रोडक्ट का मूल्य बदलो": "change product price",
     "प्रोडक्ट अपडेट करो": "update product",
@@ -103,7 +104,9 @@ HINGLISH_MAP = {
     "naam ka": "named",
     "naam ki": "named",
     "naam ke": "named",
-    "naam": "",
+    "naam": "named",
+    "as":"named",
+    "jodo":"add",
     "ko add karo": "add",
     "ko add kar do": "add",
     "mein add karo": "add",
