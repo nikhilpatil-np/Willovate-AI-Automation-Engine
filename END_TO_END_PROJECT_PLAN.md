@@ -123,7 +123,8 @@ Then it should do the following:
    - product name
    - price
    - date
-   - file name
+   - file name 
+   
    - page name
 
 5. Detect missing information

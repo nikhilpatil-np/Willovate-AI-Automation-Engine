@@ -19,6 +19,7 @@ class IntentDetector:
                 "customer banao",
                 "customer banado",
                 "ग्राहक जोड़",
+                "employee add karo",
                 "ग्राहक बनाओ"
             ],
 

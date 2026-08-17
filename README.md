@@ -254,8 +254,9 @@ Willovate-AI-Automation-Engine/
 └── screenshots/
     ├── day2/
     ├── day3/
-    └── ...
-```
+    └── 
+
+
 
 ---
 
