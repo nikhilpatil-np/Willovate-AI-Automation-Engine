@@ -104,6 +104,12 @@ def extract_entities(text):
         r"\b(?:add|create|register)\s+(?:customer|client|employee|user)\s+"
         r"((?:(?!" + _sep + r")[A-Za-z]+)(?:\s+(?:(?!" + _sep + r")[A-Za-z]+)){0,1})\b",
 
+        # Hinglish: <Name> naam ka  (e.g. "Rahul naam ka customer jod do")
+        r"\b([A-Z][a-z]+(?:\s+[A-Z][a-z]+){0,1})\s+naam\b",
+
+        # Hinglish: <Name> ko customer / <Name> ka customer
+        r"\b([A-Z][a-z]+(?:\s+[A-Z][a-z]+){0,1})\s+(?:ko|ka|ki)\s+(?:customer|employee|client)\b",
+
         # delete / remove  customer|employee  <Name>
         r"\b(?:delete|remove)\s+(?:customer|employee|client|staff)\s+"
         r"([A-Za-z]+(?:\s+[A-Za-z]+){0,1})\b",
