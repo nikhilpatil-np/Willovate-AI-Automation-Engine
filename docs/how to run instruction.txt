@@ -1,0 +1,13 @@
+GitHub Repository:
+https://github.com/nikhilpatil-np/Willovate-AI-Automation-Engine
+
+How to run:
+  cd Willovate-AI-Automation-Engine
+  .venv\Scripts\Activate.ps1
+  uvicorn main:app --port 8000
+  Open: http://127.0.0.1:8000
+
+Final demo command:
+  "Open the CRM, add Pankaj Koche as a customer with
+   phone number 9876543210, save the record and verify
+   that the customer appears in the table."
