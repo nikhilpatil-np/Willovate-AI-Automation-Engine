@@ -25,7 +25,7 @@ Example output for:
 """
 
 import re
-from app.core.entity_extractor import extract_entities
+from app.core.entity_extractor import extract_entities, extract_web_entities
 
 
 # ---------------------------------------------------------------------------
@@ -47,13 +47,28 @@ SPLIT_PATTERNS = [
 
 def _intent(text: str) -> str:
     t = text.lower()
+    # Offer / discount / sale banner — check before generic change_web
+    if any(k in t for k in (
+        "add offer", "add discount", "add sale", "add deal", "add promo",
+        "offer add", "discount add", "sale add",
+        "offer karo", "offer lagao", "sale lagao",
+    )):
+        return "add_offer"
     # Web change check first — before update_record which also uses "change"
     if any(k in t for k in (
-        "change logo", "update logo", "change header color", "change background",
-        "change sidebar", "add banner", "add offer", "change title",
-        "change button color", "change theme", "change color",
-        "logo badlo", "banner add", "color change",
-    )):
+        "change logo", "update logo", "set logo", "change the logo", "update the logo",
+        "change header", "set header", "change header color", "set header color",
+        "change header background", "set header background",
+        "change background", "set background", "change bg", "set bg",
+        "change sidebar", "set sidebar", "sidebar color", "sidebar background",
+        "add banner", "show banner", "create banner",
+        "change title", "set title",
+        "change button color", "set button color",
+        "change theme", "set theme",
+        "change color", "set color",
+        "logo badlo", "banner add", "color change", "rang badlo",
+        "header badlo", "background badlo", "sidebar badlo",
+    )) or re.search(r"\blogo\b", t):
         return "change_web"
     if any(k in t for k in ("add", "create", "register", "jod", "bana", "जोड़", "बना")):
         if any(k in t for k in ("customer", "ग्राहक", "कस्टमर", "client")):
@@ -62,8 +77,12 @@ def _intent(text: str) -> str:
             return "add_employee"
         if any(k in t for k in ("product", "item", "प्रोडक्ट")):
             return "add_product"
-    if any(k in t for k in ("delete", "remove", "हटाओ")):
-        return "delete_record"
+    if any(k in t for k in ("delete", "remove", "hata", "हटाओ", "hatao")):
+        if any(k in t for k in ("product", "products", "item")):
+            return "delete_product"
+        if any(k in t for k in ("employee", "employees", "staff")):
+            return "delete_employee"
+        return "delete_customer"
     if any(k in t for k in ("update", "modify", "change", "edit")):
         return "update_record"
     if any(k in t for k in ("download", "report", "csv")):
@@ -139,6 +158,47 @@ def _steps_for(subtask: str, entities: dict) -> list:
                 "value":  entities["name"],
             })
 
+    # ── ADD PRODUCT ─────────────────────────────────────────────────────────
+    elif any(k in t for k in ("add product", "create product", "new product",
+                               "insert product", "product add", "product jod",
+                               "naya product", "product banao", "product daalo")):
+        if not any(s["action"] == "OPEN_PAGE" for s in steps):
+            steps.append({"action": "OPEN_PAGE", "target": "products"})
+
+        if "product_name" in entities:
+            steps.append({
+                "action": "ENTER_TEXT",
+                "target": "product-name",
+                "value":  entities["product_name"],
+            })
+        if "price" in entities:
+            steps.append({
+                "action": "ENTER_TEXT",
+                "target": "product-price",
+                "value":  entities["price"],
+            })
+        if "category" in entities:
+            steps.append({
+                "action": "ENTER_TEXT",
+                "target": "product-category",
+                "value":  entities["category"],
+            })
+        if "stock" in entities:
+            steps.append({
+                "action": "ENTER_TEXT",
+                "target": "product-stock",
+                "value":  entities["stock"],
+            })
+
+        steps.append({"action": "CLICK", "target": "add-product"})
+        steps.append({"action": "READ_TABLE", "target": "product-table"})
+        if "product_name" in entities:
+            steps.append({
+                "action": "VERIFY_RECORD",
+                "target": "product-table",
+                "value":  entities["product_name"],
+            })
+
     # ── ADD EMPLOYEE ────────────────────────────────────────────────────────
     elif _is_employee_add(t):
         if not any(s["action"] == "OPEN_PAGE" for s in steps):
@@ -178,9 +238,25 @@ def _steps_for(subtask: str, entities: dict) -> list:
                 })
 
     # ── DOWNLOAD REPORT ─────────────────────────────────────────────────────
-    if "download" in t and ("report" in t or "csv" in t):
+    if "download" in t and ("report" in t or "csv" in t or "excel" in t):
         steps.append({"action": "OPEN_PAGE", "target": "reports"})
-        steps.append({"action": "CLICK",     "target": "download-report"})
+
+        # Detect which report type the user asked for
+        is_today   = any(k in t for k in ("today", "aaj", "आज", "today's", "todays"))
+        is_product = any(k in t for k in ("product", "products", "item", "items"))
+        is_customer = any(k in t for k in ("customer", "customers", "client"))
+
+        if is_today:
+            report_target = "download-today-report"
+        elif is_product:
+            report_target = "download-product-report"
+        elif is_customer:
+            report_target = "download-customer-report"
+        else:
+            # Default to customer report when unspecified
+            report_target = "download-customer-report"
+
+        steps.append({"action": "CLICK", "target": report_target})
 
     # ── UPLOAD FILE ─────────────────────────────────────────────────────────
     if "upload" in t:
@@ -208,7 +284,11 @@ def _steps_for(subtask: str, entities: dict) -> list:
 
     # ── WEB CHANGES ─────────────────────────────────────────────────────────
     # Change logo
-    if re.search(r"\bchange\s+logo\b|\bupdate\s+logo\b|\blogo\s+(?:change|badlo)\b", t):
+    if re.search(
+        r"\b(?:change|update|set)\s+(?:the\s+)?logo\b"
+        r"|\blogo\s+(?:change|update|badlo)\b",
+        t,
+    ):
         logo = entities.get("logo", "")
         steps.append({
             "action": "CHANGE_LOGO",
@@ -216,9 +296,42 @@ def _steps_for(subtask: str, entities: dict) -> list:
             "value":  logo,
         })
 
-    # Change color / background / sidebar / header color
-    elif re.search(r"\bchange\s+(?:header\s+)?(?:color|background|bg|sidebar|theme)\b"
-                   r"|\bcolor\s+change\b|\bbackground\s+(?:change|badlo)\b", t):
+    # Change sidebar color/background — must come before the generic color block
+    # so "change sidebar color to blue" only generates ONE step, not two.
+    elif re.search(
+        r"\b(?:change|update|set)\s+sidebar\b"
+        r"|\bsidebar\s+(?:color|background|bg|badlo)\b",
+        t,
+    ):
+        color = entities.get("color", "")
+        steps.append({
+            "action": "CHANGE_STYLE",
+            "target": "sidebar",
+            "value":  color,
+        })
+
+    # Change header/topbar color or background
+    elif re.search(
+        r"\b(?:change|update|set)\s+header\b"
+        r"|\bheader\s+(?:color|background|bg|badlo)\b"
+        r"|\b(?:change|update|set)\s+topbar\b",
+        t,
+    ):
+        color = entities.get("color", "")
+        steps.append({
+            "action": "CHANGE_STYLE",
+            "target": "header",
+            "value":  color,
+        })
+
+    # Change body/page background or generic color/theme
+    elif re.search(
+        r"\b(?:change|update|set)\s+(?:the\s+)?(?:background|bg|theme|color)\b"
+        r"|\bcolor\s+(?:change|badlo)\b"
+        r"|\bbackground\s+(?:change|badlo)\b"
+        r"|\brang\s+badlo\b",
+        t,
+    ):
         element = entities.get("element", "body")
         color   = entities.get("color", "")
         steps.append({
@@ -227,9 +340,38 @@ def _steps_for(subtask: str, entities: dict) -> list:
             "value":  color,
         })
 
-    # Add banner / offer / announcement
-    elif re.search(r"\badd\s+(?:banner|offer|announcement|notice)\b"
-                   r"|\bbanner\s+add\b|\boffer\s+add\b", t):
+    # Add offer / discount / sale — product-aware banner (checks DB first)
+    elif re.search(
+        r"\badd\s+(?:offer|discount|sale|deal|promo)\b"
+        r"|\boffer\s+(?:add|lagao|karo)\b|\bsale\s+add\b",
+        t,
+    ):
+        banner_text   = entities.get("banner_text", "")
+        offer_scope   = entities.get("offer_scope", "all")
+        offer_product = entities.get("offer_product", "")
+        if not banner_text:
+            raw = re.search(r"(?:with\s+)?text\s+(.+)", t, re.IGNORECASE)
+            if not raw:
+                raw = re.search(
+                    r"\b(?:offer|discount|sale|deal|promo)\s+(?!on\b)(.+)",
+                    t, re.IGNORECASE,
+                )
+            banner_text = raw.group(1).strip() if raw else "Special Offer!"
+        steps.append({
+            "action":        "OFFER_BANNER",
+            "target":        "products",
+            "value":         banner_text,
+            "offer_scope":   offer_scope,
+            "offer_product": offer_product,
+        })
+
+    # Add plain banner / announcement (non-product)
+    elif re.search(
+        r"\b(?:add|show|create)\s+(?:banner|announcement|notice)\b"
+        r"|\bbanner\s+(?:add|lagao)\b"
+        r"|\bbanner\s+add\s+karo\b",
+        t,
+    ):
         banner_text = entities.get("banner_text", "Special Offer!")
         steps.append({
             "action": "ADD_BANNER",
@@ -238,8 +380,11 @@ def _steps_for(subtask: str, entities: dict) -> list:
         })
 
     # Change title / heading text
-    elif re.search(r"\bchange\s+(?:title|heading|topbar\s+title)\b"
-                   r"|\btitle\s+(?:change|badlo)\b", t):
+    elif re.search(
+        r"\b(?:change|update|set)\s+(?:title|heading|topbar\s+title)\b"
+        r"|\btitle\s+(?:change|badlo)\b",
+        t,
+    ):
         text_val = entities.get("text", "")
         steps.append({
             "action": "CHANGE_TEXT",
@@ -247,14 +392,33 @@ def _steps_for(subtask: str, entities: dict) -> list:
             "value":  text_val,
         })
 
-    # Change sidebar color specifically
-    if re.search(r"\bchange\s+sidebar\b|\bsidebar\s+(?:color|background)\b", t):
-        color = entities.get("color", "")
-        steps.append({
-            "action": "CHANGE_STYLE",
-            "target": "sidebar",
-            "value":  color,
-        })
+    # ── DELETE RECORD ────────────────────────────────────────────────────────
+    if any(k in t for k in ("delete", "remove", "hata", "हटाओ")):
+        # "delete all" / "clear all" → wipe entire table via API
+        if any(k in t for k in ("all", "every", "everything", "sab", "सब")):
+            # Which table? default customers
+            table = "customers"
+            if any(k in t for k in ("product", "products")):
+                table = "products"
+            elif any(k in t for k in ("employee", "employees", "staff")):
+                table = "employees"
+            steps.append({"action": "OPEN_PAGE", "target": table})
+            steps.append({"action": "CLEAR_ALL", "target": table})
+            steps.append({"action": "READ_TABLE", "target": table + "-table"})
+        else:
+            # Delete a specific named record
+            table = "customers"
+            if any(k in t for k in ("product", "item")):
+                table = "products"
+            elif any(k in t for k in ("employee", "staff")):
+                table = "employees"
+            steps.append({"action": "OPEN_PAGE", "target": table})
+            steps.append({
+                "action": "DELETE_RECORD",
+                "target": table + "-table",
+                "value":  entities.get("name", ""),
+            })
+            steps.append({"action": "READ_TABLE", "target": table + "-table"})
 
     return steps
 
@@ -287,6 +451,9 @@ def plan_multi_step(instruction: str) -> dict:
     """
 
     entities  = extract_entities(instruction)
+    # Merge web-specific entities (banner_text, color, logo, etc.) so that
+    # _steps_for() can use them instead of falling back to hardcoded defaults.
+    entities.update(extract_web_entities(instruction))
     sub_tasks = _split(instruction)
 
     all_steps: list = []
@@ -302,6 +469,12 @@ def plan_multi_step(instruction: str) -> dict:
     for step in all_steps:
         if not deduped or deduped[-1] != step:
             deduped.append(step)
+
+    # Auto-append screenshot after OFFER_BANNER so result is visible in UI
+    has_offer = any(s.get("action") == "OFFER_BANNER" for s in deduped)
+    has_shot  = any(s.get("action") == "TAKE_SCREENSHOT" for s in deduped)
+    if has_offer and not has_shot:
+        deduped.append({"action": "TAKE_SCREENSHOT", "target": "current-page"})
 
     return {
         "intent": _intent(instruction),

@@ -46,10 +46,11 @@ def extract_entities(text):
         # price: 599
         # price = 599
         # price to 599
+        # price 599  (no separator)
         price_context = re.search(
             r"\bprice\b\s*"
             r"(?:is|to|at|=|:)?\s*"
-            r"(\d{1,6})\b",
+            r"(\d{1,8})\b",
             text,
             re.IGNORECASE
         )
@@ -57,6 +58,67 @@ def extract_entities(text):
         if price_context:
             entities["price"] = price_context.group(1)
 
+
+    # ---------------------------------
+    # Product Name
+    # ---------------------------------
+
+    # Matches patterns like:
+    #   "add product Laptop with price..."
+    #   "add product named Laptop"
+    #   "create product Laptop"
+    #   "product Laptop with price"
+    #   "Update product Laptop price"
+    product_name_patterns = [
+        # add/create/new product <Name>
+        r"\b(?:add|create|new|insert)\s+(?:a\s+)?product\s+(?:named?\s+)?"
+        r"([A-Za-z][A-Za-z0-9\s\-]{1,30}?)"
+        r"(?:\s+(?:with|at|price|in|stock|category|and|$))",
+
+        # product <Name> with/price/in
+        r"\bproduct\s+(?:named?\s+)?"
+        r"([A-Za-z][A-Za-z0-9\s\-]{1,30}?)"
+        r"(?:\s+(?:with|at|price|in|stock|category|and))",
+
+        # update/change product <Name>
+        r"\b(?:update|change|modify|edit)\s+product\s+"
+        r"([A-Za-z][A-Za-z0-9\s\-]{1,30}?)"
+        r"(?:\s+(?:price|stock|category|with|to|and|$))",
+    ]
+
+    for pattern in product_name_patterns:
+        match = re.search(pattern, text, re.IGNORECASE)
+        if match:
+            candidate = match.group(1).strip()
+            _invalid = {"a", "an", "the", "new", "product", "price", "stock",
+                        "category", "electronics", "with", "at", "in", "and"}
+            if candidate.lower() not in _invalid and len(candidate) > 1:
+                entities["product_name"] = candidate.title()
+                break
+
+    # ---------------------------------
+    # Category
+    # ---------------------------------
+
+    category_match = re.search(
+        r"\bin\s+([A-Za-z][A-Za-z\s]{2,20}?)\s+category\b"
+        r"|\bcategory\s*(?:is|:)?\s*([A-Za-z][A-Za-z\s]{2,20})\b",
+        text, re.IGNORECASE
+    )
+    if category_match:
+        entities["category"] = (category_match.group(1) or category_match.group(2)).strip().title()
+
+    # ---------------------------------
+    # Stock
+    # ---------------------------------
+
+    stock_match = re.search(
+        r"\bstock\s*(?:is|:|=|of)?\s*(\d{1,6})\b"
+        r"|\b(\d{1,6})\s+(?:units?|items?|pcs?|pieces?)\b",
+        text, re.IGNORECASE
+    )
+    if stock_match:
+        entities["stock"] = stock_match.group(1) or stock_match.group(2)
 
     # ---------------------------------
     # File Name
@@ -217,12 +279,57 @@ def extract_web_entities(text: str) -> dict:
         entities["color"] = color.group(1).strip()
 
     # ── Banner / Offer text ────────────────────────────────────────────────
+    # Handles: "add offer with text X", "add banner with text X",
+    #          "add offer on Product with text X",
+    #          "add sale with banner text X"
     banner = re.search(
-        r"(?:banner|offer|announcement|notice)\s+(?:with\s+)?(?:text\s+)?[\"']?(.+?)[\"']?\s*$",
+        r"(?:banner|offer|discount|sale|deal|promo|announcement|notice)"
+        r"(?:\s+on\s+[\w\s]+?)?"                  # optional "on <product>"
+        r"\s+(?:with\s+)?(?:banner\s+)?text\s+"   # "text" or "banner text" keyword
+        r"[\"']?(.+?)[\"']?\s*$",
         text, re.IGNORECASE
     )
+    if not banner:
+        # Fallback: "add banner <text>" without "text" keyword
+        banner = re.search(
+            r"(?:add\s+)?(?:banner|announcement|notice)\s+"
+            r"(?:with\s+)?[\"']?(.+?)[\"']?\s*$",
+            text, re.IGNORECASE
+        )
     if banner:
         entities["banner_text"] = banner.group(1).strip()
+
+    # ── Offer scope: all products or single product ────────────────────────
+    # "add offer for all products"  → offer_scope = "all"
+    # "add offer on Laptop"         → offer_scope = "single"
+    # "add offer Summer Sale 50%"   → offer_scope = "all"  (no product named)
+    if re.search(r"\b(?:offer|discount|sale|deal|promo)\b", text, re.IGNORECASE):
+        # Check for explicit "all" scope
+        if re.search(
+            r"\b(?:all\s+products?|every\s+product|sab\s+products?)\b",
+            text, re.IGNORECASE
+        ):
+            entities["offer_scope"] = "all"
+        else:
+            # Try to extract a specific product name for single-product offer
+            single_match = re.search(
+                r"\b(?:offer|discount|sale|deal|promo)\s+"
+                r"(?:on|for|to|of)\s+"
+                r"(?!all\b)([A-Za-z][A-Za-z0-9\s\-]{1,30}?)"
+                r"(?:\s+(?:product|item|only|with|$)|$)",
+                text, re.IGNORECASE
+            )
+            if single_match:
+                candidate = single_match.group(1).strip()
+                _skip = {"all", "every", "the", "a", "an", "my", "our", "products", "product"}
+                if candidate.lower() not in _skip and len(candidate) > 1:
+                    entities["offer_product"] = candidate.title()
+                    entities["offer_scope"] = "single"
+                else:
+                    entities["offer_scope"] = "all"
+            else:
+                # Default: no specific product named → apply to all
+                entities["offer_scope"] = "all"
 
     # ── Title / Header text ────────────────────────────────────────────────
     title = re.search(

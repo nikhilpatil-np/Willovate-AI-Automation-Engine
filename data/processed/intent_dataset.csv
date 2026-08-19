@@ -1088,3 +1088,28 @@ Change header to dark blue,CHANGE_WEB
 Add sale banner,CHANGE_WEB
 Add discount offer,CHANGE_WEB
 Change page heading,CHANGE_WEB
+Add product Laptop with price 55000,ADD_PRODUCT
+Add new product Mobile,ADD_PRODUCT
+Create product TV in Electronics,ADD_PRODUCT
+Add product Tablet price 25000 stock 20,ADD_PRODUCT
+New product AC with price 35000 category Electronics,ADD_PRODUCT
+Add product Laptop with price 55000 in Electronics category and stock 10,ADD_PRODUCT
+Insert product Chair price 5000,ADD_PRODUCT
+Add a product named Refrigerator,ADD_PRODUCT
+Create new product Washing Machine,ADD_PRODUCT
+Add product Fan with price 2000 in Appliances category,ADD_PRODUCT
+Product add karo Laptop price 55000,ADD_PRODUCT
+Naya product jodo Mobile 15000,ADD_PRODUCT
+Product banao TV category Electronics,ADD_PRODUCT
+Product daalo Tablet price 25000,ADD_PRODUCT
+Naya product AC 35000 ka,ADD_PRODUCT
+उत्पाद जोड़ो Laptop,ADD_PRODUCT
+नया उत्पाद बनाएं Mobile,ADD_PRODUCT
+Add product with price 999,ADD_PRODUCT
+Create a product entry,ADD_PRODUCT
+Add new product to inventory,ADD_PRODUCT
+Addd product Laptop,ADD_PRODUCT
+Crete new product Mobile,ADD_PRODUCT
+Add prodct TV,ADD_PRODUCT
+Creat product Tablet,ADD_PRODUCT
+Add prouct Fan price 2000,ADD_PRODUCT

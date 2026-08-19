@@ -29,13 +29,16 @@
     .topbar-title  { font-size: 18px; font-weight: 600; color: #1a2340; }
     .topbar-right  { display: flex; align-items: center; gap: 14px; }
     .badge         { background: #4f8ef7; color: #fff; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; }
+    #db-status     { font-size: 12px; padding: 4px 10px; border-radius: 20px; font-weight: 500; }
+    #db-status.connected    { background: #e8f5e9; color: #27ae60; }
+    #db-status.disconnected { background: #fce4ec; color: #e74c3c; }
 
     /* ── Cards / Panels ── */
     .card          { background: #fff; border-radius: 10px; padding: 24px; box-shadow: 0 1px 6px rgba(0,0,0,.07); margin-bottom: 22px; }
     .card-title    { font-size: 15px; font-weight: 600; color: #1a2340; margin-bottom: 18px; padding-bottom: 10px; border-bottom: 1px solid #f0f0f0; }
 
     /* ── Stats row ── */
-    .stats-row     { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 22px; }
+    .stats-row     { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 22px; }
     .stat-card     { background: #fff; border-radius: 10px; padding: 20px 22px; box-shadow: 0 1px 6px rgba(0,0,0,.07); display: flex; flex-direction: column; gap: 6px; }
     .stat-label    { font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: .5px; }
     .stat-value    { font-size: 28px; font-weight: 700; color: #1a2340; }
@@ -55,6 +58,7 @@
     /* ── Buttons ── */
     .btn           { padding: 10px 22px; border: none; border-radius: 7px; cursor: pointer; font-size: 14px; font-weight: 500; transition: opacity .15s, box-shadow .15s; }
     .btn:hover     { opacity: .88; box-shadow: 0 2px 8px rgba(0,0,0,.12); }
+    .btn:disabled  { opacity: .5; cursor: not-allowed; }
     .btn-primary   { background: #4f8ef7; color: #fff; }
     .btn-success   { background: #27ae60; color: #fff; }
     .btn-danger    { background: #e74c3c; color: #fff; }
@@ -83,6 +87,10 @@
     #toast.success { background: #27ae60; }
     #toast.error   { background: #e74c3c; }
 
+    /* ── Spinner ── */
+    .spinner { display: inline-block; width: 14px; height: 14px; border: 2px solid rgba(255,255,255,.4); border-top-color: #fff; border-radius: 50%; animation: spin .6s linear infinite; vertical-align: middle; margin-right: 6px; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
     /* ── Page visibility ── */
     .page          { display: none; }
     .page.active   { display: block; }
@@ -100,17 +108,106 @@
       .nav-item span.label { display: none; }
       .sidebar-logo, .sidebar-section { display: none; }
     }
+
+    /* ── Logo Upload Modal ── */
+    #logo-modal-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,.55); z-index: 10000;
+      align-items: center; justify-content: center;
+    }
+    #logo-modal-overlay.show { display: flex; }
+    #logo-modal {
+      background: #fff; border-radius: 14px; padding: 36px 32px;
+      max-width: 460px; width: 90%; box-shadow: 0 24px 60px rgba(0,0,0,.22);
+      animation: logoModalIn .2s ease;
+    }
+    @keyframes logoModalIn {
+      from { opacity:0; transform: scale(.93) translateY(10px); }
+      to   { opacity:1; transform: scale(1)  translateY(0); }
+    }
+    #logo-modal .lm-title {
+      font-size: 18px; font-weight: 700; color: #1a2340;
+      margin-bottom: 6px; display: flex; align-items: center; gap: 10px;
+    }
+    #logo-modal .lm-sub {
+      font-size: 13px; color: #868e96; margin-bottom: 24px;
+    }
+    #logo-drop-zone {
+      border: 2.5px dashed #ced4da; border-radius: 10px;
+      padding: 32px 20px; text-align: center; cursor: pointer;
+      background: #f8f9fa; transition: all .15s; margin-bottom: 18px;
+    }
+    #logo-drop-zone:hover, #logo-drop-zone.dragover {
+      border-color: #4f8ef7; background: #eef4ff;
+    }
+    #logo-drop-zone .dz-icon { font-size: 36px; margin-bottom: 8px; }
+    #logo-drop-zone .dz-text { font-size: 13.5px; font-weight: 600; color: #495057; }
+    #logo-drop-zone .dz-hint { font-size: 12px; color: #adb5bd; margin-top: 4px; }
+    #logo-preview-wrap { display: none; margin-bottom: 18px; text-align: center; }
+    #logo-preview-wrap img {
+      max-height: 90px; max-width: 100%; border-radius: 8px;
+      border: 1px solid #dee2e6; padding: 8px; background: #fff;
+    }
+    #logo-preview-wrap .lm-filename {
+      font-size: 12px; color: #868e96; margin-top: 8px;
+    }
+    .lm-btns { display: flex; gap: 10px; justify-content: flex-end; }
+    .lm-btns button {
+      padding: 10px 24px; border: none; border-radius: 8px;
+      font-size: 14px; font-weight: 600; cursor: pointer; transition: opacity .15s;
+    }
+    .lm-btns button:hover { opacity: .85; }
+    #btn-logo-apply  { background: #1a2340; color: #fff; }
+    #btn-logo-cancel { background: #e9ecef; color: #495057; }
+    #btn-logo-reset  { background: #fff0f0; color: #e74c3c;
+                       border: 1px solid #f5c2c7; margin-right: auto; }
   </style>
 </head>
 <body>
 
 <div id="toast"></div>
 
+<!-- ── Logo Upload Modal ── -->
+<div id="logo-modal-overlay">
+  <div id="logo-modal">
+    <div class="lm-title">🖼 Change CRM Logo</div>
+    <div class="lm-sub">Upload a new logo image. It will replace the current sidebar logo and persist across page reloads.</div>
+
+    <!-- Drop zone -->
+    <div id="logo-drop-zone"
+         onclick="document.getElementById('logo-file-input').click()"
+         ondragover="logoDragOver(event)"
+         ondragleave="logoDragLeave(event)"
+         ondrop="logoDrop(event)">
+      <div class="dz-icon">📁</div>
+      <div class="dz-text">Click to browse or drag &amp; drop</div>
+      <div class="dz-hint">PNG · JPG · JPEG · SVG · WEBP · GIF</div>
+    </div>
+    <input type="file" id="logo-file-input" accept="image/*"
+           style="display:none" onchange="logoFileChosen(event)" />
+
+    <!-- Preview (shown after file selected) -->
+    <div id="logo-preview-wrap">
+      <img id="logo-preview-img" src="" alt="Logo preview" />
+      <div class="lm-filename" id="logo-preview-name"></div>
+    </div>
+
+    <div class="lm-btns">
+      <button id="btn-logo-reset"  onclick="logoReset()">↩ Reset to Default</button>
+      <button id="btn-logo-cancel" onclick="logoModalClose()">Cancel</button>
+      <button id="btn-logo-apply"  onclick="logoApply()" disabled>Apply Logo</button>
+    </div>
+  </div>
+</div>
+
 <div class="app">
 
   <!-- ── Sidebar ── -->
   <aside class="sidebar">
-    <div class="sidebar-logo">Willovate <span>CRM</span></div>
+    <div class="sidebar-logo" onclick="logoModalOpen()" title="Click to change logo" style="cursor:pointer;">
+      <span id="sidebar-logo-content">Willovate <span style="color:#4f8ef7">CRM</span></span>
+      <span style="font-size:11px;opacity:.45;margin-left:6px;">✏️</span>
+    </div>
 
     <div class="sidebar-section">Main</div>
     <div class="nav-item active" onclick="navigate('dashboard')">
@@ -124,17 +221,13 @@
     <div class="nav-item" onclick="navigate('products')">
       <span class="icon">📦</span><span class="label">Products</span>
     </div>
-    <div class="nav-item" onclick="navigate('employees')">
-      <span class="icon">🧑‍💼</span><span class="label">Employees</span>
-    </div>
-
-    <div class="sidebar-section">Tools</div>
+    <!-- <div class="sidebar-section">Tools</div> -->
     <div class="nav-item" onclick="navigate('reports')">
       <span class="icon">📄</span><span class="label">Reports</span>
     </div>
-    <div class="nav-item" onclick="navigate('upload')">
+    <!-- <div class="nav-item" onclick="navigate('upload')">
       <span class="icon">📤</span><span class="label">Upload</span>
-    </div>
+    </div> -->
     <div class="nav-item" onclick="navigate('settings')">
       <span class="icon">⚙️</span><span class="label">Settings</span>
     </div>
@@ -145,7 +238,7 @@
     <div class="topbar">
       <div class="topbar-title" id="topbar-title">Dashboard</div>
       <div class="topbar-right">
-        <span style="font-size:13px;color:#888;">No Database — In-Memory Storage</span>
+        <span id="db-status" class="disconnected">⏳ Connecting…</span>
         <div class="badge">W</div>
       </div>
     </div>
@@ -158,17 +251,12 @@
           <div class="stat-card">
             <div class="stat-icon">👥</div>
             <div class="stat-label">Total Customers</div>
-            <div class="stat-value" id="stat-customers">0</div>
+            <div class="stat-value" id="stat-customers">—</div>
           </div>
           <div class="stat-card">
             <div class="stat-icon">📦</div>
             <div class="stat-label">Total Products</div>
-            <div class="stat-value" id="stat-products">0</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-icon">🧑‍💼</div>
-            <div class="stat-label">Employees</div>
-            <div class="stat-value" id="stat-employees">0</div>
+            <div class="stat-value" id="stat-products">—</div>
           </div>
           <div class="stat-card">
             <div class="stat-icon">📄</div>
@@ -183,7 +271,7 @@
             <table>
               <thead><tr><th>Name</th><th>Phone</th><th>Email</th><th>Status</th></tr></thead>
               <tbody id="dashboard-recent-customers">
-                <tr><td colspan="4" class="empty-state">No customers yet</td></tr>
+                <tr><td colspan="4" class="empty-state">Loading…</td></tr>
               </tbody>
             </table>
           </div>
@@ -232,7 +320,9 @@
               <thead>
                 <tr><th>#</th><th>Name</th><th>Phone</th><th>Email</th><th>Status</th><th>Actions</th></tr>
               </thead>
-              <tbody id="customerTableBody"></tbody>
+              <tbody id="customerTableBody">
+                <tr><td colspan="6" class="empty-state">Loading…</td></tr>
+              </tbody>
             </table>
           </div>
         </div>
@@ -274,49 +364,9 @@
               <thead>
                 <tr><th>#</th><th>Name</th><th>Price</th><th>Category</th><th>Stock</th><th>Actions</th></tr>
               </thead>
-              <tbody id="productTableBody"></tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
-      <!-- ═══════════════════ EMPLOYEES ═══════════════════ -->
-      <div id="page-employees" class="page">
-        <div class="card">
-          <div class="card-title">Add Employee</div>
-          <div class="form-grid">
-            <div class="form-group">
-              <label for="employeeName">Employee Name</label>
-              <input type="text" id="employeeName" placeholder="Enter employee name" />
-            </div>
-            <div class="form-group">
-              <label for="employeePhone">Phone</label>
-              <input type="text" id="employeePhone" placeholder="Enter phone number" />
-            </div>
-            <div class="form-group">
-              <label for="employeeEmail">Email</label>
-              <input type="email" id="employeeEmail" placeholder="Enter email" />
-            </div>
-            <div class="form-group">
-              <label for="employeeDept">Department</label>
-              <input type="text" id="employeeDept" placeholder="e.g. Sales" />
-            </div>
-          </div>
-          <div class="form-actions">
-            <button class="btn btn-primary" onclick="addEmployee()">Add Employee</button>
-            <button class="btn btn-success" onclick="saveEmployee()">Save</button>
-            <button class="btn btn-secondary" onclick="clearEmployeeForm()">Clear</button>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-title">Employee List</div>
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr><th>#</th><th>Name</th><th>Phone</th><th>Email</th><th>Dept</th><th>Actions</th></tr>
-              </thead>
-              <tbody id="employeeTableBody"></tbody>
+              <tbody id="productTableBody">
+                <tr><td colspan="6" class="empty-state">Loading…</td></tr>
+              </tbody>
             </table>
           </div>
         </div>
@@ -331,18 +381,19 @@
             <tbody>
               <tr>
                 <td>Customer Report</td><td>CSV</td>
-                <td id="report-customer-count">0</td>
-                <td><button class="btn btn-primary btn-sm" id="downloadCustomerReport" onclick="downloadReport('customers')">Download</button></td>
+                <td id="report-customer-count">—</td>
+                <td><button class="btn btn-primary btn-sm" id="downloadCustomerReport" onclick="downloadReport('customers')">⬇ Download</button></td>
               </tr>
               <tr>
                 <td>Product Report</td><td>CSV</td>
-                <td id="report-product-count">0</td>
-                <td><button class="btn btn-primary btn-sm" id="downloadProductReport" onclick="downloadReport('products')">Download</button></td>
+                <td id="report-product-count">—</td>
+                <td><button class="btn btn-primary btn-sm" id="downloadProductReport" onclick="downloadReport('products')">⬇ Download</button></td>
               </tr>
               <tr>
-                <td>Employee Report</td><td>CSV</td>
-                <td id="report-employee-count">0</td>
-                <td><button class="btn btn-primary btn-sm" id="downloadEmployeeReport" onclick="downloadReport('employees')">Download</button></td>
+                <td><strong>Today's Report</strong> <span style="font-size:11px;color:#27ae60;background:#e8f5e9;padding:2px 8px;border-radius:10px;margin-left:6px;">Excel · Multi-sheet</span></td>
+                <td>XLSX</td>
+                <td id="report-today-count">Customers + Products</td>
+                <td><button class="btn btn-success btn-sm" id="downloadTodayReport" onclick="downloadTodayReport()">⬇ Download Today</button></td>
               </tr>
             </tbody>
           </table>
@@ -404,41 +455,88 @@
 </div><!-- /app -->
 
 <script>
-  // ─── In-memory store (no database) ───
-  const DB = {
-    customers: [],
-    products:  [],
-    employees: [],
-    uploads:   [],
-    reportDownloads: 0,
-  };
+  // ─── API base URL — CRM backend running on port 8001 ───────────────────
+  const API = 'http://localhost:8001';
 
-  // ─── Navigation ───
+  // ─── In-memory cache (populated from API, used for CSV export / search) ─
+  let _cache = { customers: [], products: [], reportDownloads: 0 };
+
+  // ─── DB status indicator ────────────────────────────────────────────────
+  function setDbStatus(connected) {
+    const el = document.getElementById('db-status');
+    if (connected) {
+      el.textContent = '🟢 SQLite Connected';
+      el.className = 'connected';
+    } else {
+      el.textContent = '🔴 Backend Offline';
+      el.className = 'disconnected';
+    }
+  }
+
+  // ─── API helpers ────────────────────────────────────────────────────────
+  async function apiGet(path) {
+    const res = await fetch(API + path);
+    if (!res.ok) throw new Error(await res.text());
+    return res.json();
+  }
+
+  async function apiPost(path, body) {
+    const res = await fetch(API + path, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({ detail: res.statusText }));
+      throw new Error(err.detail || res.statusText);
+    }
+    return res.json();
+  }
+
+  async function apiDelete(path) {
+    const res = await fetch(API + path, { method: 'DELETE' });
+    if (!res.ok) throw new Error(await res.text());
+    return res.json();
+  }
+
+  // ─── Navigation ─────────────────────────────────────────────────────────
   function navigate(page) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
     document.getElementById('page-' + page).classList.add('active');
-    // highlight sidebar item
     document.querySelectorAll('.nav-item').forEach(n => {
       if (n.getAttribute('onclick') === "navigate('" + page + "')") n.classList.add('active');
     });
-    const titles = { dashboard:'Dashboard', customers:'Customers', products:'Products', employees:'Employees', reports:'Reports', upload:'Upload', settings:'Settings' };
+    const titles = { dashboard:'Dashboard', customers:'Customers', products:'Products', reports:'Reports', upload:'Upload', settings:'Settings' };
     document.getElementById('topbar-title').textContent = titles[page] || page;
-    if (page === 'dashboard')  refreshDashboard();
-    if (page === 'reports')    refreshReportCounts();
+    if (page === 'dashboard') refreshDashboard();
+    if (page === 'customers') loadCustomers();
+    if (page === 'products')  loadProducts();
+    if (page === 'reports')   refreshReportCounts();
   }
 
-  // ─── Toast ───
+  // ─── Toast ──────────────────────────────────────────────────────────────
   function toast(msg, type = '') {
     const t = document.getElementById('toast');
     t.textContent = msg;
     t.className = 'show ' + type;
-    setTimeout(() => { t.className = ''; }, 3000);
+    setTimeout(() => { t.className = ''; }, 3500);
   }
 
-  // ═══════════════ CUSTOMERS ═══════════════
+  // ═══════════════ CUSTOMERS ══════════════════════════════════════════════
 
-  function addCustomer() {
+  async function loadCustomers() {
+    try {
+      const data = await apiGet('/customers');
+      _cache.customers = data;
+      renderCustomers();
+    } catch (e) {
+      document.getElementById('customerTableBody').innerHTML =
+        '<tr><td colspan="6" class="empty-state">⚠️ Could not load customers — is the backend running?</td></tr>';
+    }
+  }
+
+  async function addCustomer() {
     const name   = document.getElementById('customerName').value.trim();
     const phone  = document.getElementById('phoneNumber').value.trim();
     const email  = document.getElementById('customerEmail').value.trim();
@@ -446,18 +544,28 @@
 
     if (!name || !phone) { toast('Customer name and phone are required.', 'error'); return; }
 
-    DB.customers.push({ name, phone, email, status });
-    renderCustomers();
-    clearCustomerForm();
-    toast('Customer "' + name + '" added successfully.', 'success');
+    const btn = document.getElementById('addCustomer');
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner"></span>Adding…';
+
+    try {
+      await apiPost('/customers', { name, phone, email, status });
+      clearCustomerForm();
+      await loadCustomers();
+      toast('Customer "' + name + '" saved to database.', 'success');
+    } catch (e) {
+      toast('Error: ' + e.message, 'error');
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Add Customer';
+    }
   }
 
-  function saveCustomer() {
-    // Save = same as Add Customer in this in-memory CRM
+  async function saveCustomer() {
     const name  = document.getElementById('customerName').value.trim();
     const phone = document.getElementById('phoneNumber').value.trim();
     if (name && phone) {
-      addCustomer();
+      await addCustomer();
     } else {
       toast('Fill in at least name and phone before saving.', 'error');
     }
@@ -468,11 +576,14 @@
     document.getElementById('customerStatus').value = 'Active';
   }
 
-  function deleteCustomer(index) {
-    const name = DB.customers[index].name;
-    DB.customers.splice(index, 1);
-    renderCustomers();
-    toast('Customer "' + name + '" deleted.', 'error');
+  async function deleteCustomer(id) {
+    try {
+      await apiDelete('/customers/' + id);
+      await loadCustomers();
+      toast('Customer deleted.', 'error');
+    } catch (e) {
+      toast('Delete failed: ' + e.message, 'error');
+    }
   }
 
   function filterCustomers() {
@@ -482,145 +593,169 @@
 
   function renderCustomers(filter = '') {
     const tbody = document.getElementById('customerTableBody');
-    const rows = DB.customers
-      .map((c, i) => ({ ...c, _i: i }))
-      .filter(c => !filter || c.name.toLowerCase().includes(filter) || c.phone.includes(filter));
-
+    const rows = _cache.customers.filter(c =>
+      !filter || c.name.toLowerCase().includes(filter) || (c.phone || '').includes(filter)
+    );
     if (rows.length === 0) {
       tbody.innerHTML = '<tr><td colspan="6" class="empty-state">No customers found</td></tr>';
       return;
     }
-    tbody.innerHTML = rows.map(c =>
+    tbody.innerHTML = rows.map((c, i) =>
       '<tr>' +
-      '<td>' + (c._i + 1) + '</td>' +
+      '<td>' + (i + 1) + '</td>' +
       '<td>' + c.name + '</td>' +
       '<td>' + c.phone + '</td>' +
       '<td>' + (c.email || '—') + '</td>' +
       '<td><span class="tag ' + (c.status === 'Active' ? 'tag-active' : 'tag-inactive') + '">' + c.status + '</span></td>' +
-      '<td><button class="btn btn-danger btn-sm" onclick="deleteCustomer(' + c._i + ')">Delete</button></td>' +
+      '<td><button class="btn btn-danger btn-sm" onclick="deleteCustomer(' + c.id + ')">Delete</button></td>' +
       '</tr>'
     ).join('');
   }
 
-  // ═══════════════ PRODUCTS ═══════════════
+  // ═══════════════ PRODUCTS ═══════════════════════════════════════════════
 
-  function addProduct() {
+  async function loadProducts() {
+    try {
+      const data = await apiGet('/products');
+      _cache.products = data;
+      renderProducts();
+    } catch (e) {
+      document.getElementById('productTableBody').innerHTML =
+        '<tr><td colspan="6" class="empty-state">⚠️ Could not load products.</td></tr>';
+    }
+  }
+
+  async function addProduct() {
     const name     = document.getElementById('productName').value.trim();
     const price    = document.getElementById('productPrice').value.trim();
     const category = document.getElementById('productCategory').value.trim();
-    const stock    = document.getElementById('productStock').value.trim();
+    const stock    = parseInt(document.getElementById('productStock').value) || 0;
     if (!name || !price) { toast('Product name and price are required.', 'error'); return; }
-    DB.products.push({ name, price, category, stock });
-    renderProducts();
-    clearProductForm();
-    toast('Product "' + name + '" added.', 'success');
+    try {
+      await apiPost('/products', { name, price: parseFloat(price), category, stock });
+      clearProductForm();
+      await loadProducts();
+      toast('Product "' + name + '" saved to database.', 'success');
+    } catch (e) {
+      toast('Error: ' + e.message, 'error');
+    }
   }
 
-  function saveProduct() {
+  async function saveProduct() {
     const name  = document.getElementById('productName').value.trim();
     const price = document.getElementById('productPrice').value.trim();
-    if (name && price) { addProduct(); }
+    if (name && price) { await addProduct(); }
     else { toast('Fill in product name and price before saving.', 'error'); }
   }
 
   function clearProductForm() {
-    ['productName','productPrice','productCategory','productStock'].forEach(id => document.getElementById(id).value = '');
+    ['productName','productPrice','productCategory'].forEach(id => document.getElementById(id).value = '');
     document.getElementById('productStock').value = '0';
   }
 
-  function deleteProduct(index) {
-    DB.products.splice(index, 1);
-    renderProducts();
-    toast('Product deleted.', 'error');
+  async function deleteProduct(id) {
+    try {
+      await apiDelete('/products/' + id);
+      await loadProducts();
+      toast('Product deleted.', 'error');
+    } catch (e) {
+      toast('Delete failed: ' + e.message, 'error');
+    }
   }
 
   function renderProducts() {
     const tbody = document.getElementById('productTableBody');
-    if (DB.products.length === 0) {
+    if (_cache.products.length === 0) {
       tbody.innerHTML = '<tr><td colspan="6" class="empty-state">No products yet</td></tr>';
       return;
     }
-    tbody.innerHTML = DB.products.map((p, i) =>
+    tbody.innerHTML = _cache.products.map((p, i) =>
       '<tr><td>' + (i+1) + '</td><td>' + p.name + '</td><td>₹' + p.price +
       '</td><td>' + (p.category||'—') + '</td><td>' + (p.stock||0) +
-      '</td><td><button class="btn btn-danger btn-sm" onclick="deleteProduct(' + i + ')">Delete</button></td></tr>'
+      '</td><td><button class="btn btn-danger btn-sm" onclick="deleteProduct(' + p.id + ')">Delete</button></td></tr>'
     ).join('');
   }
 
-  // ═══════════════ EMPLOYEES ═══════════════
+  // ═══════════════ REPORTS ════════════════════════════════════════════════
 
-  function addEmployee() {
-    const name  = document.getElementById('employeeName').value.trim();
-    const phone = document.getElementById('employeePhone').value.trim();
-    const email = document.getElementById('employeeEmail').value.trim();
-    const dept  = document.getElementById('employeeDept').value.trim();
-    if (!name) { toast('Employee name is required.', 'error'); return; }
-    DB.employees.push({ name, phone, email, dept });
-    renderEmployees();
-    clearEmployeeForm();
-    toast('Employee "' + name + '" added.', 'success');
-  }
-
-  function saveEmployee() {
-    const name = document.getElementById('employeeName').value.trim();
-    if (name) { addEmployee(); }
-    else { toast('Enter employee name before saving.', 'error'); }
-  }
-
-  function clearEmployeeForm() {
-    ['employeeName','employeePhone','employeeEmail','employeeDept'].forEach(id => document.getElementById(id).value = '');
-  }
-
-  function deleteEmployee(index) {
-    DB.employees.splice(index, 1);
-    renderEmployees();
-    toast('Employee deleted.', 'error');
-  }
-
-  function renderEmployees() {
-    const tbody = document.getElementById('employeeTableBody');
-    if (DB.employees.length === 0) {
-      tbody.innerHTML = '<tr><td colspan="6" class="empty-state">No employees yet</td></tr>';
-      return;
+  async function refreshReportCounts() {
+    try {
+      const [c, p] = await Promise.all([
+        apiGet('/customers'), apiGet('/products')
+      ]);
+      document.getElementById('report-customer-count').textContent = c.length;
+      document.getElementById('report-product-count').textContent  = p.length;
+      _cache.customers = c; _cache.products = p;
+    } catch (err) {
+      ['report-customer-count','report-product-count']
+        .forEach(id => document.getElementById(id).textContent = '?');
     }
-    tbody.innerHTML = DB.employees.map((e, i) =>
-      '<tr><td>' + (i+1) + '</td><td>' + e.name + '</td><td>' + (e.phone||'—') +
-      '</td><td>' + (e.email||'—') + '</td><td>' + (e.dept||'—') +
-      '</td><td><button class="btn btn-danger btn-sm" onclick="deleteEmployee(' + i + ')">Delete</button></td></tr>'
-    ).join('');
   }
 
-  // ═══════════════ REPORTS ═══════════════
-
-  function refreshReportCounts() {
-    document.getElementById('report-customer-count').textContent = DB.customers.length;
-    document.getElementById('report-product-count').textContent  = DB.products.length;
-    document.getElementById('report-employee-count').textContent = DB.employees.length;
+  async function downloadReport(type) {
+    try {
+      const data = await apiGet('/' + type);
+      if (!data || data.length === 0) { toast('No records to download.', 'error'); return; }
+      const keys = Object.keys(data[0]).filter(k => k !== 'id');
+      const csv  = [keys.join(','), ...data.map(row => keys.map(k => '"' + (row[k]||'') + '"').join(','))].join('\n');
+      const blob = new Blob([csv], { type: 'text/csv' });
+      const url  = URL.createObjectURL(blob);
+      const a    = document.createElement('a');
+      a.href = url;
+      const today = new Date().toISOString().slice(0,10);
+      a.download = type + '_report_' + today + '.csv';
+      a.click();
+      URL.revokeObjectURL(url);
+      _cache.reportDownloads++;
+      document.getElementById('stat-reports').textContent = _cache.reportDownloads;
+      document.getElementById('download-status').textContent =
+        a.download + ' downloaded at ' + new Date().toLocaleTimeString();
+      toast(type.charAt(0).toUpperCase() + type.slice(1) + ' report downloaded ✅', 'success');
+    } catch (e) {
+      toast('Download failed: ' + e.message, 'error');
+    }
   }
 
-  function downloadReport(type) {
-    const dataMap = { customers: DB.customers, products: DB.products, employees: DB.employees };
-    const data = dataMap[type];
-    if (!data || data.length === 0) { toast('No records to download.', 'error'); return; }
-    const keys = Object.keys(data[0]);
-    const csv  = [keys.join(','), ...data.map(row => keys.map(k => '"' + (row[k]||'') + '"').join(','))].join('\n');
-    const blob = new Blob([csv], { type: 'text/csv' });
-    const url  = URL.createObjectURL(blob);
-    const a    = document.createElement('a');
-    a.href = url; a.download = type + '_report.csv'; a.click();
-    URL.revokeObjectURL(url);
-    DB.reportDownloads++;
-    document.getElementById('download-status').textContent = type + '_report.csv downloaded at ' + new Date().toLocaleTimeString();
-    toast('Report downloaded.', 'success');
+  async function downloadTodayReport() {
+    const btn = document.getElementById('downloadTodayReport');
+    if (btn) { btn.disabled = true; btn.textContent = '⏳ Generating…'; }
+    try {
+      // Fetch the multi-sheet Excel from the backend as a binary blob
+      const res = await fetch(API + '/report/today');
+      if (!res.ok) throw new Error('Server returned ' + res.status);
+
+      const blob = await res.blob();
+      const today = new Date().toISOString().slice(0, 10);
+      const filename = 'today_report_' + today + '.xlsx';
+
+      const url = URL.createObjectURL(blob);
+      const a   = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      a.click();
+      URL.revokeObjectURL(url);
+
+      _cache.reportDownloads++;
+      document.getElementById('stat-reports').textContent = _cache.reportDownloads;
+      document.getElementById('download-status').textContent =
+        filename + ' downloaded at ' + new Date().toLocaleTimeString() +
+        ' — contains Customers & Products sheets';
+      toast("Today's report downloaded ✅ (" + today + ')', 'success');
+    } catch (e) {
+      toast('Download failed: ' + e.message, 'error');
+    } finally {
+      if (btn) { btn.disabled = false; btn.textContent = '⬇ Download Today'; }
+    }
   }
 
-  // ═══════════════ UPLOAD ═══════════════
+  // ═══════════════ UPLOAD (local tracking only) ═══════════════════════════
 
+  const _uploads = [];
   function uploadFile() {
     const fileInput = document.getElementById('uploadFile');
     const file = fileInput.files[0];
     if (!file) { toast('Please select a file first.', 'error'); return; }
-    DB.uploads.push({ name: file.name, size: (file.size / 1024).toFixed(1) + ' KB', time: new Date().toLocaleTimeString() });
+    _uploads.push({ name: file.name, size: (file.size / 1024).toFixed(1) + ' KB', time: new Date().toLocaleTimeString() });
     renderUploads();
     fileInput.value = '';
     toast('File "' + file.name + '" uploaded.', 'success');
@@ -628,55 +763,393 @@
 
   function renderUploads() {
     const tbody = document.getElementById('uploadedFilesBody');
-    if (DB.uploads.length === 0) {
+    if (_uploads.length === 0) {
       tbody.innerHTML = '<tr><td colspan="4" class="empty-state">No files uploaded yet</td></tr>';
       return;
     }
-    tbody.innerHTML = DB.uploads.map((f, i) =>
+    tbody.innerHTML = _uploads.map((f, i) =>
       '<tr><td>' + (i+1) + '</td><td>' + f.name + '</td><td>' + f.size + '</td><td>' + f.time + '</td></tr>'
     ).join('');
   }
 
-  // ═══════════════ SETTINGS ═══════════════
+  // ═══════════════ SETTINGS ═══════════════════════════════════════════════
 
-  function saveSettings() {
-    toast('Settings saved.', 'success');
-  }
+  function saveSettings() { toast('Settings saved.', 'success'); }
 
-  function clearAllData() {
-    if (!confirm('This will delete all customers, products and employees from memory. Continue?')) return;
-    DB.customers = []; DB.products = []; DB.employees = []; DB.uploads = [];
-    renderCustomers(); renderProducts(); renderEmployees(); renderUploads();
-    refreshDashboard();
-    toast('All data cleared.', 'error');
-  }
-
-  // ═══════════════ DASHBOARD ═══════════════
-
-  function refreshDashboard() {
-    document.getElementById('stat-customers').textContent = DB.customers.length;
-    document.getElementById('stat-products').textContent  = DB.products.length;
-    document.getElementById('stat-employees').textContent = DB.employees.length;
-    document.getElementById('stat-reports').textContent   = DB.reportDownloads;
-
-    const tbody = document.getElementById('dashboard-recent-customers');
-    const recent = DB.customers.slice(-5).reverse();
-    if (recent.length === 0) {
-      tbody.innerHTML = '<tr><td colspan="4" class="empty-state">No customers yet</td></tr>';
-      return;
+  async function clearAllData() {
+    if (!confirm('This will permanently delete ALL customers and products from the database. Continue?')) return;
+    try {
+      await apiDelete('/data/all');
+      _cache.customers = []; _cache.products = [];
+      renderCustomers(); renderProducts();
+      await refreshDashboard();
+      toast('All data cleared from database.', 'error');
+    } catch (e) {
+      toast('Clear failed: ' + e.message, 'error');
     }
-    tbody.innerHTML = recent.map(c =>
-      '<tr><td>' + c.name + '</td><td>' + c.phone + '</td><td>' + (c.email||'—') + '</td>' +
-      '<td><span class="tag ' + (c.status==='Active'?'tag-active':'tag-inactive') + '">' + c.status + '</span></td></tr>'
-    ).join('');
   }
 
-  // ─── Init ───
-  renderCustomers();
-  renderProducts();
-  renderEmployees();
+  // ═══════════════ DASHBOARD ══════════════════════════════════════════════
+
+  async function refreshDashboard() {
+    try {
+      const [customers, products] = await Promise.all([
+        apiGet('/customers'), apiGet('/products')
+      ]);
+      _cache.customers = customers;
+      _cache.products  = products;
+
+      document.getElementById('stat-customers').textContent = customers.length;
+      document.getElementById('stat-products').textContent  = products.length;
+
+      const tbody  = document.getElementById('dashboard-recent-customers');
+      const recent = customers.slice(-5).reverse();
+      if (recent.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="4" class="empty-state">No customers yet</td></tr>';
+      } else {
+        tbody.innerHTML = recent.map(c =>
+          '<tr><td>' + c.name + '</td><td>' + c.phone + '</td><td>' + (c.email||'—') + '</td>' +
+          '<td><span class="tag ' + (c.status==='Active'?'tag-active':'tag-inactive') + '">' + c.status + '</span></td></tr>'
+        ).join('');
+      }
+      setDbStatus(true);
+    } catch (e) {
+      setDbStatus(false);
+      document.getElementById('stat-customers').textContent = '?';
+      document.getElementById('stat-products').textContent  = '?';
+      document.getElementById('dashboard-recent-customers').innerHTML =
+        '<tr><td colspan="4" class="empty-state">⚠️ Backend offline — start the CRM server on port 8001</td></tr>';
+    }
+  }
+
+  // ─── Init ────────────────────────────────────────────────────────────────
   renderUploads();
   refreshDashboard();
+  loadActiveOffer();
+  restoreLogo();            // apply saved logo on page load
+  restoreStyles();          // apply saved sidebar/header colors
+  restoreBanner();          // apply saved announcement banner
+  startLogoRequestPoller(); // poll every 2s for AI logo-change signal
+  startStylePoller();       // poll every 2s for AI style-change signal
+  startBannerPoller();      // poll every 2s for AI banner signal
+
+  // ─── Active Offer Banner ─────────────────────────────────────────────────
+  async function loadActiveOffer() {
+    try {
+      const res = await fetch(API + '/offer');
+      if (!res.ok) return;
+      const offer = await res.json();
+      if (!offer || !offer.banner_text) return;
+      renderOfferBanner(offer.banner_text, offer.offer_scope || 'all', offer.products || '');
+    } catch (e) {
+      // backend not ready yet — silently skip
+    }
+  }
+
+  function renderOfferBanner(bannerText, scope, products) {
+    // Remove any existing offer banner first
+    const existing = document.getElementById('ai-offer-banner');
+    if (existing) existing.remove();
+
+    const scopeLabel = scope === 'single' ? 'Single Product' : 'All Products';
+    const prodList   = products ? products : '';
+    const prodCount  = prodList ? prodList.split(',').length : 0;
+
+    const wrapper = document.createElement('div');
+    wrapper.id = 'ai-offer-banner';
+    wrapper.style.cssText = [
+      'background: linear-gradient(135deg, #e63946 0%, #c1121f 100%)',
+      'color: #fff',
+      'padding: 14px 24px',
+      'display: flex',
+      'align-items: center',
+      'justify-content: space-between',
+      'gap: 16px',
+      'box-shadow: 0 3px 12px rgba(230,57,70,.35)',
+      'position: relative',
+      'z-index: 500',
+      'flex-wrap: wrap',
+    ].join(';');
+
+    wrapper.innerHTML = `
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+        <span style="background:#fff;color:#e63946;font-size:11px;font-weight:800;
+          padding:3px 10px;border-radius:20px;letter-spacing:.6px;text-transform:uppercase;
+          flex-shrink:0;">🏷 OFFER</span>
+        <div>
+          <div style="font-size:15px;font-weight:700;line-height:1.3;">${escHtml(bannerText)}</div>
+          <div style="font-size:12px;opacity:.88;margin-top:3px;">
+            ${prodList ? escHtml(prodList) + '  •  ' : ''}${scopeLabel}
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;flex-shrink:0;">
+        ${prodCount > 0
+          ? `<span style="background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.4);
+              border-radius:20px;padding:3px 12px;font-size:12px;font-weight:600;">
+              ${prodCount} product${prodCount === 1 ? '' : 's'}</span>`
+          : ''}
+        <span style="cursor:pointer;opacity:.75;font-size:18px;line-height:1;padding:0 4px;"
+          title="Dismiss offer"
+          onclick="dismissOffer(this)">&times;</span>
+      </div>`;
+
+    const main = document.querySelector('.main');
+    if (main) main.insertBefore(wrapper, main.firstChild);
+  }
+
+  async function dismissOffer(btn) {
+    const banner = document.getElementById('ai-offer-banner');
+    if (banner) banner.remove();
+    try {
+      await fetch(API + '/offer', { method: 'DELETE' });
+    } catch (e) { /* ignore */ }
+  }
+
+  function escHtml(str) {
+    return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  // ═══════════════ LOGO CHANGE ════════════════════════════════════════════
+
+  let _logoDataUri = null;   // holds the selected file's base64 data-URI
+
+  // ── Apply saved logo from backend on every page load ───────────────────
+  async function restoreLogo() {
+    try {
+      const res = await fetch(API + '/ui/logo');
+      if (!res.ok) return;
+      const data = await res.json();
+      if (data && data.data) applyLogoToSidebar(data.data);
+    } catch (e) { /* backend not ready yet — skip */ }
+  }
+
+  // ── Poll every 2 s for an AI-triggered logo-change request ─────────────
+  function startLogoRequestPoller() {
+    setInterval(async () => {
+      try {
+        const res = await fetch(API + '/ui/logo-request');
+        if (!res.ok) return;
+        const { pending } = await res.json();
+        if (pending) {
+          // Clear the flag immediately so the modal only opens once
+          await fetch(API + '/ui/logo-request', { method: 'DELETE' });
+          logoModalOpen();
+        }
+      } catch (e) { /* ignore */ }
+    }, 2000);
+  }
+
+  // ─── Restore saved styles (sidebar color, header background, etc.) ────────
+  async function restoreStyles() {
+    try {
+      const res = await fetch(API + '/ui/styles');
+      if (!res.ok) return;
+      const styles = await res.json();  // { sidebar: 'blue', header: '#333', ... }
+      applyStyles(styles);
+    } catch (e) { /* backend not ready yet — skip */ }
+  }
+
+  function applyStyles(styles) {
+    const elementMap = {
+      sidebar:    '.sidebar',
+      header:     '.topbar',
+      topbar:     '.topbar',
+      background: 'body',
+      body:       'body',
+      navbar:     '.sidebar',
+      footer:     'footer',
+    };
+    for (const [element, color] of Object.entries(styles)) {
+      const selector = elementMap[element] || ('.' + element);
+      const el = document.querySelector(selector);
+      if (el && color) el.style.background = color;
+    }
+  }
+
+  // Poll every 2s for AI style-change requests
+  function startStylePoller() {
+    setInterval(async () => {
+      try {
+        const res = await fetch(API + '/ui/styles');
+        if (!res.ok) return;
+        const styles = await res.json();
+        applyStyles(styles);
+      } catch (e) { /* ignore */ }
+    }, 2000);
+  }
+
+  // ─── Restore saved announcement banner ──────────────────────────────────
+  async function restoreBanner() {
+    try {
+      const res = await fetch(API + '/ui/banner');
+      if (!res.ok) return;
+      const banner = await res.json();
+      if (banner && banner.text) renderAnnouncementBanner(banner);
+    } catch (e) { /* backend not ready yet — skip */ }
+  }
+
+  function renderAnnouncementBanner(banner) {
+    // Remove existing banner first
+    const existing = document.getElementById('ai-banner');
+    if (existing) existing.remove();
+
+    const div = document.createElement('div');
+    div.id = 'ai-banner';
+    div.style.cssText = [
+      `background:${banner.bg_color || '#e63946'}`,
+      `color:${banner.text_color || '#fff'}`,
+      'text-align:center',
+      'padding:10px 20px',
+      'font-size:14px',
+      'font-weight:600',
+      'position:relative',
+      'z-index:1000',
+      'display:flex',
+      'align-items:center',
+      'justify-content:center',
+      'gap:12px',
+    ].join(';');
+
+    const span = document.createElement('span');
+    span.textContent = banner.text;
+
+    const close = document.createElement('span');
+    close.innerHTML = '&times;';
+    close.title = 'Dismiss';
+    close.style.cssText = 'cursor:pointer;opacity:.75;font-size:18px;line-height:1;';
+    close.onclick = async () => {
+      div.remove();
+      try { await fetch(API + '/ui/banner', { method: 'DELETE' }); } catch (e) {}
+    };
+
+    div.appendChild(span);
+    div.appendChild(close);
+
+    const main = document.querySelector('.main');
+    if (main) main.insertBefore(div, main.firstChild);
+  }
+
+  // Poll every 2s for AI banner signal
+  function startBannerPoller() {
+    setInterval(async () => {
+      try {
+        const res = await fetch(API + '/ui/banner');
+        if (!res.ok) return;
+        const banner = await res.json();
+        if (!banner || !banner.text) return;
+        // Only re-render if not already shown with same text
+        const existing = document.getElementById('ai-banner');
+        if (!existing || existing.querySelector('span')?.textContent !== banner.text) {
+          renderAnnouncementBanner(banner);
+        }
+      } catch (e) { /* ignore */ }
+    }, 2000);
+  }
+
+  // ── Apply a logo data-URI to the sidebar ───────────────────────────────
+  function applyLogoToSidebar(dataUri) {
+    const el = document.getElementById('sidebar-logo-content');
+    if (!el) return;
+    el.innerHTML = `<img src="${dataUri}"
+      style="height:34px;max-width:160px;object-fit:contain;vertical-align:middle;"
+      alt="CRM Logo" />`;
+  }
+
+  // ── Open / close modal ──────────────────────────────────────────────────
+  function logoModalOpen() {
+    _logoDataUri = null;
+    document.getElementById('logo-file-input').value = '';
+    document.getElementById('logo-preview-wrap').style.display = 'none';
+    document.getElementById('logo-drop-zone').style.display   = '';
+    document.getElementById('btn-logo-apply').disabled = true;
+    document.getElementById('logo-modal-overlay').classList.add('show');
+  }
+
+  function logoModalClose() {
+    document.getElementById('logo-modal-overlay').classList.remove('show');
+    _logoDataUri = null;
+  }
+
+  // Close on backdrop click
+  document.getElementById('logo-modal-overlay').addEventListener('click', function(e) {
+    if (e.target === this) logoModalClose();
+  });
+
+  // ── Drag & drop helpers ─────────────────────────────────────────────────
+  function logoDragOver(e) {
+    e.preventDefault();
+    document.getElementById('logo-drop-zone').classList.add('dragover');
+  }
+  function logoDragLeave(e) {
+    document.getElementById('logo-drop-zone').classList.remove('dragover');
+  }
+  function logoDrop(e) {
+    e.preventDefault();
+    document.getElementById('logo-drop-zone').classList.remove('dragover');
+    const file = e.dataTransfer.files[0];
+    if (file && file.type.startsWith('image/')) loadLogoFile(file);
+  }
+
+  // ── File input change ───────────────────────────────────────────────────
+  function logoFileChosen(e) {
+    const file = e.target.files[0];
+    if (file) loadLogoFile(file);
+  }
+
+  // ── Read file → base64 data-URI, show preview ──────────────────────────
+  function loadLogoFile(file) {
+    const reader = new FileReader();
+    reader.onload = function(ev) {
+      _logoDataUri = ev.target.result;
+
+      // Show preview
+      document.getElementById('logo-preview-img').src = _logoDataUri;
+      document.getElementById('logo-preview-name').textContent = file.name + ' (' + (file.size / 1024).toFixed(1) + ' KB)';
+      document.getElementById('logo-preview-wrap').style.display = '';
+      document.getElementById('logo-drop-zone').style.display   = 'none';
+      document.getElementById('btn-logo-apply').disabled = false;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  // ── Apply: save to backend + update sidebar immediately ────────────────
+  async function logoApply() {
+    if (!_logoDataUri) return;
+
+    const btn = document.getElementById('btn-logo-apply');
+    btn.disabled = true;
+    btn.textContent = 'Saving…';
+
+    try {
+      const res = await fetch(API + '/ui/logo', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ data: _logoDataUri }),
+      });
+      if (!res.ok) throw new Error('Save failed: ' + res.status);
+
+      applyLogoToSidebar(_logoDataUri);
+      logoModalClose();
+      toast('Logo updated successfully! ✅', 'success');
+    } catch (e) {
+      toast('Failed to save logo: ' + e.message, 'error');
+      btn.disabled = false;
+      btn.textContent = 'Apply Logo';
+    }
+  }
+
+  // ── Reset: delete from backend + restore text logo ─────────────────────
+  async function logoReset() {
+    try {
+      await fetch(API + '/ui/logo', { method: 'DELETE' });
+    } catch (e) { /* ignore */ }
+
+    const el = document.getElementById('sidebar-logo-content');
+    if (el) el.innerHTML = 'Willovate <span style="color:#4f8ef7">CRM</span>';
+    logoModalClose();
+    toast('Logo reset to default.', '');
+  }
 </script>
 </body>
 </html>

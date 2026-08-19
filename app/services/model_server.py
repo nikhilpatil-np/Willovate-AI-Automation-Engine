@@ -83,6 +83,12 @@ class ModelServer:
         """
         Predict the intent label for the given text.
 
+        Uses a hybrid strategy:
+          1. Keyword-based detector runs first — if it returns a known intent
+             (anything other than "UNKNOWN"), that result is authoritative.
+          2. If keywords produce "UNKNOWN", fall back to the ML model so that
+             paraphrased / unseen phrasing is still handled gracefully.
+
         Args:
             text: Normalized instruction string.
 
@@ -90,8 +96,14 @@ class ModelServer:
             Intent label string, e.g. "ADD_CUSTOMER".
         """
 
+        # Step 1 — keyword check (fast, deterministic, always up-to-date)
+        keyword_intent = self._fallback.detect_intent(text)
+        if keyword_intent != "UNKNOWN":
+            return keyword_intent
+
+        # Step 2 — ML model for anything the keywords don't cover
         if self._using_fallback or self._model is None:
-            return self._fallback.detect_intent(text)
+            return keyword_intent  # already "UNKNOWN", nothing else to try
 
         try:
             # sklearn Pipeline already includes vectorizer — no separate step needed

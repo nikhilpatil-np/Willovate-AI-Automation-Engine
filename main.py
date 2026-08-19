@@ -14,9 +14,13 @@ Then open:
 import sys
 import asyncio
 
-# ── Windows / Python 3.13 fix ──────────────────────────────────────────────
+# ── Windows / Python 3.13 — must use ProactorEventLoop for subprocess support
+# ── (Playwright needs create_subprocess_exec which SelectorEventLoop forbids)
 if sys.platform == "win32":
     asyncio.set_event_loop_policy(asyncio.WindowsProactorEventLoopPolicy())
+    # Also replace the running loop so uvicorn inherits Proactor from the start
+    loop = asyncio.ProactorEventLoop()
+    asyncio.set_event_loop(loop)
 
 # ── Apply logging config (format, level) for the whole app ─────────────────
 import app.utils.logger  # noqa: F401  — side-effect import, sets basicConfig
@@ -84,6 +88,7 @@ class ExecuteRequest(BaseModel):
     instruction: str
     lang: Optional[str] = "auto"
     headless: Optional[bool] = True
+    confirmed: Optional[bool] = False   # set True to proceed past HIGH risk after user confirmation
 
 class NormalizeRequest(BaseModel):
     text: str
@@ -178,6 +183,7 @@ async def execute(req: ExecuteRequest):
         req.instruction,
         lang=req.lang or "auto",
         headless=req.headless if req.headless is not None else True,
+        confirmed=req.confirmed or False,
     )
 
 

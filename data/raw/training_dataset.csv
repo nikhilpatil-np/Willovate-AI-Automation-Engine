@@ -4,8 +4,25 @@ Create customer Amit,ADD_CUSTOMER,Amit,,,Customers,Low
 Update product Laptop price to 55000,UPDATE_PRODUCT,,,Laptop,Products,Medium
 Delete customer Rahul,DELETE_CUSTOMER,Rahul,,,Customers,High
 Download today's sales report,DOWNLOAD_REPORT,,,,Reports,Low
+Download the customer report,DOWNLOAD_REPORT,,,,Reports,Low
+Download customer report as CSV,DOWNLOAD_REPORT,,,,Reports,Low
+Get customer report,DOWNLOAD_REPORT,,,,Reports,Low
+Download the product report,DOWNLOAD_REPORT,,,,Reports,Low
+Download product report as CSV,DOWNLOAD_REPORT,,,,Reports,Low
+Get product report,DOWNLOAD_REPORT,,,,Reports,Low
+Download today's report,DOWNLOAD_REPORT,,,,Reports,Low
+Download today report,DOWNLOAD_REPORT,,,,Reports,Low
+Aaj ka report download karo,DOWNLOAD_REPORT,,,,Reports,Low
+Download today's Excel report,DOWNLOAD_REPORT,,,,Reports,Low
+Get me today's full report,DOWNLOAD_REPORT,,,,Reports,Low
+Download report for today,DOWNLOAD_REPORT,,,,Reports,Low
 Upload employee file employees.xlsx,UPLOAD_FILE,,,,Employees,Medium
 Send email to admin@example.com,SEND_EMAIL,,,admin@example.com,Email,Low
 Open CRM dashboard,OPEN_PAGE,,,,Dashboard,Low
 Fill employee form for Rohit,FORM_FILL,Rohit,,,Employees,Low
 Take screenshot of dashboard,TAKE_SCREENSHOT,,,,Dashboard,Low
+Add product Laptop with price 55000 in Electronics category and stock 10,ADD_PRODUCT,,,,,Low
+Add new product Mobile with price 15000,ADD_PRODUCT,,,,,Low
+Create product TV in Electronics with price 45000,ADD_PRODUCT,,,,,Low
+Add product Tablet price 25000 stock 20,ADD_PRODUCT,,,,,Low
+New product AC with price 35000 category Electronics,ADD_PRODUCT,,,,,Low

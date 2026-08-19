@@ -6,14 +6,22 @@ def detect_missing_information(intent: str, entities: dict):
     if intent == "ADD_CUSTOMER":
         required = ["name", "phone"]
 
+    elif intent == "ADD_PRODUCT":
+        required = ["product_name", "price"]
+
     elif intent == "UPDATE_PRODUCT":
-        required = ["product", "price"]
+        required = ["product_name", "price"]
 
     elif intent == "UPLOAD_FILE":
         required = ["file"]
 
     elif intent == "SEND_EMAIL":
         required = ["email", "subject"]
+
+    elif intent in ("ADD_OFFER", "add_offer"):
+        # Must have something to display as the offer text
+        if not entities.get("banner_text"):
+            required = ["banner_text"]
 
     elif intent in ("CHANGE_WEB", "change_web"):
         # Need at least an element or a color or banner_text or logo
