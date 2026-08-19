@@ -104,6 +104,41 @@ class IntentDetector:
                 "screenshot lena",
                 "screenshot le",
                 "स्क्रीनशॉट लो"
+            ],
+
+            "CHANGE_WEB": [
+                "change logo",
+                "update logo",
+                "change header",
+                "update header",
+                "change color",
+                "update color",
+                "change background",
+                "update background",
+                "add banner",
+                "add offer",
+                "add announcement",
+                "change title",
+                "update title",
+                "change text",
+                "update text",
+                "change button color",
+                "update button",
+                "change sidebar",
+                "update sidebar color",
+                "change theme",
+                "logo change karo",
+                "banner add karo",
+                "offer add karo",
+                "color change karo",
+                "header badlo",
+                "background badlo",
+                "logo badlo",
+                "website change karo",
+                "webpage update karo",
+                "site update karo",
+                "वेबसाइट बदलो",
+                "लोगो बदलो"
             ]
         }
 

@@ -15,6 +15,13 @@ def detect_missing_information(intent: str, entities: dict):
     elif intent == "SEND_EMAIL":
         required = ["email", "subject"]
 
+    elif intent in ("CHANGE_WEB", "change_web"):
+        # Need at least an element or a color or banner_text or logo
+        has_target = any(k in entities for k in
+                         ("element", "color", "logo", "banner_text", "text"))
+        if not has_target:
+            required = ["element"]
+
     missing = [k for k in required if k not in entities or not entities.get(k)]
 
     return missing

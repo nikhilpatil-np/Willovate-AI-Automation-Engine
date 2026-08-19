@@ -38,9 +38,15 @@ SUPPORTED_ACTIONS = {
     "SUBMIT",
     "TAKE_SCREENSHOT",
     "SEND_EMAIL",
-    "CONVERT_FILE",    # added by multi_step_planner
+    "CONVERT_FILE",
     "DELETE_RECORD",
     "UPDATE_RECORD",
+    "VERIFY_RECORD",
+    # Web change actions
+    "CHANGE_LOGO",
+    "CHANGE_STYLE",
+    "ADD_BANNER",
+    "CHANGE_TEXT",
 }
 
 # ---------------------------------------------------------------------------

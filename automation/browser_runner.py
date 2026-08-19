@@ -228,6 +228,84 @@ async def execute_step(page, step: dict, crm_url: str, workflow: dict) -> dict:
         await page.mouse.wheel(0, delta)
         return {"success": True}
 
+    # ── CHANGE_LOGO ─────────────────────────────────────────────────────────
+    elif action == "CHANGE_LOGO":
+        logo_val = str(value or "").strip()
+        if logo_val:
+            # Replace logo text with image tag if URL or filename given
+            await page.evaluate(f"""
+                var el = document.querySelector('.sidebar-logo');
+                if (el) {{
+                    el.innerHTML = '<img src="{logo_val}" style="height:32px;object-fit:contain;" alt="logo" />';
+                }}
+            """)
+        else:
+            await page.evaluate("""
+                var el = document.querySelector('.sidebar-logo');
+                if (el) el.innerHTML = 'Willovate <span style="color:#4f8ef7">CRM</span>';
+            """)
+        return {"success": True, "changed": "logo", "value": logo_val}
+
+    # ── CHANGE_STYLE ────────────────────────────────────────────────────────
+    elif action == "CHANGE_STYLE":
+        element_map = {
+            "sidebar":    ".sidebar",
+            "header":     ".topbar",
+            "topbar":     ".topbar",
+            "background": "body",
+            "body":       "body",
+            "navbar":     ".sidebar",
+            "footer":     "footer",
+        }
+        selector = element_map.get(target.lower(), "." + target.lower())
+        color_val = str(value or "").strip()
+        if color_val:
+            await page.evaluate(f"""
+                var el = document.querySelector('{selector}');
+                if (el) el.style.background = '{color_val}';
+            """)
+        return {"success": True, "changed": target, "value": color_val}
+
+    # ── ADD_BANNER ──────────────────────────────────────────────────────────
+    elif action == "ADD_BANNER":
+        banner_text = str(value or "Special Offer!").strip()
+        await page.evaluate(f"""
+            // Remove existing banner if any
+            var existing = document.getElementById('ai-banner');
+            if (existing) existing.remove();
+
+            // Create new banner
+            var banner = document.createElement('div');
+            banner.id = 'ai-banner';
+            banner.style.cssText = 'background:#e63946;color:#fff;text-align:center;'
+                + 'padding:10px 20px;font-size:14px;font-weight:600;'
+                + 'position:relative;z-index:1000;';
+            banner.innerHTML = '{banner_text} &nbsp; <span onclick="document.getElementById(\\'ai-banner\\').remove()" '
+                + 'style="cursor:pointer;opacity:.7;margin-left:12px;">✕</span>';
+
+            // Insert at top of main area
+            var main = document.querySelector('.main');
+            if (main) main.insertBefore(banner, main.firstChild);
+        """)
+        return {"success": True, "changed": "banner", "value": banner_text}
+
+    # ── CHANGE_TEXT ─────────────────────────────────────────────────────────
+    elif action == "CHANGE_TEXT":
+        element_map = {
+            "topbar-title": "#topbar-title",
+            "title":        "#topbar-title",
+            "header":       "#topbar-title",
+            "sidebar-logo": ".sidebar-logo",
+        }
+        selector = element_map.get(target.lower(), "#" + target.lower())
+        text_val = str(value or "").strip()
+        if text_val:
+            await page.evaluate(f"""
+                var el = document.querySelector('{selector}');
+                if (el) el.textContent = '{text_val}';
+            """)
+        return {"success": True, "changed": target, "value": text_val}
+
     # ── UNSUPPORTED — skip gracefully ───────────────────────────────────────
     else:
         return {"success": True, "skipped": True,

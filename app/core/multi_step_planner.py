@@ -47,6 +47,14 @@ SPLIT_PATTERNS = [
 
 def _intent(text: str) -> str:
     t = text.lower()
+    # Web change check first — before update_record which also uses "change"
+    if any(k in t for k in (
+        "change logo", "update logo", "change header color", "change background",
+        "change sidebar", "add banner", "add offer", "change title",
+        "change button color", "change theme", "change color",
+        "logo badlo", "banner add", "color change",
+    )):
+        return "change_web"
     if any(k in t for k in ("add", "create", "register", "jod", "bana", "जोड़", "बना")):
         if any(k in t for k in ("customer", "ग्राहक", "कस्टमर", "client")):
             return "add_customer"
@@ -197,6 +205,56 @@ def _steps_for(subtask: str, entities: dict) -> list:
     m = re.search(r"\bwait\s+(?:for\s+)?(\d+)\s*(?:sec|second)", t)
     if m:
         steps.append({"action": "WAIT", "target": m.group(1) + "s"})
+
+    # ── WEB CHANGES ─────────────────────────────────────────────────────────
+    # Change logo
+    if re.search(r"\bchange\s+logo\b|\bupdate\s+logo\b|\blogo\s+(?:change|badlo)\b", t):
+        logo = entities.get("logo", "")
+        steps.append({
+            "action": "CHANGE_LOGO",
+            "target": "sidebar-logo",
+            "value":  logo,
+        })
+
+    # Change color / background / sidebar / header color
+    elif re.search(r"\bchange\s+(?:header\s+)?(?:color|background|bg|sidebar|theme)\b"
+                   r"|\bcolor\s+change\b|\bbackground\s+(?:change|badlo)\b", t):
+        element = entities.get("element", "body")
+        color   = entities.get("color", "")
+        steps.append({
+            "action": "CHANGE_STYLE",
+            "target": element,
+            "value":  color,
+        })
+
+    # Add banner / offer / announcement
+    elif re.search(r"\badd\s+(?:banner|offer|announcement|notice)\b"
+                   r"|\bbanner\s+add\b|\boffer\s+add\b", t):
+        banner_text = entities.get("banner_text", "Special Offer!")
+        steps.append({
+            "action": "ADD_BANNER",
+            "target": "topbar",
+            "value":  banner_text,
+        })
+
+    # Change title / heading text
+    elif re.search(r"\bchange\s+(?:title|heading|topbar\s+title)\b"
+                   r"|\btitle\s+(?:change|badlo)\b", t):
+        text_val = entities.get("text", "")
+        steps.append({
+            "action": "CHANGE_TEXT",
+            "target": "topbar-title",
+            "value":  text_val,
+        })
+
+    # Change sidebar color specifically
+    if re.search(r"\bchange\s+sidebar\b|\bsidebar\s+(?:color|background)\b", t):
+        color = entities.get("color", "")
+        steps.append({
+            "action": "CHANGE_STYLE",
+            "target": "sidebar",
+            "value":  color,
+        })
 
     return steps
 

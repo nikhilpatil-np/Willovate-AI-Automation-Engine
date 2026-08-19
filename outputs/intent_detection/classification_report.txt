@@ -1,20 +1,21 @@
                  precision    recall  f1-score   support
 
-   ADD_CUSTOMER       0.96      1.00      0.98        26
-   CLICK_BUTTON       1.00      0.93      0.97        15
-DELETE_CUSTOMER       1.00      0.91      0.95        11
-DELETE_EMPLOYEE       1.00      1.00      1.00         9
-DOWNLOAD_REPORT       1.00      1.00      1.00        17
-      FILL_FORM       0.94      1.00      0.97        15
-      OPEN_PAGE       1.00      0.94      0.97        16
-     READ_TABLE       0.94      1.00      0.97        16
-     SEND_EMAIL       0.89      1.00      0.94        16
+   ADD_CUSTOMER       0.72      1.00      0.84        26
+     CHANGE_WEB       1.00      0.62      0.77         8
+   CLICK_BUTTON       1.00      0.80      0.89        15
+DELETE_CUSTOMER       1.00      0.64      0.78        11
+DELETE_EMPLOYEE       1.00      0.78      0.88         9
+DOWNLOAD_REPORT       0.94      0.94      0.94        17
+      FILL_FORM       0.88      0.93      0.90        15
+      OPEN_PAGE       0.83      0.94      0.88        16
+     READ_TABLE       0.88      0.94      0.91        16
+     SEND_EMAIL       0.93      0.88      0.90        16
 TAKE_SCREENSHOT       1.00      0.93      0.97        15
-UPDATE_CUSTOMER       0.85      0.92      0.88        12
-UPDATE_EMPLOYEE       1.00      0.80      0.89        10
- UPDATE_PRODUCT       1.00      0.94      0.97        16
+UPDATE_CUSTOMER       0.75      0.50      0.60        12
+UPDATE_EMPLOYEE       0.69      0.90      0.78        10
+ UPDATE_PRODUCT       0.94      0.94      0.94        16
     UPLOAD_FILE       0.94      1.00      0.97        16
 
-       accuracy                           0.96       210
-      macro avg       0.97      0.95      0.96       210
-   weighted avg       0.96      0.96      0.96       210
+       accuracy                           0.88       218
+      macro avg       0.90      0.85      0.86       218
+   weighted avg       0.89      0.88      0.87       218

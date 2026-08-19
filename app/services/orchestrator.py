@@ -80,6 +80,13 @@ def run_pipeline(instruction: str, lang: str = "auto") -> dict:
     # Step 3 — Entity extraction (run on original to preserve names/numbers)
     # ------------------------------------------------------------------
     entities = extract_entities(instruction)
+
+    # For web change instructions also extract web-specific entities
+    if intent.upper() in ("CHANGE_WEB",) or "change" in instruction.lower():
+        from app.core.entity_extractor import extract_web_entities
+        web_ents = extract_web_entities(instruction)
+        entities.update(web_ents)
+
     logger.debug("Entities: %s", entities)
 
     # ------------------------------------------------------------------

@@ -173,6 +173,76 @@ def extract_entities(text):
 
 
 # ---------------------------------
+# Web Change Entities (color, logo, banner, element)
+# ---------------------------------
+
+def extract_web_entities(text: str) -> dict:
+    """
+    Extract entities specific to web change instructions.
+
+    Examples:
+      "Change logo to willovate.png"        → {logo: willovate.png}
+      "Change header color to blue"         → {element: header, color: blue}
+      "Add banner with text 50% off today"  → {banner_text: 50% off today}
+      "Change background to #ff0000"        → {color: #ff0000}
+      "Change sidebar color to dark green"  → {element: sidebar, color: dark green}
+      "Change title to Welcome to CRM"      → {element: title, text: Welcome to CRM}
+    """
+    entities = {}
+
+    t = text.lower()
+
+    # ── Logo ──────────────────────────────────────────────────────────────
+    logo = re.search(
+        r"logo\s+(?:to|with|as|=)?\s*([\w\-]+\.(?:png|jpg|jpeg|svg|gif|ico))",
+        text, re.IGNORECASE
+    )
+    if logo:
+        entities["logo"] = logo.group(1)
+
+    # ── Color (hex or named) ───────────────────────────────────────────────
+    color = re.search(
+        r"(?:color|colour|background|bg)\s+(?:to|as|=)?\s*"
+        r"(#[0-9a-fA-F]{3,6}|[a-z][\w\s]{2,20}?)(?:\s*$|\s+(?:and|,))",
+        text, re.IGNORECASE
+    )
+    if not color:
+        color = re.search(
+            r"(?:to|as)\s+(#[0-9a-fA-F]{3,6}|"
+            r"red|blue|green|yellow|orange|purple|pink|white|black|gray|grey|"
+            r"dark\s+\w+|light\s+\w+|navy|teal|maroon|cyan|magenta)\b",
+            text, re.IGNORECASE
+        )
+    if color:
+        entities["color"] = color.group(1).strip()
+
+    # ── Banner / Offer text ────────────────────────────────────────────────
+    banner = re.search(
+        r"(?:banner|offer|announcement|notice)\s+(?:with\s+)?(?:text\s+)?[\"']?(.+?)[\"']?\s*$",
+        text, re.IGNORECASE
+    )
+    if banner:
+        entities["banner_text"] = banner.group(1).strip()
+
+    # ── Title / Header text ────────────────────────────────────────────────
+    title = re.search(
+        r"(?:title|heading|header\s+text)\s+(?:to|as|with)?\s*[\"']?(.+?)[\"']?\s*$",
+        text, re.IGNORECASE
+    )
+    if title:
+        entities["text"] = title.group(1).strip()
+
+    # ── Element target ─────────────────────────────────────────────────────
+    for elem in ("logo", "header", "sidebar", "topbar", "footer",
+                 "background", "title", "button", "navbar"):
+        if elem in t:
+            entities["element"] = elem
+            break
+
+    return entities
+
+
+# ---------------------------------
 # Testing
 # ---------------------------------
 
