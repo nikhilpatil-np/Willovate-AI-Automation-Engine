@@ -2,11 +2,16 @@ GitHub Repository:
 https://github.com/nikhilpatil-np/Willovate-AI-Automation-Engine
 
 How to run:
-  cd Willovate-AI-Automation-Engine
-  .venv\Scripts\Activate.ps1
-  uvicorn main:app --port 8000
-  Open: http://127.0.0.1:8000
+Terminal 1 — CRM Backend (SQLite API on port 8001)
+  cd c:\willovate\Willovate-AI-Automation-Engine
+  .\.venv\Scripts\activate
+  uvicorn app.services.crm_service:app --port 8001 --reload
 
+Terminal 2 — Main AI Engine + Frontend (port 8000)
+  cd c:\willovate\Willovate-AI-Automation-Engine
+  .\.venv\Scripts\activate
+  uvicorn main:app --port 8000 --reload
+  
 Final demo command:
   "Open the CRM, add Pankaj Koche as a customer with
    phone number 9876543210, save the record and verify
